@@ -1,12 +1,14 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 from .models import UserModel
-from django.contrib import auth # 사용자 auth 기능
+from django.contrib import auth  # 사용자 auth 기능
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
+
 def init_view(request):
     return render(request, 'init/init.html')
+
 
 # Join
 def join_view(request):
@@ -25,13 +27,13 @@ def join_view(request):
         password = request.POST.get('password', ' ')
         password2 = request.POST.get('password2', '')
         address = request.POST.get('address', ' ')
-        address_detil = request.POST.get('address_detil', ' ')
-        
+        address_detail = request.POST.get('address_detail', ' ')
+
         gender = request.POST.get('gender', ' ')
         birthdate = request.POST.get('birthdate', ' ')
 
-        final_address = address + ' ' + address_detil
-        birthdate = datetime.strptime(birthdate, '%y%m%d').date() 
+        final_address = address + ', ' + address_detail
+        birthdate = datetime.strptime(birthdate, '%y%m%d').date()
         print(user_email, user_name, password, final_address, gender, birthdate)
 
         if password != password2:
@@ -43,14 +45,16 @@ def join_view(request):
 
             exist_user = get_user_model().objects.filter(email=user_email)
             if exist_user:
-                return render(request, 'users/join.html', {'error':'이미 가입된 이메일입니다.'})  # 사용자가 존재하기 때문에 사용자를 저장하지 않고 회원가입 페이지를 다시 띄움
+                return render(request, 'users/join.html',
+                              {'error': '이미 가입된 이메일입니다.'})  # 사용자가 존재하기 때문에 사용자를 저장하지 않고 회원가입 페이지를 다시 띄움
             else:
                 UserModel.objects.create_user(
-                    email=user_email, username=user_name, 
+                    email=user_email, username=user_name,
                     password=password, address=final_address,
                     gender=gender, birthdate=birthdate)
                 print('회원가입이 정상적으로 완료 되었습니다~')
                 return redirect('login')  # 회원가입이 완료되었으므로 로그인 페이지로 이동
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -62,12 +66,12 @@ def login_view(request):
         # 여기 auth.authenticate 제대로 작동안하는 오류있습니다.
         me = auth.authenticate(request, email=user_email, password=password)
         print('me', me)
-        if me is not None:  
+        if me is not None:
             auth.login(request, me)
             return redirect('main')
         else:
             print(1)
-            return render(request,'users/login.html', {'error':'유저이름 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
+            return render(request, 'users/login.html', {'error': '유저이름 혹은 패스워드를 확인 해 주세요'})  # 로그인 실패
 
     elif request.method == 'GET':
         user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
@@ -78,10 +82,12 @@ def login_view(request):
 
             return render(request, 'users/login.html')
 
-@login_required # 로그인 한 사용자만 함수 호출 가능
+
+@login_required  # 로그인 한 사용자만 함수 호출 가능
 def logout(request):
-    auth.logout(request) # 인증 되어있는 정보를 없애기
+    auth.logout(request)  # 인증 되어있는 정보를 없애기
     return redirect("/")
+
 
 def main_view(request):
     return render(request, 'main/main.html')
