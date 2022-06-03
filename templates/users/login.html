@@ -20,8 +20,8 @@
             <form class="form-area" action="{% url 'login' %}" method="post">
                 {% csrf_token %}
                 <div>
-                    <label for="user_name">이름</label>
-                    <input type="text" class="form-control" id="user_name" name="user_name">
+                    <label for="user_email">아이디</label>
+                    <input type="email" class="form-control" id="user_email" name="user_email">
                 </div>
                 <div>
                     <label for="password">비밀번호</label>

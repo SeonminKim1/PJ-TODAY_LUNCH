@@ -20,7 +20,8 @@
                     oncomplete: function (data) {
                         var addr = data.address; // 최종 주소 변수
                         document.getElementById("address").value = addr;  // 주소 정보를 해당 필드에 넣는다.
-                    }
+                        document.getElementById("address").readOnly = true;
+                    },
                 }).open();
             }
         </script>
@@ -51,31 +52,19 @@
 
                     <hr>
                     <div class="form-group mt-2 mb-2">
-                        1번 : 클릭 시 바로 검색
-                        <input type="text" class="form-control" id="address" name="address"
-                               placeholder="주소를 검색해주세요" onclick="DaumPostcode()">
-                        2번 : 직관적으로 검색버튼을 보여줌
-                        <input type="button" onclick="DaumPostcode()" value="주소검색">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="주소를 검색해주세요" onclick="DaumPostcode()">
+                        <input type="text" class="form-control" id="address_detail" name="address_detail" placeholder="상세 주소를 입력해주세요"
                     </div>
                     <hr>
-                    1번 : 성별 클릭하여 고르기
                     <div class="form-group mt-2 mb-2">
-                        <label for="gender">성별</label>
+                        <label for="gender">성별 </label>
                         남<input type="radio" id="gender" name="gender" value="M" checked>
                         여<input type="radio" id="gender" name="gender" value="W">
-                    </div>
-                    2번 : 성별 드랍다운
-                    <div class="form-group mt-2 mb-2">
-                        <label for="gender">성별
-                            <select name="gender">
-                                <option value="M" selected>남성</option>
-                                <option value="W">여성</option>
-                            </select></label>
                     </div>
                     <hr>
                     <div class = "btn_boxes">
                         <button type="button" class="btn btn-primary" onclick = "window.location.href = '{% url 'login' %}'" >로그인 페이지로</button>
-                        <button type="submit" class="btn btn-primary" >가입완료</button>
+                        <button type="submit" class="btn btn-primary">가입완료</button>
                     </div>
                 </form>
             </div>
