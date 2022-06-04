@@ -2,11 +2,11 @@ from django.db import models
 
 # Create your models here.
 class Categories(models.Model):
-    restaurant_category = models.CharField()
+    restaurant_category = models.CharField(max_length=45)
 
 
 class Restaurant(models.Model):
-    restaurant_name = models.CharField()
+    restaurant_name = models.CharField(max_length=45)
     restaurant_address = models.TextField()
     restaurant_image = models.TextField()
     restaurant_category = models.ForeignKey(Categories, on_delete=models.CASCADE)
