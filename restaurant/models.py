@@ -4,6 +4,12 @@ from django.db import models
 class Categories(models.Model):
     restaurant_category = models.CharField(max_length=45)
 
+    def __str__(self):
+        return self.restaurant_category
+
+    class Meta:
+        db_table = 'Categories'
+
 
 class Restaurant(models.Model):
     restaurant_name = models.CharField(max_length=45)
