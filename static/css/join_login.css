@@ -1,7 +1,7 @@
 .title_center {
     text-align: center;
     margin-top: 50px;
-    font-size:50px;
+    font-size: 50px;
 }
 
 .wrapper {
@@ -13,12 +13,16 @@
     margin-top: 25px;
 }
 
-.btn_boxes{
-    display:flex;
+.btn_boxes {
+    display: flex;
     justify-content: space-around;
 }
 
-.btn{
-    width:120px;
-    margin:20px;
+.btn {
+    width: 120px;
+    margin: 20px;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
 }

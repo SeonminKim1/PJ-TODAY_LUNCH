@@ -61,7 +61,7 @@ def join_view(request):
         print(user_email, user_name, password, final_address, gender, birthdate)
         # 모든 validation 통과~
         UserModel.objects.create_user(
-            email=user_email, username=user_email, full_name = user_name,
+            email=user_email, username=user_email, fullname = user_name,
             password=password, address=final_address,
             gender=gender, birthdate=birthdate)
 
