@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .title_center {
     text-align: center;
     margin-top: 50px;
