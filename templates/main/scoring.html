@@ -36,7 +36,7 @@
                   rating.forEach((star) => {
                         if(star.checked){
                               console.log(star.value);
-                              score[res_id] = star.value;
+                              score[res_id] = parseInt(star.value);
                         }
                   });
                   console.log('==score==', score);
