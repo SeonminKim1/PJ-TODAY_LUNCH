@@ -36,8 +36,8 @@
 <body>
 {% include 'users/message.html' %}
 
-<div class="container">
-    <div class="wrapper" style="">
+<div class="join_container">
+    <div class="join_wrapper" style="">
         <p class="title_center">회 원 가 입</p>
         <form class="form-area" method="post" action="{% url 'join' %}">
             {% csrf_token %}

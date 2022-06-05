@@ -24,8 +24,8 @@
 </head>
 <body>
 {% include 'users/message.html' %}
-<div class="container">
-    <div class="wrapper">
+<div class="login_container">
+    <div class="login_wrapper">
         <p class="title_center"> 로 그 인</p>
         <form class="form-area" action="{% url 'login' %}" method="post">
             {% csrf_token %}
