@@ -16,6 +16,10 @@ RESTAURANT = 'restaurant.csv'
 
 #함수 정의하기 (row부분엔 해당 table의 row명을 적어준다.)
 def insert_Restaurant():
+    Categories.objects.create(restaurant_category='한식')
+    Categories.objects.create(restaurant_category='중식')
+    Categories.objects.create(restaurant_category='일식')
+    Categories.objects.create(restaurant_category='양식')
     with open(RESTAURANT, encoding='utf-8') as csv_file:
         data_reader = csv.reader(csv_file)
         next(data_reader, None)
