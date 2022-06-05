@@ -5,14 +5,17 @@ import csv
 import django
 
 #환경변수 세팅(뒷부분은 프로젝트명.settings로 설정한다.)
+print('==추가한 Path:', os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))) # path 추가
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "today_lunch.settings")
 django.setup()
 
 # model import
 from restaurant.models import *
 
+print('==현재 Path:', os.getcwd())
 #읽어들일 csv 디렉토리를 각 변수에 담는다.
-RESTAURANT = 'restaurant.csv'
+RESTAURANT = 'recommandation/restaurant.csv'
 
 #함수 정의하기 (row부분엔 해당 table의 row명을 적어준다.)
 def insert_Restaurant():
