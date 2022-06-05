@@ -22,6 +22,7 @@ from users import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('restaurant.urls')),
     # init
     path('', views.init_view, name='init'),
     
