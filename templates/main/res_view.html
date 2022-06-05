@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>가게 이름 : {{ restaurant.restaurant_name }}</p>
+<p>카테고리 : {{ restaurant.restaurant_category }}</p>
+<p>주소 : {{ restaurant.restaurant_address }}</p>
+이미지 URL :  {{ restaurant.restaurant_image }}
+<img src="../{{ restaurant.restaurant_image }}" alt="" height="100px" width="100px">
+</body>
+</html>
