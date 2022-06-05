@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>7점심 뭐 먹지?</title>
+    <title>점심 뭐 먹지?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Custom CSS Files -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/init_page.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/join_login.css' %}" type="text/css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -25,15 +24,26 @@
 </head>
 <body>
 {% include 'users/message.html' %}
-<div class="init_wrapper">
-    <div class="init_container">
-        <h1 class="title_center">점심 뭐 먹지 ?</h1>
-        <div class="btn_boxes">
-            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='user/join/'">회원가입
-            </button>
-            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='user/login/'">로그인
-            </button>
-        </div>
+<div class="container">
+    <div class="wrapper">
+        <p class="title_center"> 로 그 인</p>
+        <form class="form-area" action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="user_email">아이디</label>
+                <input type="email" class="form-control" id="user_email" name="user_email">
+            </div>
+            <div>
+                <label for="password">비밀번호</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class='btn_boxes'>
+                <button type="submit" class="btn btn-primary">로그인</button>
+            </div>
+            <div class="a_boxes">
+                <a href='{% url 'join' %}'>회원가입 페이지로</a>
+            </div>
+        </form>
     </div>
 </div>
 </body>
