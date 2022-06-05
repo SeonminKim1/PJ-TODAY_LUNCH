@@ -75,7 +75,7 @@ def login_view(request):
     if request.method == 'GET':
         user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
         if user:  # 로그인이 되어 있다면
-            return redirect('basicview')
+            return redirect('scoring_view')
         else:  # 로그인이 되어 있지 않다면
             return render(request, 'users/login.html')
     # Login Button - Click
@@ -87,7 +87,8 @@ def login_view(request):
         me = auth.authenticate(request, username=user_email, password=password) # me 정상시 username이 됨.
         if me is not None:
             auth.login(request, me)
-            return redirect('basicview')
+            messages.success(request, '로그인 성공!')
+            return redirect('scoring_view')
         else: # 로그인 인증 실패
             messages.error(request, '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!')
             return render(request, 'users/login.html', {'error': '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!'})  # 로그인 실패

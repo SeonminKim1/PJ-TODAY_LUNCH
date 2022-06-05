@@ -43,45 +43,49 @@
             }
 
             function scoring_completed(){
-                  console.log('==scoring_completed method on');
                   var csrftoken = document.querySelector("meta[name=csrf_token]").content
-                  var user_email = {{user_email}}
-                  console.log('====', {'score':score, 'user_email': user_email})
                   $.ajax({ // 비동기 방식
                         type: "POST",
-                        contentType : "application/json; charset=utf-8",
-                        url: "put_score/",
-                        data: JSON.stringify({'score':score, 'user_email': user_email}),
                         dataType:"JSON",
+                        contentType : "application/json; charset=utf-8",
+                        url: "/user/put_score/",
+                        data: JSON.stringify({'score':score}),
                         headers: {"X-CSRFToken": csrftoken},
                         success: function (response) {
                             alert(response["msg"])
-                            window.location.href="main/"
+                            window.location.reload()
                         }
-                    });
+                  });
             }
       </script>
       </head>
       <body style="background-color:gray;">
-            {{ user_email }} 로그인 성공~~~!!! 메인 페이지 <a href="{% url 'logout' %}">로그아웃</a>
-
             {% include 'users/message.html' %}
+            <div class="header_container" style='text-align:right; color:white; height:20px; margin:10px;'>
+                  <a href="{% url 'logout' %}" >로그아웃</a>
+            </div>
+
             <div class="main_container">
-                  <div class="title_wrapper" style="text-align:center;">
-                        <p class="title_center"> 점 심 뭐 먹 지</p>
+                  <div class="title_wrapper">
+                        <p class="title_center"> 점심 뭐 먹지?</p>
                         <p class="description"> 점심 후기 별점을 남겨주세요 </p>
                   </div>
                   <div class="main_wrapper">
                         <div class="card_contents">
                               {% for res in random_restaurants %}
                               <div class="card_box">
-                                    <div><img src="../{{ res.restaurant_image }}" alt="" class = "card_img_item"></div>
-                                    <div class="card_title_item">
-                                          <div>{{res.restaurant_name}}</div><div>{{res.restaurant_category}}</div>
+                                    <!-- / 앞에 = ../../ 와 같음-->
+                                    <div><img src="/{{ res.restaurant_image }}" alt="" class = "card_img_item"></div>
+                                    <div class="card_items">
+                                          <div class="card_title_item">
+                                                <div class="card_item_left">{{res.restaurant_name}}</div>
+                                                <div class="card_item_right">{{res.restaurant_category}}</div>
+                                          </div>
+                                          <div class="card_content_item">
+                                                {{res.restaurant_address}}
+                                          </div>
                                     </div>
-                                    <div>{{res.restaurant_address}}</div>
                                     <div class="card_link_item"><a href="https://map.naver.com/v5/search/{{res.restaurant_name}}" target="_blank">자세히 보기</a></div>
-
                                     <div class="card_star_item space-x-4 mx-auto">
                                           <input type="radio" id="5-stars_{{res.id}}" name="rating_{{res.id}}" value="5" v-model="ratings" onclick='getRating({{res.id}})'/>
                                           <label for="5-stars_{{res.id}}" class="star_{{res.id}} pr-4">★</label>
@@ -100,8 +104,10 @@
                         
                   </div>
                   <div class="button_wrapper">
-                        <button>나중에 할게요</button>
-                        <button onclick="scoring_completed()">다음 페이지</button>
+                        <button class="btn btn-primary btn-lg" onclick="scoring_completed()">조금 더하기!</button>
+                  </div>
+                  <div class="a_wrapper">
+                        <a href={% url 'main' %}>나중에 할게요</a>
                   </div>
             </div> <!-- main_container -->
       </body>

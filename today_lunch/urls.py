@@ -34,9 +34,9 @@ urlpatterns = [
     # register 2
     # path('main/', resview.main_view, name='main'),
     path('res_view/<int:restaurant_id>', resview.res_view, name='res_view'),
-    path('basic_view/', resview.basic_view, name='basicview'),
-    path('basic_view/put_score/', resview.put_score, name='put_score'),
-    path('basic_view/main/', resview.main_view, name='mainview'),
+    path('user/scoring_view/', resview.scoring_view, name='scoring_view'),
+    path('user/put_score/', resview.put_score, name='put_score'),
+    # path('basic_view/main/', resview.main_view, name='mainview'),
 
     # main
     path('main/', resview.main_view, name='main' ),

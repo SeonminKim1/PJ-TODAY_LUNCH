@@ -12,7 +12,7 @@ def res_view(request, restaurant_id):
         print(type(restaurant))
         return render(request, 'main/res_view.html', {'restaurant': restaurant})
 
-def basic_view(request):
+def scoring_view(request):
     if request.method=='GET':
         # Restaurants = Restaurant.objects.all()
         res_count = Restaurant.objects.count() # 음식점 전체 데이터 갯수
@@ -23,10 +23,12 @@ def basic_view(request):
 def put_score(request):
     if request.method=='POST':
         current_user = request.user
-        data = json.loads(request.body)
         username = current_user.username
 
-        score = data['score']        
+        data = json.loads(request.body)
+        score = data['score']   
+
+             
         print(score, username)
         #@TODO Score Table 에 저장
 

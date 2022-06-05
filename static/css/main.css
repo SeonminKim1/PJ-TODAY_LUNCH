@@ -1,32 +1,71 @@
+.title_wrapper{
+  text-align:center;
+}
+
+.title_center{
+  font-size:70px;
+  font-weight: bold;
+}
+
+.description{
+  font-size:45px;
+}
+
 .card_contents {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content:center;
-    background-color:white; 
     margin:50px 150px;
 }
 
 .card_box{
-    width:300px;
-    height:350px;
+    width:350px;
+    height:520px;
     text-align:center;
-    margin:10px;
+    margin:5px;
+    background-color:white; 
     border: 1px solid gray;
     border-radius: 10px;
+}
+.card_items{
+  height:180px;
 }
 
 .card_img_item{
     width:250px;
     height:200px;
+    margin:10px 10px;
 }
 
 .card_title_item{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items:flex-end;
+  justify-content: center;
+  margin: 10px 10px;
 }
 
+.card_content_item{
+  margin:10px 10px;
+}
+
+.card_item_left{
+  font-size:20px;
+  margin-right:10px;
+  font-weight: bold;
+}
+
+.card_item_right{
+  margin-left:10px;
+  min-width: 30px;
+  text-align:center;
+  font-size:15px;
+}
+
+.card_link_item{
+  height:20px;
+}
 
 /* star-rating */
 .card_star_item {
@@ -38,7 +77,8 @@
     padding: 0 0.2em;
     text-align: center;
     width: 5em;
-  }
+    margin:10px 0px;
+}
    
   .card_star_item input {
     display: none;
@@ -58,4 +98,23 @@
   .card_star_item label:hover,
   .card_star_item label:hover ~ label {
     -webkit-text-fill-color: #fff58c;
+  }
+
+  /* button wrapper */
+  .button_wrapper{
+    display:flex;
+    justify-content: center;
+
+    align-items: center;
+    text-align:right;
+    margin: 0px 150px 50px 150px;
+    font-size:30px;
+  }
+
+  /* button wrapper */
+  .a_wrapper{
+    display:flex;
+    justify-content: center;
+    margin: 0px 150px;
+    font-size:20px;
   }
