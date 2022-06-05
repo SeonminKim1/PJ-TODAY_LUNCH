@@ -1,0 +1,61 @@
+.card_contents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    background-color:white; 
+    margin:50px 150px;
+}
+
+.card_box{
+    width:300px;
+    height:350px;
+    text-align:center;
+    margin:10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.card_img_item{
+    width:250px;
+    height:200px;
+}
+
+.card_title_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+/* star-rating */
+.card_star_item {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    justify-content: space-around;
+    padding: 0 0.2em;
+    text-align: center;
+    width: 5em;
+  }
+   
+  .card_star_item input {
+    display: none;
+  }
+   
+  .card_star_item label {
+    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 2.3px;
+    -webkit-text-stroke-color: #2b2a29;
+    cursor: pointer;
+  }
+   
+  .card_star_item :checked ~ label {
+    -webkit-text-fill-color: gold;
+  }
+   
+  .card_star_item label:hover,
+  .card_star_item label:hover ~ label {
+    -webkit-text-fill-color: #fff58c;
+  }

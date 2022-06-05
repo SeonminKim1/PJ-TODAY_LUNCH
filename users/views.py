@@ -17,7 +17,7 @@ def join_view(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
         if user:
-            return redirect("/")
+            return redirect("main")
         else:
             return render(request, 'users/join.html')
 
@@ -75,20 +75,19 @@ def login_view(request):
     if request.method == 'GET':
         user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
         if user:  # 로그인이 되어 있다면
-            return redirect('main')
+            return redirect('basicview')
         else:  # 로그인이 되어 있지 않다면
             return render(request, 'users/login.html')
     # Login Button - Click
     elif request.method == 'POST':
         user_email = request.POST.get('user_email', "")
         password = request.POST.get('password', "")
-        # print('===', user_email, password)
         
         # validation 1) username과 password 비교
         me = auth.authenticate(request, username=user_email, password=password) # me 정상시 username이 됨.
         if me is not None:
             auth.login(request, me)
-            return redirect('main')
+            return redirect('basicview')
         else: # 로그인 인증 실패
             messages.error(request, '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!')
             return render(request, 'users/login.html', {'error': '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!'})  # 로그인 실패
@@ -99,7 +98,3 @@ def logout(request):
     auth.logout(request) # 인증 되어있는 정보를 없애기
     messages.success(request, '로그아웃 성공!')
     return redirect("/")
-
-
-def main_view(request):
-    return render(request, 'main/main.html')
