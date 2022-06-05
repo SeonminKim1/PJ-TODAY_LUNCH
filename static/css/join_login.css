@@ -17,9 +17,9 @@
     margin-top: 25px;
 }
 
-.btn_boxes {
+.btn_boxes, .a_boxes{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .btn {

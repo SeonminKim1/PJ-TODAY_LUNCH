@@ -15,22 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from users import views
-
+from users import views as userview
+from restaurant import views as resview
 #    path('', include('user.urls')), # user앱의 urls.py와 연결
 #    path('', include('tweet.urls')), # tweet 앱의 urls.py와 연결
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('restaurant.urls')),
+    # path('', include('restaurant.urls')),
     # init
-    path('', views.init_view, name='init'),
+    path('', userview.init_view, name='init'),
     
     # user - join, login, logout
-    path('user/join/', views.join_view, name='join'),
-    path('user/login/', views.login_view, name='login'),
-    path('user/logout/', views.logout, name='logout'),
+    path('user/join/', userview.join_view, name='join'),
+    path('user/login/', userview.login_view, name='login'),
+    path('user/logout/', userview.logout, name='logout'),
+
+    # register 2
+    # path('main/', resview.main_view, name='main'),
+    path('res_view/<int:restaurant_id>', resview.res_view, name='res_view'),
+    path('user/scoring_view/', resview.scoring_view, name='scoring_view'),
+    path('user/put_score/', resview.put_score, name='put_score'),
+    # path('basic_view/main/', resview.main_view, name='mainview'),
 
     # main
-    path('main/', views.main_view, name='main'),
+    path('main/', resview.main_view, name='main' ),
 ]
