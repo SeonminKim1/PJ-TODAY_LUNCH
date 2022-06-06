@@ -31,8 +31,8 @@
 </head>
 
 <body>
-<nav>
-    <div class="nav-container">
+
+    <nav>
         <div class="nav-wrapper">
             <div class="logo-box">
                 <div class="logo">
@@ -48,22 +48,21 @@
                 <a class="logout" href="{% url 'logout' %}">로그아웃</a>
             </div>
         </div>
-    </div>
-</nav>
-<div class="box">
+    </nav>
+<div class="main-container">
     <aside>
         <div class="aside-container">
             <div class="aside-wrapper">
                 <div class="user-main-box">
                     <div class="user-main">
-                        <span class="user-name">사용자 님</span>
+                        <span class="user-info-title">사용자 님</span>
                         <p class="user-address">주소 서울시 강남구 선릉로
                             스파르타 코딩클럽</p>
                     </div>
                 </div>
                 <div class="user-lunch-box">
                     <div class="user-lunch">
-                        <span>나의 최근 메뉴!</span>
+                        <span class="user-info-title">나의 최근 메뉴!</span>
                         <div class="card" style="width: 100%">
                             <img src="..." class="card-img-top" alt="...">
                             <div class="card-body">
