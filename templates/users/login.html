@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="{% static 'css/join_login.css' %}" type="text/css">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
     <!-- Jquery -->
@@ -24,24 +24,24 @@
 </head>
 <body>
 {% include 'users/message.html' %}
-<div class="container">
-    <div class="wrapper">
-        <p class="title_center"> 로 그 인</p>
+<div class="login_container">
+    <div class="login_wrapper">
+        <p class="title_center">로 그 인</p>
+        <hr>
         <form class="form-area" action="{% url 'login' %}" method="post">
             {% csrf_token %}
-            <div>
+            <div class="form-group mt-2 mb-2">
                 <label for="user_email">아이디</label>
-                <input type="email" class="form-control" id="user_email" name="user_email">
+                <input type="email" class="form-control" id="user_email" name="user_email" placeholder="Email">
             </div>
-            <div>
+            <div class="form-group mt-2 mb-2">
                 <label for="password">비밀번호</label>
-                <input type="password" class="form-control" id="password" name="password">
+                <input type="password" class="form-control" id="password" name="password" placeholder="********">
             </div>
+            <hr>
             <div class='btn_boxes'>
-                <button type="submit" class="btn btn-primary">로그인</button>
-            </div>
-            <div class="a_boxes">
-                <a href='{% url 'join' %}'>회원가입 페이지로</a>
+                <button type="submit" class="btn btn-danger btn-lg">로그인</button>
+                <a href='{% url 'join' %}' class="btn btn-success btn-lg">회원가입</a>
             </div>
         </form>
     </div>
