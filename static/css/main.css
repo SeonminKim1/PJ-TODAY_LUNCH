@@ -7,38 +7,61 @@
 
 
 /* nav */
-
 nav {
     background-color: lightslategrey;;
 }
 
-.nav-container {
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 2% 0 2%;
 }
 
-
-
 .logo-box, .hello-box, .logout-box {
-    display: inline-flex;
+    display: inline-block;
     padding: 1%;
-    background-color: whitesmoke;
+}
+
+.logo-box {
+    background-color: steelblue;
 }
 
 .logo {
     font-weight: 600;
+
 }
 
 .hello-box {
-    margin-left: 60% ;
+    display: flex;
+    align-items: center;
+    width: 60%;
+    background-color: lavender;
+}
+
+.hello {
+    text-align: right;
 }
 
 .logout-box {
-    float: right;
+    display: flex;
+    align-items: center;
+    height: 70%;
+    border-radius: 50px;
+    background-color: darkseagreen;
+}
+
+.logout {
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 
 
 /* aside */
-.box {
+.main-container {
     display: flex;
 }
 
@@ -48,9 +71,8 @@ aside, section {
 
 aside {
     background-color: slategray;
-    margin-top: 5%;
+    margin-top: 2%;
 }
-
 
 .aside-container {
     /*position: relative;*/
@@ -62,23 +84,27 @@ aside {
 
 .aside-wrapper {
     display: block;
-
 }
 .user-main-box {
     background-color: steelblue;
     margin: 20% 0 30% 0;
 }
 
-.user-lunch-box {
-
+.user-info-title {
+    display: inline-block;
+    margin-bottom: 5%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background-color: lavender;
 }
+
 .user-lunch {
     padding: 6%;
     background-color: steelblue;
 }
 
-/* section */
 
+/* section */
 section {
     display: flex;
     margin: 5% 0 0 5%;
@@ -99,23 +125,21 @@ section {
     margin-top: 2%;
 }
 .card-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
     background-color: whitesmoke;
-
 }
 
 .card-box {
     display: flex;
     position: relative;
     margin: 4%;
-
-
 }
 
 .card {
     display: block;
     width: 12rem;
     margin-right: 4% ;
-
 }
 
 .card-text {
