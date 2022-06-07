@@ -1,7 +1,4 @@
 import pandas as pd
-import numpy as np
-import os
-
 
 def recommandation(login_user_id):
     restaurants = pd.read_csv('recommandation/res_info.csv')
@@ -32,7 +29,7 @@ def recommandation(login_user_id):
     # print(user_based_collab)
 
     # 1번 유저와 비슷한 유저를 내림차순으로 정렬한 후에, 상위 10개만 뽑음
-    # print(user_based_collab[login_user_id].sort_values(ascending=False)[:10])
+    print(user_based_collab[login_user_id].sort_values(ascending=False)[:10])
 
     # 상위 유저 중 첫번째 유저를 뽑고,
     user = user_based_collab[login_user_id].sort_values(ascending=False)[:10].index[1]

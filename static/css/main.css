@@ -149,12 +149,17 @@ section {
     margin: 4%;
 }
 
+
 .card {
     display: block;
     width: 14rem;
     margin-right: 4%;
     box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+}
 
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .card-text {
