@@ -6,7 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css">
-
+    <style>
+        table{
+            width:1000px;
+        }
+        td{
+            width:100px;
+            height:50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +65,6 @@
         <section>
             <div class="section-container">
                 <div class="section-wrapper">
-                    <!-- 값 이렇게 넘겨주셔용 -->
                     <table class='custom_calendar_table'> 
                         <thead class='cal_date'> 
                             <th><button type='button' class='prev'> < </button></th> 
@@ -68,14 +75,16 @@
                             <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th> 
                         </thead> 
                         <tbody id='custom_set_date'> 
-                            {% for weeks in date %} <!-- date 는 2중 list -->
+                            {% for weeks in date %} <!-- date 는 2중 list --> 
+                            <!-- weeks : 7일짜리 [{'day': 1, 'is_date': True, 'id': None, 'date': datetime.date(2022, 6, 1), 'is_diary': False, 'restaurant_score': None, 'restaurant_name': None}]-->
                             <tr>
                                 {% for days in weeks %}
-                                    {% if days.is_null %}<td></td>
+                                    <!-- days : {'day': 1, 'is_date': True, 'id': None, 'date': datetime.date(2022, 6, 1), 'is_diary': False, 'restaurant_score': None, 'restaurant_name': None}]-->
+                                    {% if days.is_date == False %}<td></td>
                                     {% else %}
                                     <td>
                                         {{days.day}}
-                                        {% if days.isDiary == True %}
+                                        {% if days.is_diary == True %}
                                             <div>음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
                                         {% endif %}
                                     </td>
@@ -83,6 +92,7 @@
                                     <!-- tag 생성 -->
                                 {% endfor %}
                             </tr>
+                            {% endfor %}
                         </tbody> 
                     </table>
                 </div>

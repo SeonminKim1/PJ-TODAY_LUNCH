@@ -100,12 +100,10 @@ aside {
 /* section */
 section {
     display: flex;
-    margin: 5% 0 0 5%;
     background-color: lightsteelblue;
 }
 
 .section-container {
-    width: 90%;
     margin: auto;
 }
 
