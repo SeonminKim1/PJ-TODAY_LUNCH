@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Restaurant
 from star.models import star
+from recommandation.recommand import recommandation
 
 import json
 import random
@@ -61,5 +62,25 @@ def put_score(request):
 
 def main_view(request):
     if request.method == 'GET':
-        print('main_view 옴')
-        return render(request, 'main/main.html')
+        # 현재 로그인 유저 정보 가져오기
+        current_user = request.user
+
+        # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
+        reco = recommandation(current_user.id)
+
+        # 내가 가본 음식점들 골라 내기
+        my_diary = star.objects.filter(star_user=current_user.id)
+        visited_restaurant = []
+        for diary in my_diary:
+            visited_restaurant.append(diary.star_restaurant.restaurant_name)
+
+        # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
+        reco_list = list(set(reco) - set(visited_restaurant))[0:5]
+        print(reco_list)
+
+        # TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
+        recos = []
+        for re in reco_list:
+            recos.append(Restaurant.objects.get(restaurant_name=re))
+
+        return render(request, 'main/main.html', {'recos': recos})
