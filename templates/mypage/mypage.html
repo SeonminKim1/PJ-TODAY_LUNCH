@@ -7,88 +7,180 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-    <nav>
-        <div class="nav-wrapper">
-            <div class="logo-box">
-                <div class="logo">
-                    <h1>점심 뭐 먹지?</h1>
-                </div>
-            </div>
-            <div class="hello-box">
-                <div class="hello">
-                    {{ user_email }} 님 환영합니다
-                </div>
-            </div>
-            <div class="logout-box">
-                <a class="logout" href="{% url 'logout' %}">로그아웃</a>
+<!-- Modal -->
+<div id="modal" class="modal_overlay">
+    <div class="modal_window">
+        <div class="modal_title">
+            <h3>그날의 점심</h3>
+        </div>
+        <div class="modal_close">X</div>
+        <hr>
+        <div class="main_content">
+            <p>날짜 :</p>
+            <p>상호명 :<input type="search" src=""></p>
+            <p>별점 :</p>
+        </div>
+        <hr>
+        <div class="modal_btn_box">
+            <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='#'">등록
+            </button>
+            <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='#'">수정
+            </button>
+            <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='#'">삭제
+            </button>
+        </div>
+    </div>
+</div>
+<nav>
+    <div class="nav-wrapper">
+        <div class="logo-box">
+            <div class="logo">
+                <h1>점심 뭐 먹지?</h1>
             </div>
         </div>
-    </nav>
-    <div class="main-container">
-        <aside>
-            <div class="aside-container">
-                <div class="aside-wrapper">
-                    <div class="user-main-box">
-                        <div class="user-main">
-                            <span class="user-info-title">사용자 님</span>
-                            <p class="user-address">주소 서울시 강남구 선릉로
-                                스파르타 코딩클럽</p>
-                        </div>
+        <div class="hello-box">
+            <div class="hello">
+                {{ user_email }} 님 환영합니다
+            </div>
+        </div>
+        <div class="logout-box">
+            <a class="logout" href="{% url 'logout' %}">로그아웃</a>
+        </div>
+    </div>
+</nav>
+<div class="main-container">
+    <aside>
+        <div class="aside-container">
+            <div class="aside-wrapper">
+                <div class="user-main-box">
+                    <div class="user-main">
+                        <span class="user-info-title">사용자 님</span>
+                        <p class="user-address">주소 서울시 강남구 선릉로
+                            스파르타 코딩클럽</p>
                     </div>
-                    <div class="user-lunch-box">
-                        <div class="user-lunch">
-                            <span class="user-info-title">나의 최근 메뉴!</span>
-                            <div class="card" style="width: 100%">
-                                <img src="..." class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">레스토랑</h5>
-                                    <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                    <a href="#" class="btn btn-primary">상세보기</a>
-                                </div>
+                </div>
+                <div class="user-lunch-box">
+                    <div class="user-lunch">
+                        <span class="user-info-title">나의 최근 메뉴!</span>
+                        <div class="card" style="width: 100%">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">레스토랑</h5>
+                                <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
+                                <a href="#" class="btn btn-primary">상세보기</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </aside>
-        <section>
-            <div class="section-container">
-                <div class="section-wrapper">
-                    <!-- 값 이렇게 넘겨주셔용 -->
-                    <table class='custom_calendar_table'> 
-                        <thead class='cal_date'> 
-                            <th><button type='button' class='prev'> < </button></th> 
-                            <th colspan='5'><p><span id='now_year'> year </span> 년 <span id='now_month'> month </span> 월 </p></th> 
-                            <th><button type='button' class='next'> > </button></th> 
-                        </thead> 
-                        <thead class='cal_week'> 
-                            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th> 
-                        </thead> 
-                        <tbody id='custom_set_date'> 
-                            {% for weeks in date %} <!-- date 는 2중 list -->
-                            <tr>
-                                {% for days in weeks %}
-                                    {% if days.is_null %}<td></td>
-                                    {% else %}
+        </div>
+    </aside>
+    <section>
+
+        <div class="section-container">
+            <div class="section-wrapper">
+                <div id="modal_open" style="cursor: pointer">modal open
+                </div>
+                <!-- 값 이렇게 넘겨주셔용 -->
+                <table class='custom_calendar_table'>
+                    <thead class='cal_date'>
+                    <th>
+                        <button type='button' class='prev'> <</button>
+                    </th>
+                    <th colspan='5'><p><span id='now_year'> year </span> 년 <span id='now_month'> month </span> 월 </p>
+                    </th>
+                    <th>
+                        <button type='button' class='next'> ></button>
+                    </th>
+                    </thead>
+                    <thead class='cal_week'>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                    </thead>
+                    <tbody id='custom_set_date'>
+                    {% for weeks in date %} <!-- date 는 2중 list -->
+                        <tr>
+                            {% for days in weeks %}
+                                {% if days.is_null %}
+                                    <td></td>
+                                {% else %}
                                     <td>
-                                        {{days.day}}
+                                        {{ days.day }}
                                         {% if days.isDiary == True %}
-                                            <div>음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
+                                            <div>음식점 이름 : {{ days.restaurant_name }} / 평점
+                                                : {{ days.restaurant_score }} </div>
                                         {% endif %}
                                     </td>
-                                    {% endif %}
-                                    <!-- tag 생성 -->
-                                {% endfor %}
-                            </tr>
-                        </tbody> 
-                    </table>
-                </div>
+                                {% endif %}
+                                <!-- tag 생성 -->
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+</div>
 </body>
+<script>
+    // Modal Func
+    const modal = document.getElementById("modal")
+
+    function modalOn() {
+        modal.style.display = "flex"
+    }
+
+    function modalOff() {
+        modal.style.display = "none"
+    }
+
+    const btnModal = document.getElementById("modal_open")
+    btnModal.addEventListener("click", e => {
+        modalOn()
+    })
+
+    const closeBtn = modal.querySelector(".modal_close")
+    closeBtn.addEventListener("click", e => {
+        modalOff()
+    })
+
+    modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if (evTarget.classList.contains("modal_overlay")) {
+            modalOff()
+        }
+    })
+
+
+    {#function modal_func() {#}
+    {#    document.querySelector('.modal_window').style.display = 'flex';#}
+    {#    document.querySelector('.modal_overlay').style.display = 'flex';#}
+    {#    document.querySelector('.modal_overlay').style.top = window.pageYOffset + 'px';#}
+    {#    $('body').css("overflow", "hidden");#}
+    {# }#}
+    {##}
+    {#function modal_func_off() {#}
+    {#    document.querySelector('.modal_window').style.display = 'none';#}
+    {#    document.querySelector('.modal_overlay').style.display = 'none';#}
+    {#    document.querySelector('.modal_overlay').style.top = window.pageYOffset + 'px';#}
+    {#    $('body').css("overflow", "scroll");#}
+    {# }#}
+</script>
 
 </html>
