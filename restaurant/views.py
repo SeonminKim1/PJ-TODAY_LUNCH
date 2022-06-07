@@ -2,11 +2,13 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Restaurant
 from star.models import star
+from users.models import UserModel
 from recommandation.recommand import recommandation
 
 import json
 import random
 from datetime import datetime
+
 
 
 def res_view(request, restaurant_id):
@@ -65,6 +67,8 @@ def main_view(request):
         # 현재 로그인 유저 정보 가져오기
         current_user = request.user
 
+        user = UserModel.objects.get(id=current_user.id)
+
         # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
         reco = recommandation(current_user.id)
 
@@ -83,4 +87,4 @@ def main_view(request):
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
 
-        return render(request, 'main/main.html', {'recos': recos})
+        return render(request, 'main/main.html', {'recos': recos, 'user': user})
