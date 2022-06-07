@@ -4,7 +4,7 @@ import sys
 import csv
 import django
 
-#환경변수 세팅(뒷부분은 프로젝트명.settings로 설정한다.)
+#환경변수 세팅(뒷부분은 프로젝트명.settings로 설정한다.) 모델을 불러오는 것보다 무조건 위에 있어야한다.
 print('==추가한 Path:', os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))) # path 추가
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "today_lunch.settings")
