@@ -69,7 +69,10 @@ def main_view(request):
         user = UserModel.objects.get(id=current_user.id)
 
         # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
-        reco = recommandation(current_user.id)
+        reco, similar_user = recommandation(current_user.id)
+
+        # 나와 가장 비슷한 사용자의 정보
+        similar = UserModel.objects.get(id=similar_user)
 
         # 내가 가본 음식점들 골라 내기
         my_diary = Star.objects.filter(star_user=current_user.id)
@@ -86,4 +89,4 @@ def main_view(request):
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
 
-        return render(request, 'main/main.html', {'recos': recos, 'user': user})
+        return render(request, 'main/main.html', {'recos': recos, 'user': user, 'similar': similar})
