@@ -69,10 +69,9 @@ def main_view(request):
         reco_list = list(set(reco) - set(visited_restaurant))[0:5]
         print(reco_list)
 
+        # TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
         recos = []
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
 
-        print(recos)
-        print('main_view 옴')
         return render(request, 'main/main.html', {'recos': recos})
