@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from users import views as userview
 from restaurant import views as resview
+from mypage import views as mypageview
 #    path('', include('user.urls')), # user앱의 urls.py와 연결
 #    path('', include('tweet.urls')), # tweet 앱의 urls.py와 연결
 
@@ -40,4 +41,7 @@ urlpatterns = [
 
     # main
     path('main/', resview.main_view, name='main' ),
+
+    # mypage
+    path('mypage/', mypageview.mypage_view, name='mypage')
 ]
