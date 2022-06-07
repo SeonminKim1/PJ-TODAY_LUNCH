@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>점심 뭐 먹지?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css">
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="logo-box">
+                <div class="logo">
+                    <h1>점심 뭐 먹지?</h1>
+                </div>
+            </div>
+            <div class="hello-box">
+                <div class="hello">
+                    {{ user_email }} 님 환영합니다
+                </div>
+            </div>
+            <div class="logout-box">
+                <a class="logout" href="{% url 'logout' %}">로그아웃</a>
+            </div>
+        </div>
+    </nav>
+    <div class="main-container">
+        <aside>
+            <div class="aside-container">
+                <div class="aside-wrapper">
+                    <div class="user-main-box">
+                        <div class="user-main">
+                            <span class="user-info-title">사용자 님</span>
+                            <p class="user-address">주소 서울시 강남구 선릉로
+                                스파르타 코딩클럽</p>
+                        </div>
+                    </div>
+                    <div class="user-lunch-box">
+                        <div class="user-lunch">
+                            <span class="user-info-title">나의 최근 메뉴!</span>
+                            <div class="card" style="width: 100%">
+                                <img src="..." class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">레스토랑</h5>
+                                    <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
+                                    <a href="#" class="btn btn-primary">상세보기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <section>
+            <div class="section-container">
+                <div class="section-wrapper">
+                    <!-- 값 이렇게 넘겨주셔용 -->
+                    <table class='custom_calendar_table'> 
+                        <thead class='cal_date'> 
+                            <th><button type='button' class='prev'> < </button></th> 
+                            <th colspan='5'><p><span id='now_year'> year </span> 년 <span id='now_month'> month </span> 월 </p></th> 
+                            <th><button type='button' class='next'> > </button></th> 
+                        </thead> 
+                        <thead class='cal_week'> 
+                            <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th> 
+                        </thead> 
+                        <tbody id='custom_set_date'> 
+                            {% for weeks in date %} <!-- date 는 2중 list -->
+                            <tr>
+                                {% for days in weeks %}
+                                    {% if days.is_null %}<td></td>
+                                    {% else %}
+                                    <td>
+                                        {{days.day}}
+                                        {% if days.isDiary == True %}
+                                            <div>음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
+                                        {% endif %}
+                                    </td>
+                                    {% endif %}
+                                    <!-- tag 생성 -->
+                                {% endfor %}
+                            </tr>
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
