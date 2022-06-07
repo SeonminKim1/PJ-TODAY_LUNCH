@@ -69,10 +69,10 @@ def main_view(request):
         reco_list = list(set(reco) - set(visited_restaurant))[0:5]
         print(reco_list)
 
-        reco = []
+        recos = []
         for re in reco_list:
-            reco.append(Restaurant.objects.get(restaurant_name=re))
+            recos.append(Restaurant.objects.get(restaurant_name=re))
 
-        print(reco)
+        print(recos)
         print('main_view 옴')
-        return render(request, 'main/main.html', {'reco': reco})
+        return render(request, 'main/main.html', {'recos': recos})
