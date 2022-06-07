@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Restaurant
-from star.models import star
+from star.models import Star
 from recommandation.recommand import recommandation
 
 import json
@@ -23,7 +23,7 @@ def scoring_view(request):
         random_ids = []
         while len(random_ids) != 5:
             random_id = random.randint(1, res_count)
-            results = star.objects.filter(
+            results = Star.objects.filter(
                 star_user_id = request.user.id,
                 star_restaurant_id = random_id
             )
@@ -44,7 +44,7 @@ def put_score(request):
         print(score)
         
         for k, v in score.items():
-            star.objects.create(
+            Star.objects.create(
                 star_score = v, star_date = datetime.now().date(),
                 star_restaurant = Restaurant.objects.get(id=k), star_user = current_user
             )
@@ -60,7 +60,7 @@ def main_view(request):
         reco = recommandation(current_user.id)
 
         # 내가 가본 음식점들 골라 내기
-        my_diary = star.objects.filter(star_user=current_user.id)
+        my_diary = Star.objects.filter(star_user=current_user.id)
         visited_restaurant = []
         for diary in my_diary:
             visited_restaurant.append(diary.star_restaurant.restaurant_name)

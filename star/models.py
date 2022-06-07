@@ -9,7 +9,7 @@ from restaurant import models as restaurantmodels
 from users import models as usermodels
 
 # Create your models here.
-class star(models.Model):
+class Star(models.Model):
     star_score = models.FloatField()
     star_date = models.DateField(auto_now=False)
     star_restaurant = models.ForeignKey(restaurantmodels.Restaurant, on_delete=models.CASCADE)

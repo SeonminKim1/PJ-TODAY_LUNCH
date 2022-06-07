@@ -1,8 +1,55 @@
+import os
+import django
+import sys
+
+#환경변수 세팅(뒷부분은 프로젝트명.settings로 설정한다.) 모델을 불러오는 코드 보다 위에 있어야한다
+
+print('==추가한 Path:', os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__)))) # path 추가
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "today_lunch.settings")
+django.setup()
+
+from restaurant.models import Restaurant
+from star.models import Star
 import pandas as pd
 
+
+def initailize():
+    restaurant_data = Restaurant.objects.all()
+    star_data = Star.objects.all()
+
+    df1 = pd.DataFrame(columns=['restaurant_id',
+                                'restaurant_name',
+                                'restaurant_address',
+                                'restaurant_category_id',
+                                'restaurant_image'])
+    df2 = pd.DataFrame(columns=['user_id',
+                                'restaurant_id',
+                                'star_score',
+                                'star_date'])
+
+    for res in restaurant_data:
+        df1 = df1.append({
+            'restaurant_id': res.id,
+            'restaurant_name': res.restaurant_name,
+            'restaurant_address': res.restaurant_address,
+            'restaurant_category_id': res.restaurant_category_id,
+            'restaurant_image': res.restaurant_image,
+        }, ignore_index=True)
+    for star in star_data:
+        df2 = df2.append({
+            'user_id': star.star_user_id,
+            'restaurant_id': star.star_restaurant_id,
+            'star_score': star.star_score,
+            'star_date': star.star_date,
+        }, ignore_index=True)
+
+    return df1, df2
+
+
 def recommandation(login_user_id):
-    restaurants = pd.read_csv('recommandation/res_info.csv')
-    stars = pd.read_csv('recommandation/stars.csv')
+    # 현재 DB에 맞게 동기화
+    restaurants, stars = initailize()
 
     # 데이터프레임을 출력했을때 더 많은 열이 보이도록 함
     pd.set_option('display.max_columns', 10)
@@ -34,7 +81,7 @@ def recommandation(login_user_id):
     # 상위 유저 중 첫번째 유저를 뽑고,
     user = user_based_collab[login_user_id].sort_values(ascending=False)[:10].index[1]
 
-    # 3번 유저가 좋아했던 음식점를 평점 내림차순으로 출력
+    # 해당 유저가 좋아했던 음식점를 평점 내림차순으로 출력
     result = restaurant_user.query(f"user_id == {user}").sort_values(ascending=False, by=user, axis=1)
     # print(result)
 
