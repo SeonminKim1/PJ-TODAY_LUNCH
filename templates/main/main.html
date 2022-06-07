@@ -9,5 +9,13 @@
       <body>
             {{ user_email }} 로그인 성공~~~!!! 메인 페이지 <a href="{% url 'logout' %}">로그아웃</a>
             OK~~~~
+
+      {% for re in reco %}
+          <p>{{ re.id }}</p>
+          <p>{{ re.restaurant_name }}</p>
+          <p>{{ re.restaurant_address }}</p>
+          <p>{{ re.restaurant_image }}</p>
+          <p>{{ re.restaurant_category }}</p>
+      {% endfor %}
       </body>
 </html>
