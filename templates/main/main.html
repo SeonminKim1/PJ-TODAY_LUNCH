@@ -61,13 +61,14 @@
                 </div>
                 <div class="user-lunch-box">
                     <div class="user-lunch">
-                        <span class="user-info-title">나의 최근 메뉴!</span>
+                        <span class="user-info-title">오늘의 추천</span>
+                        <p class="user-info-text">사람들이 어제 가장 많이 먹은 메뉴에요</p>
                         <div class="card" style="width: 100%">
                             <img src="..." class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn btn-danger">상세보기</a>
                             </div>
                         </div>
                     </div>
@@ -80,7 +81,7 @@
             <div class="section-wrapper">
                 <div class="card-section-box">
                     <div class="card-section-title text1">
-                        추천 섹션1
+                        나와 가장 비슷한 사람들이 좋아하는 레스토랑
                     </div>
                     <div class="card-box">
                         {% for re in recos %}
@@ -89,15 +90,34 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ re.restaurant_name }}</h5>
                                     <p class="card-text">{{ re.restaurant_category }}</p>
-                                    <a href="#" class="btn btn-primary">상세보기</a>
+                                    <a href="#" class="btn btn-danger">상세보기</a>
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="card-section-box">
-                    <div class="card-section-title text2">
-                        추천 섹션2
+                    <div class="">
+                        <div class="card-section-title text2">
+                            점심 뭐 먹지? TOP 5
+                        </div>
+                        <div class="menu-box">
+                            <div class="menu-all-box">
+                                <button type="button" class="menu-btn">모두</button>
+                            </div>
+                            <div class="menu-korea-box">
+                                <button type="button" class="menu-btn">한식</button>
+                            </div>
+                            <div class="menu-western-box">
+                                <button type="button" class="menu-btn">양식</button>
+                            </div>
+                            <div class="menu-japan-box">
+                                <button type="button" class="menu-btn">일식</button>
+                            </div>
+                            <div class="menu-china-box">
+                                <button type="button" class="menu-btn">중식</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-box">
                         <div class="card">
@@ -105,7 +125,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn btn-danger">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -113,7 +133,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn btn-danger">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -121,7 +141,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn btn-danger">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -129,7 +149,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn btn-danger">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -137,7 +157,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn btn-danger">상세보기</a>
                             </div>
                         </div>
                     </div>

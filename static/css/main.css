@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: linear-gradient(to bottom right, coral, #e52e71);
+    background-image: linear-gradient(to bottom right, rgb(254, 102, 125), rgb(255, 163, 117));
 }
 
 /* nav */
@@ -74,13 +74,13 @@ aside, section {
 }
 
 aside {
-    /*background-color: slategray;*/
-    margin-top: 2%;
+    background-color: slategray;
+    margin: 2% 0 0 4%;
 }
 
 .aside-container {
     /*background-color: lightsteelblue;*/
-    width: 80%;
+    width: 100%;
     padding: 2%;
     margin: auto;
 }
@@ -102,9 +102,14 @@ aside {
     /*background-color: lavender;*/
 }
 
+.user-info-text{
+    margin: 5% 0 20% 0;
+    font-size: 1rem;
+}
+
 .user-lunch-box {
     height: 50%;
-    border-radius: 3%;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5)
 }
 
@@ -117,7 +122,7 @@ aside {
 /* section */
 section {
     display: flex;
-    margin: 5% 0 0 5%;
+    margin: 3% 0 0 5%;
     /*background-color: lightsteelblue;*/
 }
 
@@ -136,11 +141,22 @@ section {
 }
 
 .card-section-title {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: whitesmoke;
     margin-left: 4%;
     /*background-color: greenyellow;*/
+}
+
+.menu-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff58c;
+}
+
+.menu-btn {
+    display: inline-block;
+
 }
 
 .card-box {
@@ -165,3 +181,5 @@ section {
 .card-text {
     font-size: 0.8rem;
 }
+
+
