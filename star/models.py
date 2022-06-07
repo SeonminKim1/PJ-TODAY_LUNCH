@@ -8,6 +8,7 @@ from django.db import models
 from restaurant import models as restaurantmodels
 from users import models as usermodels
 
+
 # Create your models here.
 class Star(models.Model):
     star_score = models.FloatField()

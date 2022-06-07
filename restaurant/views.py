@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Restaurant
 from star.models import Star
+from users.models import UserModel
 from recommandation.recommand import recommandation
 
 import json
 import random
 from datetime import datetime
+
+
 
 def res_view(request, restaurant_id):
     if request.method == "GET":
@@ -14,47 +17,56 @@ def res_view(request, restaurant_id):
         print(type(restaurant))
         return render(request, 'main/res_view.html', {'restaurant': restaurant})
 
+
 def scoring_view(request):
-    if request.method=='GET':
-        # Restaurants = Restaurant.objects.all()
-        res_count = Restaurant.objects.count() # 음식점 전체 데이터 갯수
-        
-        # 기존에 뽑았던 이력 있는지 Star Table 조회 
-        random_ids = []
-        while len(random_ids) != 5:
-            random_id = random.randint(1, res_count)
-            results = Star.objects.filter(
-                star_user_id = request.user.id,
-                star_restaurant_id = random_id
-            )
-            # print(results, random_id)
-            # Star table 조회했더니 경험(x)  +  이번에 뽑힌거(x)
-            if (len(results)==0) and (random_id not in random_ids):
-                # print('추가됨', random_id)
-                random_ids.append(random_id)
-        # random_ids = random.choices(range(res_count), k=5) # K개만 가져오기, LIST
-        random_restaurants = Restaurant.objects.filter(id__in=random_ids)  # Queryset List
-        return render(request, 'main/scoring.html', {'random_restaurants' : random_restaurants, 'random_ids':random_ids})
+    if request.method == 'GET':
+        user = request.user.is_authenticated
+        if user:
+            # Restaurants = Restaurant.objects.all()
+            res_count = Restaurant.objects.count()  # 음식점 전체 데이터 갯수
+
+            # 기존에 뽑았던 이력 있는지 Star Table 조회
+            random_ids = []
+            while len(random_ids) != 5:
+                random_id = random.randint(1, res_count)
+                results = Star.objects.filter(
+                    star_user_id=request.user.id,
+                    star_restaurant_id=random_id
+                )
+                # print(results, random_id)
+                # Star table 조회했더니 경험(x)  +  이번에 뽑힌거(x)
+                if (len(results) == 0) and (random_id not in random_ids):
+                    # print('추가됨', random_id)
+                    random_ids.append(random_id)
+            # random_ids = random.choices(range(res_count), k=5) # K개만 가져오기, LIST
+            random_restaurants = Restaurant.objects.filter(id__in=random_ids)  # Queryset List
+            return render(request, 'main/scoring.html',
+                          {'random_restaurants': random_restaurants, 'random_ids': random_ids})
+        else:
+            return redirect('login')
 
 def put_score(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         current_user = request.user
         data = json.loads(request.body)
-        score = data['score']    
+        score = data['score']
         print(score)
-        
+
         for k, v in score.items():
             Star.objects.create(
-                star_score = v, star_date = datetime.now().date(),
-                star_restaurant = Restaurant.objects.get(id=k), star_user = current_user
+                star_score=v, star_date=datetime.now().date(),
+                star_restaurant=Restaurant.objects.get(id=k), star_user=current_user
             )
             # print('== 저장되는 star ', star)
-        return JsonResponse({'msg':'Score 저장 완료'})
+        return JsonResponse({'msg': 'Score 저장 완료'})
+
 
 def main_view(request):
     if request.method == 'GET':
         # 현재 로그인 유저 정보 가져오기
         current_user = request.user
+
+        user = UserModel.objects.get(id=current_user.id)
 
         # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
         reco = recommandation(current_user.id)
@@ -74,4 +86,4 @@ def main_view(request):
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
 
-        return render(request, 'main/main.html', {'recos': recos})
+        return render(request, 'main/main.html', {'recos': recos, 'user': user})

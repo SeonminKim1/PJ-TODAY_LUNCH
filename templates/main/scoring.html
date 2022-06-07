@@ -1,114 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-      <head>
-      <meta charset="UTF-8">
-      <title>점심 뭐 먹지?</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="csrf_token" content="{{ csrf_token }}">
+<head>
+    <meta charset="UTF-8">
+    <title>점심 뭐 먹지?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf_token" content="{{ csrf_token }}">
 
-      {% load static %}
-      <link rel="stylesheet" href="{% static 'css/scoring.css' %}" type="text/css">
-  
-      <!-- Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/scoring.css' %}" type="text/css">
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-                  integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-                  crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
 
-      <!-- JQuery -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-      
-      <script>
-            var score = {};
-            $(document).ready(function () { // onload 보다 우선 실행됨.
-                  var random_ids = {{random_ids}}; // 가져온 DB의 id들 모두 초기화
-                  for (var i=0; i<random_ids.length; i++){
-                        score[random_ids[i]]=0; // Dictionary에 값 초기화 해서 넣기
-                  }
-            })
-            
-            function getRating(res_id){
-                  const rating = document.getElementsByName('rating_'+res_id);
-                  console.log(rating, 'rating_'+res_id);
-                  rating.forEach((star) => {
-                        if(star.checked){
-                              console.log(star.value);
-                              score[res_id] = parseInt(star.value);
-                        }
-                  });
-                  console.log('==score==', score);
+
+    <script>
+        var score = {};
+        $(document).ready(function () { // onload 보다 우선 실행됨.
+            var random_ids = {{random_ids}}; // 가져온 DB의 id들 모두 초기화
+            for (var i = 0; i < random_ids.length; i++) {
+                score[random_ids[i]] = 0; // Dictionary에 값 초기화 해서 넣기
             }
+        })
 
-            function scoring_completed(){
-                  var csrftoken = document.querySelector("meta[name=csrf_token]").content
-                  $.ajax({ // 비동기 방식
-                        type: "POST",
-                        dataType:"JSON",
-                        contentType : "application/json; charset=utf-8",
-                        url: "/user/put_score/",
-                        data: JSON.stringify({'score':score}),
-                        headers: {"X-CSRFToken": csrftoken},
-                        success: function (response) {
-                            alert(response["msg"])
-                            window.location.reload()
-                        }
-                  });
-            }
-      </script>
-      </head>
-      <body style="background-color:gray;">
-            {% include 'users/message.html' %}
-            <div class="header_container" style='text-align:right; color:white; height:20px; margin:10px;'>
-                  <a href="{% url 'logout' %}" >로그아웃</a>
-            </div>
+        function getRating(res_id) {
+            const rating = document.getElementsByName('rating_' + res_id);
+            console.log(rating, 'rating_' + res_id);
+            rating.forEach((star) => {
+                if (star.checked) {
+                    console.log(star.value);
+                    score[res_id] = parseInt(star.value);
+                }
+            });
+            console.log('==score==', score);
+        }
 
-            <div class="main_container">
-                  <div class="title_wrapper">
-                        <p class="title_center"> 점심 뭐 먹지?</p>
-                        <p class="description"> 점심 후기 별점을 남겨주세요 </p>
-                  </div>
-                  <div class="main_wrapper">
-                        <div class="card_contents">
-                              {% for res in random_restaurants %}
-                              <div class="card_box">
-                                    <!-- / 앞에 = ../../ 와 같음-->
-                                    <div><img src="/{{ res.restaurant_image }}" alt="" class = "card_img_item"></div>
-                                    <div class="card_items">
-                                          <div class="card_title_item">
-                                                <div class="card_item_left">{{res.restaurant_name}}</div>
-                                                <div class="card_item_right">{{res.restaurant_category}}</div>
-                                          </div>
-                                          <div class="card_content_item">
-                                                {{res.restaurant_address}}
-                                          </div>
-                                    </div>
-                                    <div class="card_link_item"><a href="https://map.naver.com/v5/search/{{res.restaurant_name}}" target="_blank">자세히 보기</a></div>
-                                    <div class="card_star_item space-x-4 mx-auto">
-                                          <input type="radio" id="5-stars_{{res.id}}" name="rating_{{res.id}}" value="5" v-model="ratings" onclick='getRating({{res.id}})'/>
-                                          <label for="5-stars_{{res.id}}" class="star_{{res.id}} pr-4">★</label>
-                                          <input type="radio" id="4-stars_{{res.id}}" name="rating_{{res.id}}" value="4" v-model="ratings" onclick='getRating({{res.id}})'/>
-                                          <label for="4-stars_{{res.id}}" class="star_{{res.id}}">★</label>
-                                          <input type="radio" id="3-stars_{{res.id}}" name="rating_{{res.id}}" value="3" v-model="ratings" onclick='getRating({{res.id}})'/>
-                                          <label for="3-stars_{{res.id}}" class="star_{{res.id}}">★</label>
-                                          <input type="radio" id="2-stars_{{res.id}}" name="rating_{{res.id}}" value="2" v-model="ratings" onclick='getRating({{res.id}})'/>
-                                          <label for="2-stars_{{res.id}}" class="star_{{res.id}}">★</label>
-                                          <input type="radio" id="1-stars_{{res.id}}" name="rating_{{res.id}}" value="1" v-model="ratings" onclick='getRating({{res.id}})'/>
-                                          <label for="1-stars_{{res.id}}" class="star_{{res.id}}">★</label>
-                                    </div>
-                              </div>
-                              {% endfor %}
+        function scoring_completed() {
+            var csrftoken = document.querySelector("meta[name=csrf_token]").content
+            $.ajax({ // 비동기 방식
+                type: "POST",
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                url: "/user/put_score/",
+                data: JSON.stringify({'score': score}),
+                headers: {"X-CSRFToken": csrftoken},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
+    </script>
+</head>
+<body style="background-color:gray;">
+{% include 'users/message.html' %}
+<div class="header_container" style='text-align:right; color:white; height:20px; margin:10px;'>
+    <a href="{% url 'logout' %}">로그아웃</a>
+</div>
+
+<div class="main_container">
+    <div class="title_wrapper">
+        <p class="title_center"> 점심 뭐 먹지?</p>
+        <p class="description"> 점심 후기 별점을 남겨주세요 </p>
+    </div>
+    <div class="main_wrapper">
+        <div class="card_contents">
+            {% for res in random_restaurants %}
+                <div class="card_box">
+                    <!-- / 앞에 = ../../ 와 같음-->
+                    <div><img src="/{{ res.restaurant_image }}" alt="" class="card_img_item"></div>
+                    <div class="card_items">
+                        <div class="card_title_item">
+                            <div class="card_item_left">{{ res.restaurant_name }}</div>
+                            <div class="card_item_right">{{ res.restaurant_category }}</div>
                         </div>
-                        
-                  </div>
-                  <div class="button_wrapper">
-                        <button class="btn btn-primary btn-lg" onclick="scoring_completed()">조금 더하기!</button>
-                  </div>
-                  <div class="a_wrapper">
-                        <a href={% url 'main' %}>나중에 할게요</a>
-                  </div>
-            </div> <!-- main_container -->
-      </body>
+                        <div class="card_content_item">
+                            {{ res.restaurant_address }}
+                        </div>
+                    </div>
+                    <div class="card_link_item"><a href="https://map.naver.com/v5/search/{{ res.restaurant_name }}"
+                                                   target="_blank">자세히 보기</a></div>
+                    <div class="card_star_item space-x-4 mx-auto">
+                        <input type="radio" id="5-stars_{{ res.id }}" name="rating_{{ res.id }}" value="5"
+                               v-model="ratings" onclick='getRating({{ res.id }})'/>
+                        <label for="5-stars_{{ res.id }}" class="star_{{ res.id }} pr-4">★</label>
+                        <input type="radio" id="4-stars_{{ res.id }}" name="rating_{{ res.id }}" value="4"
+                               v-model="ratings" onclick='getRating({{ res.id }})'/>
+                        <label for="4-stars_{{ res.id }}" class="star_{{ res.id }}">★</label>
+                        <input type="radio" id="3-stars_{{ res.id }}" name="rating_{{ res.id }}" value="3"
+                               v-model="ratings" onclick='getRating({{ res.id }})'/>
+                        <label for="3-stars_{{ res.id }}" class="star_{{ res.id }}">★</label>
+                        <input type="radio" id="2-stars_{{ res.id }}" name="rating_{{ res.id }}" value="2"
+                               v-model="ratings" onclick='getRating({{ res.id }})'/>
+                        <label for="2-stars_{{ res.id }}" class="star_{{ res.id }}">★</label>
+                        <input type="radio" id="1-stars_{{ res.id }}" name="rating_{{ res.id }}" value="1"
+                               v-model="ratings" onclick='getRating({{ res.id }})'/>
+                        <label for="1-stars_{{ res.id }}" class="star_{{ res.id }}">★</label>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <div class="button_wrapper">
+        <button class="btn btn-primary btn-lg" onclick="scoring_completed()">조금 더하기!</button>
+    </div>
+    <div class="a_wrapper">
+        <a href={% url 'main' %}>나중에 할게요</a>
+    </div>
+</div> <!-- main_container -->
+</body>
 </html>
