@@ -43,5 +43,5 @@ urlpatterns = [
     path('main/', resview.main_view, name='main' ),
 
     # mypage
-    path('mypage/', mypageview.mypage_view, name='mypage')
+    path('mypage/<int:year>/<int:month>', mypageview.mypage_view, name='mypage')
 ]

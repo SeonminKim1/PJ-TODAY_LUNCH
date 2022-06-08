@@ -4,6 +4,7 @@ from .models import Diary
 from datetime import datetime     
 
 
+# 달력 만드는 함수
 def get_calendar(year, month):
     def isLeapYear(year):
         return year % 4 == 0 and year % 100 != 0 or year % 400 == 0
@@ -38,10 +39,8 @@ def get_calendar(year, month):
 
     return day_list # [ [ ' ', ' ', 1, 2, 3, 4, 5], [6,7,8 ... ], [ ] ... [30, 31, ' ', ' '] ] 
 
-def mypage_view(request):
+def mypage_view(request, year, month):
     if request.method=='GET':
-        year = 2022
-        month = 6
         date_list = get_calendar(year, month) # 35개의 1차원 배열
         is_date_list = [False if i=='  ' else True for i in date_list ] # 35개의 1차원 배열
         # print('===request.user.id', request.user.id)
@@ -74,13 +73,14 @@ def mypage_view(request):
                 diary_score.append(None)                    
                 diary_restaurant_id.append(None)                    
                 diary_user_id.append(None) 
+        is_diary_list = [False if ds==None else True for ds in diary_score ]
+
         print('================')
         print(date_list, len(date_list))
         print(is_date_list, len(is_date_list))
         print(diary_id, len(diary_id))
         print(diary_date_list, len(diary_date_list))
         print(diary_score, len(diary_score))
-        is_diary_list = [False if ds==None else True for ds in diary_score ]
         print(is_diary_list, len(is_diary_list))
         print(diary_restaurant_id, len(diary_restaurant_id))
         print(diary_user_id, len(diary_user_id))
@@ -104,17 +104,8 @@ def mypage_view(request):
         print('====최종 dict===', result_date_list[3])
         print('====최종 dict===', result_date_list[7])
         
+        # 한 주씩 끊어서.
         final_results = []
         for m in range(1, 6):
             final_results.append(result_date_list[0+(7*(m-1)):7*m])
-
-        '''
-        days={
-            'day':1,
-            'is_date':True,
-            'isDiary:True'
-            'restaurant_name:36
-            'restaurant_score':5
-        }
-        '''
         return render(request, 'mypage/mypage.html', {'date':final_results})
