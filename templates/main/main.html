@@ -28,10 +28,10 @@
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
+
 </head>
 
 <body>
-
 <nav>
     <div class="nav-wrapper">
         <div class="logo-box">
@@ -39,13 +39,15 @@
                 <h1>점심 뭐 먹지?</h1>
             </div>
         </div>
-        <div class="hello-box">
-            <div class="hello">
-                {{ user.fullname }} 님 환영합니다
+        <div class="nav-user-box">
+            <div class="hello-box">
+                <div class="hello">
+                    {{ user.fullname }} 님 환영합니다
+                </div>
             </div>
-        </div>
-        <div class="logout-box">
-            <a class="logout" href="{% url 'logout' %}">로그아웃</a>
+            <div class="logout-box">
+                <a class="logout" href="{% url 'logout' %}">로그아웃</a>
+            </div>
         </div>
     </div>
 </nav>
@@ -56,6 +58,7 @@
                 <div class="user-main-box">
                     <div class="user-main">
                         <span class="user-info-title">{{ user.fullname }} 님</span>
+                        <hr/>
                         <p class="user-address">주소 {{ user.address }}</p>
                     </div>
                 </div>
@@ -93,15 +96,35 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ re.restaurant_name }}</h5>
                                     <p class="card-text">{{ re.restaurant_category }}</p>
-                                    <a href="https://map.naver.com/v5/search/{{ re.restaurant_name }}" class="btn btn-primary">상세보기</a>
+                                    <a href="https://map.naver.com/v5/search/{{ re.restaurant_name }}" class="btn"
+                                       style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="card-section-box">
-                    <div class="card-section-title text2">
-                        추천 섹션2
+                    <div class="card-title-box">
+                        <div class="card-section-title text2">
+                            점심 뭐 먹지? TOP 5
+                        </div>
+                        <div class="menu-box">
+                            <div class="menu-all-box">
+                                <button type="button" class="menu-btn">모두</button>
+                            </div>
+                            <div class="menu-korea-box">
+                                <button type="button" class="menu-btn">한식</button>
+                            </div>
+                            <div class="menu-western-box">
+                                <button type="button" class="menu-btn">양식</button>
+                            </div>
+                            <div class="menu-japan-box">
+                                <button type="button" class="menu-btn">일식</button>
+                            </div>
+                            <div class="menu-china-box">
+                                <button type="button" class="menu-btn">중식</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-box">
                         <div class="card">
@@ -109,7 +132,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -117,7 +140,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -125,7 +148,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -133,7 +156,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                             </div>
                         </div>
                         <div class="card">
@@ -141,7 +164,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">레스토랑</h5>
                                 <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn btn-primary">상세보기</a>
+                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                             </div>
                         </div>
                     </div>
@@ -150,5 +173,32 @@
         </div>
     </section>
 </div>
+
+<script>
+    let category_btn = document.getElementsByClassName("menu-btn");
+
+    function handleClick(event) {
+        console.log(event.target);
+        console.log(event.target.classList);
+
+        if (event.target.classList[1] === "clicked") {
+            event.target.classList.remove("clicked");
+        } else {
+            for (let i = 0; i < category_btn.length; i++) {
+                category_btn[i].classList.remove("clicked");
+            }
+
+            event.target.classList.add("clicked");
+        }
+    }
+
+    function init() {
+        for (let i = 0; i < category_btn.length; i++) {
+            category_btn[i].addEventListener("click", handleClick);
+        }
+    }
+
+    init();
+</script>
 </body>
 </html>

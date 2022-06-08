@@ -58,6 +58,19 @@ def put_score(request):
                 star_restaurant=Restaurant.objects.get(id=k), star_user=current_user
             )
             # print('== 저장되는 star ', star)
+
+            # 레스토랑 평가 횟수, 평균 점수 update
+            res = Restaurant.objects.get(id=k)
+            count = res.restaurant_count
+            if count == 0:
+                Restaurant.objects.filter(id=k).update(restaurant_count=1)
+                Restaurant.objects.filter(id=k).update(restaurant_avg_score=v)
+            else:
+                avg_score = (count * res.restaurant_avg_score + v) / (count + 1)
+                Restaurant.objects.filter(id=k).update(restaurant_count=count + 1)
+                Restaurant.objects.filter(id=k).update(restaurant_avg_score=avg_score)
+
+
         return JsonResponse({'msg':'추천 정보 기록 완료~'})
 
 def main_view(request, category):

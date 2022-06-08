@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: linear-gradient(to bottom right, coral, #e52e71);
+    background-image: linear-gradient(to bottom right, rgb(254, 102, 125), rgb(255, 163, 117));
 }
 
 /* nav */
@@ -34,6 +34,13 @@ nav {
     color: whitesmoke;
     font-weight: 600;
 
+}
+
+.nav-user-box {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    /*background-color: #fff58c;*/
 }
 
 .hello-box {
@@ -75,12 +82,12 @@ aside, section {
 
 aside {
     /*background-color: slategray;*/
-    margin-top: 2%;
+    margin: 2% 0 0 4%;
 }
 
 .aside-container {
     /*background-color: lightsteelblue;*/
-    width: 80%;
+    width: 100%;
     padding: 2%;
     margin: auto;
 }
@@ -102,9 +109,20 @@ aside {
     /*background-color: lavender;*/
 }
 
+hr {
+    border: 0;
+    height: 2px;
+    color: black;
+}
+
+.user-info-text{
+    margin: 5% 0 20% 0;
+    font-size: 1rem;
+}
+
 .user-lunch-box {
     height: 50%;
-    border-radius: 3%;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5)
 }
 
@@ -117,12 +135,12 @@ aside {
 /* section */
 section {
     display: flex;
-    margin: 5% 0 0 5%;
+    margin: 3% 0 0 5%;
     /*background-color: lightsteelblue;*/
 }
 
 .section-container {
-    width: 90%;
+    width: 100%;
     margin: auto;
 }
 
@@ -132,17 +150,55 @@ section {
 
 .card-section-box {
     /*background-color: lavender;*/
+    width: 95%;
     margin-top: 2%;
 }
 
+.card-title-box {
+    display: flex;
+    justify-content: space-between;
+    width: 91%;
+    /*background-color: greenyellow;*/
+}
+
 .card-section-title {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 500;
     color: whitesmoke;
     margin-left: 4%;
     /*background-color: greenyellow;*/
 }
 
+
+
+.menu-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    /*background-color: #fff58c;*/
+}
+
+.menu-btn {
+    display: inline-block;
+    text-align: center;
+    width: 150%;
+    height: 80%;
+    border: 0;
+    border-radius: 3px;
+    outline: 0;
+    font-size: .9rem;
+    font-weight: 500;
+    color: orangered;
+    background-color: whitesmoke;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.1);
+
+}
+
+.clicked {
+    color: whitesmoke;
+    background-color: orangered;
+}
 .card-box {
     display: flex;
     position: relative;
@@ -165,3 +221,5 @@ section {
 .card-text {
     font-size: 0.8rem;
 }
+
+
