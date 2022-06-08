@@ -25,18 +25,35 @@
 </head>
 <body>
 {% include 'users/message.html' %}
-<div class="init_container">
-    <div class="init_wrapper">
-        <p>즐거운 점심시간이 왔습니다!<br>오늘도 맛있는 점심을 먹어보자!<br>어제는 백반을 먹었는데...<br>그래서...</p>
-        <h1 class="title_center">점심 뭐 먹지?</h1>
-        <hr>
-        <div class="btn_boxes">
-            <button type="button" class="btn btn-success btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="가입해서 점심 찾자!" onclick="window.location.href='user/join/'">회원가입
-            </button>
-            <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="어서오세요!" onclick="window.location.href='user/login/'">로그인
-            </button>
+<div class="background-container">
+    <div class="init-container">
+        <div class="init-wrapper">
+            <p>&#x1F60B; 즐거운 점심시간!<br>&#x1F371; 오늘도 맛있는 점심을 먹어보자!<br>&#x1F35A; 어제는 백반을 먹었는데...<br>&#x1F60B; 오늘은, 그래서...?
+            </p>
+            <h1 class="title-center">점심 뭐 먹지?</h1>
+            <div class="btn-box">
+                <div class="login-box">
+                    <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            title="어서오세요!" onclick="window.location.href='user/login/'">
+                        로그인
+                    </button>
+                </div>
+                <div class="join">
+                    <div class="join-text-box">
+                    <span class="join-text">
+                        아직 회원이 아니신가요?
+                    </span>
+                    </div>
+                    <div class="join-box">
+                        <button type="button" class="btn btn-default btn-sm" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                title="가입해서 점심 찾자!" onclick="window.location.href='user/join/'"
+                                style="font-weight: 600;">회원가입
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
