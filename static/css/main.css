@@ -180,15 +180,15 @@ section {
     outline: 0;
     font-size: .9rem;
     font-weight: 500;
-    color: whitesmoke;
-    background-color: orangered;
+    color: orangered;
+    background-color: whitesmoke;
     box-shadow: 2px 2px 20px rgba(0,0,0,0.1);
 
 }
 
 .clicked {
-    color: orangered;
-    background-color: whitesmoke;
+    color: whitesmoke;
+    background-color: orangered;
 }
 .card-box {
     display: flex;
