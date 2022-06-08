@@ -15,6 +15,9 @@
             width:100px;
             height:50px;
         }
+        .diary_item{
+            background-color:cyan;
+        }
     </style>
     
     <!-- Bootstrap CSS -->
@@ -23,33 +26,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
           crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        // 달력 이동 - 다음달
+        function prev_month(year, month){
+            month = month -1
+            if(month==0){
+                month=12
+                year=year-1
+            }
+            window.location.href = '/mypage/' + year + '/' + month
+        }
+
+        // 달력 이동 - 이전달
+        function next_month(year, month){
+            month = month +1
+            if(month==13){
+                month=1
+                year=year+1
+            }
+            window.location.href = '/mypage/' + year + '/' + month
+        }
+    </script>
 </head>
 
 <body>
-<!-- Modal -->
-<div id="modal" class="modal_overlay">
-    <div class="modal_window">
-        <div class="modal_title">
-            <h3>그날의 점심</h3>
-        </div>
-        <div class="modal_close">X</div>
-        <hr>
-        <div class="main_content">
-            <p>날짜 :</p>
-            <p>상호명 :<input type="search" src=""></p>
-            <p>별점 :</p>
-        </div>
-        <hr>
-        <div class="modal_btn_box">
-            <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='#'">등록
-            </button>
-            <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='#'">수정
-            </button>
-            <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='#'">삭제
-            </button>
-        </div>
-    </div>
-</div>
+    {% include 'mypage/create_modal.html' %}
+    {% include 'mypage/update_modal.html' %}
 <nav>
     <div class="nav-wrapper">
         <div class="logo-box">
@@ -100,27 +106,34 @@
                 <div id="modal_open" style="cursor: pointer">modal open</div>
                 <table class='custom_calendar_table'> 
                     <thead class='cal_date'> 
-                        <th><button type='button' class='prev'> < </button></th> 
-                        <th colspan='5'><p><span id='now_year'> year </span> 년 <span id='now_month'> month </span> 월 </p></th> 
-                        <th><button type='button' class='next'> > </button></th> 
+                        <th><button type='button' class='prev' onclick="prev_month({{year}}, {{month}})"><</button></th> 
+                        <th colspan='5'><p><span id='now_year'> {{year}} </span> 년 <span id='now_month'> {{month}} </span> 월 </p></th> 
+                        <th><button type='button' class='next' onclick="next_month({{year}}, {{month}})">></button></th> 
                     </thead> 
                     <thead class='cal_week'> 
                         <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th> 
                     </thead> 
                     <tbody id='custom_set_date'> 
-                        {% for weeks in date %} <!-- date 는 2중 list --> 
+                        {% for weeks in calendar %} <!-- date 는 2중 list --> 
                         <!-- weeks : 7일짜리 [{'day': 1, 'is_date': True, 'id': None, 'date': datetime.date(2022, 6, 1), 'is_diary': False, 'restaurant_score': None, 'restaurant_name': None}]-->
                         <tr>
                             {% for days in weeks %}
                                 <!-- days : {'day': 1, 'is_date': True, 'id': None, 'date': datetime.date(2022, 6, 1), 'is_diary': False, 'restaurant_score': None, 'restaurant_name': None}]-->
+                                <!-- 달력 중 빈 공간 -->
                                 {% if days.is_date == False %}<td></td>
-                                {% else %}
-                                <td>
-                                    {{days.day}}
-                                    {% if days.is_diary == True %}
-                                        <div>음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
+                                {% else %} 
+                                    <!-- diary 가 있을 때 => 수정 모달 -->
+                                    {% if days.is_diary == True %} 
+                                    <td id="modal_open_{{days.day}}" onclick="update_modalOn()" style="cursor: pointer"> <!-- modal_open_{{days.day}}-->
+                                        {{days.day}}
+                                        <div class="diary_item">음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
+                                    </td>
+
+                                    {% else %} <!-- diary가 없을 때 => 등록 모달 -->
+                                    <td id="modal_open_{{days.day}}" onclick="create_modalOn('{{days.date}}', '{{days.weekday}}')" style="cursor: pointer">
+                                        {{days.day}}
+                                    </td>
                                     {% endif %}
-                                </td>
                                 {% endif %}
                                 <!-- tag 생성 -->
                             {% endfor %}
@@ -135,33 +148,45 @@
 </body>
 <script>
     // Modal Func
+    const create_modal = document.getElementById("create_modal")
+    const update_modal = document.getElementById("update_modal")
     const modal = document.getElementById("modal")
 
-    function modalOn() {
-        modal.style.display = "flex"
+    // modal on
+    function create_modalOn(date, weekday) {
+        create_modal.style.display = "flex"
+        $('.date_label').text(date+' ('+weekday+')')
     }
 
-    function modalOff() {
-        modal.style.display = "none"
+    function update_modalOn(date, weekday){
+        update_modal.style.display = "flex"
+        $('.date_label').text(date+' ('+weekday+')')
     }
 
-    const btnModal = document.getElementById("modal_open")
-    btnModal.addEventListener("click", e => {
-        modalOn()
-    })
-
-    const closeBtn = modal.querySelector(".modal_close")
+    // modal off
+    const closeBtn = create_modal.querySelector(".modal_close")
     closeBtn.addEventListener("click", e => {
-        modalOff()
+        create_modal.style.display = "none"
     })
 
-    modal.addEventListener("click", e => {
+    const closeBtn2 = update_modal.querySelector(".modal_close")
+    closeBtn2.addEventListener("click", e => {
+        update_modal.style.display = "none"
+    })
+
+    create_modal.addEventListener("click", e => {
         const evTarget = e.target
         if (evTarget.classList.contains("modal_overlay")) {
-            modalOff()
+            create_modal.style.display = "none"
         }
     })
 
+    update_modal.addEventListener("click", e => {
+        const evTarget = e.target
+        if (evTarget.classList.contains("modal_overlay")) {
+            update_modal.style.display = "none"
+        }
+    })
 
     {#function modal_func() {#}
     {#    document.querySelector('.modal_window').style.display = 'flex';#}
