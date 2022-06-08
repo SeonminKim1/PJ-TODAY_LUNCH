@@ -7,7 +7,7 @@ from recommandation.recommand import recommandation
 
 import json
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 
@@ -74,10 +74,10 @@ def main_view(request):
         similar = UserModel.objects.get(id=similar_user)
 
         # 내가 가본 음식점들 골라 내기
-        my_diary = Star.objects.filter(star_user=current_user.id)
+        my_star = Star.objects.filter(star_user=current_user.id)
         visited_restaurant = []
-        for diary in my_diary:
-            visited_restaurant.append(diary.star_restaurant.restaurant_name)
+        for star in my_star:
+            visited_restaurant.append(star.star_restaurant.restaurant_name)
 
         # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
         reco_list = list(set(reco) - set(visited_restaurant))[0:5]
@@ -87,5 +87,11 @@ def main_view(request):
         recos = []
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
+
+        # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
+        yesterday = datetime.now().date() - timedelta(days=1)
+        print(yesterday)
+        yesterday_top = Star.objects.filter(star_date=yesterday)
+        today_reco = {'restaurant_name': '', 'star_avg_score': 0}
 
         return render(request, 'main/main.html', {'recos': recos, 'user': user, 'similar': similar})
