@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>점심 뭐 먹지?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf_token" content="{{ csrf_token }}">
 
     <!-- Custom CSS Files -->
     {% load static %}
@@ -27,8 +28,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-
 </head>
 
 <body>
@@ -110,63 +109,33 @@
                         </div>
                         <div class="menu-box">
                             <div class="menu-all-box">
-                                <button type="button" class="menu-btn">모두</button>
+                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 0 %}'">모두</button>
                             </div>
                             <div class="menu-korea-box">
-                                <button type="button" class="menu-btn">한식</button>
+                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 1 %}'">한식</button>
                             </div>
                             <div class="menu-western-box">
-                                <button type="button" class="menu-btn">양식</button>
+                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 4 %}'">양식</button>
                             </div>
                             <div class="menu-japan-box">
-                                <button type="button" class="menu-btn">일식</button>
+                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 3 %}'">일식</button>
                             </div>
                             <div class="menu-china-box">
-                                <button type="button" class="menu-btn">중식</button>
+                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 2 %}'">중식</button>
                             </div>
                         </div>
                     </div>
                     <div class="card-box">
+                        {% for t in top5 %}
                         <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
+                            <img src="/{{ t.restaurant_image }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">레스토랑</h5>
-                                <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
+                                <h5 class="card-title">{{ t.restaurant_name }}</h5>
+                                <p class="card-text">{{ t.restaurant_category }}</p>
+                                <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
                             </div>
                         </div>
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">레스토랑</h5>
-                                <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">레스토랑</h5>
-                                <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">레스토랑</h5>
-                                <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">레스토랑</h5>
-                                <p class="card-text">맛있는 요리, 즐거운 레스토랑</p>
-                                <a href="#" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
