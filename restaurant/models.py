@@ -16,6 +16,8 @@ class Restaurant(models.Model):
     restaurant_address = models.TextField()
     restaurant_image = models.TextField()
     restaurant_category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+    restaurant_count = models.IntegerField()
+    restaurant_avg_score = models.FloatField()
 
     def __str__(self):
         return self.restaurant_name
