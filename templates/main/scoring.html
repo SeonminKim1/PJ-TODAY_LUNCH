@@ -41,14 +41,14 @@
             console.log('==score==', score);
         }
 
-        function scoring_completed(res_id) {
+        function scoring_completed() {
             var csrftoken = document.querySelector("meta[name=csrf_token]").content
             $.ajax({ // 비동기 방식
                 type: "POST",
                 dataType: "JSON",
                 contentType: "application/json; charset=utf-8",
                 url: "/user/put_score/",
-                data: JSON.stringify({'score': score, 'res_id': res_id}),
+                data: JSON.stringify({'score': score, 'restaurant_id': ),
                 headers: {"X-CSRFToken": csrftoken},
                 success: function (response) {
                     alert(response["msg"])
@@ -109,7 +109,7 @@
 
     </div>
     <div class="button_wrapper">
-        <button class="btn btn-primary btn-lg" onclick="scoring_completed({{ res.id }})">조금 더하기!</button>
+        <button class="btn btn-primary btn-lg" onclick="scoring_completed()">조금 더하기!</button>
     </div>
     <div class="a_wrapper">
         <a href={% url 'main' 1 %}>나중에 할게요</a>
