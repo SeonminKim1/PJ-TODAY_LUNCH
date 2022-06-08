@@ -37,47 +37,54 @@
 
 <div class="join_container">
     <div class="join_wrapper">
-        <p class="title_center">회 원 가 입</p>
-        <hr>
-        <form class="form-area" method="post" action="{% url 'join' %}">
-            {% csrf_token %}
-            <div class="form-group mt-2 mb-2">
-                <input type="email" class="form-control" id="user_email" name="user_email" aria-describedby="emailHelp"
-                       placeholder="아이디 (Email)">
-            </div>
-            <div class="form-group mt-2 mb-2">
-                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="이름">
-            </div>
-            <div class="form-group mt-2 mb-2">
-                <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
-            </div>
-
-            <div class="form-group mt-2 mb-2">
-                <input type="password" class="form-control" id="password2" name="password2" placeholder="비밀번호 확인">
-            </div>
-
-            <div class="form-group mt-2 mb-2">
-                <input type="text" class="form-control" id="birthdate" name="birthdate"
-                       placeholder="생년월일 6자리 (예:961104)">
-            </div>
-            <div class="form-group mt-2 mb-2">
-                <input type="text" class="form-control" id="address" name="address" placeholder="클릭하여 주소를 검색해주세요."
-                       onclick="DaumPostcode()">
-                <input type="text" class="form-control" id="address_detail" name="address_detail"
-                       placeholder="상세 주소를 입력해주세요.">
-            </div>
-            <div class="form-group mt-2 mb-2">
-                성별
-                <input type="radio" class="btn-check" id="gender_m" name="gender" value="M" checked autocomplete="off">
-                <label class="btn btn-outline-secondary" for="gender_m">남</label>
-                <input type="radio" class="btn-check" id="gender_w" name="gender" value="W" autocomplete="off">
-                <label class="btn btn-outline-secondary" for="gender_w">여</label>
-            </div>
-            <hr>
-            <div class="btn_boxes">
-                <button type="submit" class="btn btn-success btn-lg">가입완료</button>
-                <a href='{% url 'login' %}' class="btn btn-danger btn-lg">로그인</a>
-            </div>
+        <div class="join-title-box">
+            <span class="join-title">회원가입</span>
+        </div>
+        <div class="form-box">
+            <form class="form-area" method="post" action="{% url 'join' %}">
+                {% csrf_token %}
+                </form>
+                <div class="form-group mt-2 mb-2">
+                    <input type="email" class="form-control" id="user_email" name="user_email"
+                           aria-describedby="emailHelp"
+                           placeholder="아이디 (Email)">
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <input type="text" class="form-control" id="user_name" name="user_name" placeholder="이름">
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="비밀번호 확인">
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <input type="text" class="form-control" id="birthdate" name="birthdate"
+                           placeholder="생년월일 6자리 (예:961104)">
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="클릭하여 주소를 검색해주세요."
+                           onclick="DaumPostcode()" style="margin-bottom: 2px;">
+                    <input type="text" class="form-control" id="address_detail" name="address_detail"
+                           placeholder="상세 주소를 입력해주세요.">
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    성별
+                    <input type="radio" class="btn-check" id="gender_m" name="gender" value="M" checked
+                           autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="gender_m">남</label>
+                    <input type="radio" class="btn-check" id="gender_w" name="gender" value="W" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="gender_w">여</label>
+                </div>
+        </div>
+        <div class="btn-boxes">
+            <div>
+            <button type="submit" class="btn btn-success btn-lg">가입완료</button>
+                </div>
+            <div>
+            <a href='{% url 'login' %}' class="btn btn-danger btn-lg">로그인</a>
+                </div>
+        </div>
         </form>
     </div>
 </div>
