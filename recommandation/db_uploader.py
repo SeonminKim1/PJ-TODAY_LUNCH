@@ -32,7 +32,7 @@ def insert_Restaurant():
                 address = row[1]
                 image = row[2]
                 category = row[3]
-                # print(name, address, image, category)
+                print(name, address, image, category)
                 Restaurant.objects.create(restaurant_name=name,
                                           restaurant_address=address,
                                           restaurant_image=image,
