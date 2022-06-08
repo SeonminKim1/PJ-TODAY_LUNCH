@@ -44,11 +44,11 @@ def put_score(request):
         
         for k, v in score.items():
             star.objects.create(
-                star_score = v, star_date = datetime.now().date(),
+                star_avg_score = v, star_date = datetime.now().date(),
                 star_restaurant = Restaurant.objects.get(id=k), star_user = current_user
             )
             # print('== 저장되는 star ', star)
-        return JsonResponse({'msg':'Score 저장 완료'})
+        return JsonResponse({'msg':'추천 정보 기록 완료~'})
 
 def main_view(request):
     if request.method=='GET':
