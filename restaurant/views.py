@@ -121,17 +121,16 @@ def main_view(request, category):
             result = 'fail'
             today_res = '어제 평점이 매겨진 음식점이 없습니다.'
 
-        # # 모두, 한식, 중식, 일식, 양식 TOP 랭킹 출력
-        # if category == 1:
-        #     restaurants = Restaurant.objects.all()
-        #     for res in restaurants:
-        #         count = Star.objects.filter(star_restaurant=res).count()
-        #         star_res = Star.objects.filter(star_restaurant=res)
-
-
+        if category == 0:
+            top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
+            print(top5)
+        else:
+            top5 = Restaurant.objects.filter(restaurant_category_id=category).order_by('-restaurant_avg_score')[:5]
+            print(top5)
 
         return render(request, 'main/main.html', {'recos': recos,
                                                   'user': user,
                                                   'similar': similar,
                                                   'result': result,
-                                                  'today_res': today_res})
+                                                  'today_res': today_res,
+                                                  'top5': top5})
