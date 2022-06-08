@@ -7,7 +7,7 @@ from recommandation.recommand import recommandation
 
 import json
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 
@@ -64,7 +64,6 @@ def main_view(request):
     if request.method == 'GET':
         # 현재 로그인 유저 정보 가져오기
         current_user = request.user
-
         user = UserModel.objects.get(id=current_user.id)
 
         # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
@@ -74,10 +73,10 @@ def main_view(request):
         similar = UserModel.objects.get(id=similar_user)
 
         # 내가 가본 음식점들 골라 내기
-        my_diary = Star.objects.filter(star_user=current_user.id)
+        my_star = Star.objects.filter(star_user=current_user.id)
         visited_restaurant = []
-        for diary in my_diary:
-            visited_restaurant.append(diary.star_restaurant.restaurant_name)
+        for star in my_star:
+            visited_restaurant.append(star.star_restaurant.restaurant_name)
 
         # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
         reco_list = list(set(reco) - set(visited_restaurant))[0:5]
@@ -88,4 +87,25 @@ def main_view(request):
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
 
-        return render(request, 'main/main.html', {'recos': recos, 'user': user, 'similar': similar})
+        # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
+        yesterday = datetime.now().date() - timedelta(days=1)
+        print(yesterday)
+        yesterday_top = Star.objects.filter(star_date=yesterday)
+        top_score = 0
+        today_reco = []
+        for top in yesterday_top:
+            if top_score < top.star_avg_score:
+                top_score = top.star_avg_score
+        print(top_score)
+        for top in yesterday_top:
+            if top_score == top.star_avg_score:
+                today_reco.append(top.star_restaurant.restaurant_name)
+        print(today_reco)
+        choice = random.choice(today_reco)
+        print(choice)
+        today_res = Restaurant.objects.get(restaurant_name=choice)
+
+        return render(request, 'main/main.html', {'recos': recos,
+                                                  'user': user,
+                                                  'similar': similar,
+                                                  'today_res': today_res})
