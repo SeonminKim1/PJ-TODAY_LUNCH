@@ -6,6 +6,8 @@
 body {
     margin: 0;
     padding: 0;
+    background-size: cover;
+    background: linear-gradient(135deg, orange, yellow);
 }
 
 .background-container {
@@ -13,7 +15,7 @@ body {
     vertical-align: middle;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(135deg, orange, yellow);
+    /*background-color: darkseagreen;*/
 }
 
 .init-container {
@@ -46,16 +48,16 @@ body {
     display: flex;
     text-align: center;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 7%;
     font-size: 50px;
     font-weight: 600;
-    color: ghostwhite;
+    color: rgba(255, 255, 255, 0.8);
     text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
     /*background-color: darkseagreen;*/
 }
 
 .btn-box {
-    margin-top: 5%;
+    margin-top: 7%;
     /*background-color: slategray;*/
 }
 
@@ -67,18 +69,28 @@ body {
     /*background-color: coral;*/
 }
 
+.btn-login:hover {
+    font-weight: 600;
+}
+
 .join {
-    margin-top: 10%;
+    margin-top: 8%;
     /*background-color: darkseagreen;*/
 }
 
 .join-box {
     display: flex;
     justify-content: center;
+    margin-top: 1%;
 }
 
 .join-text-box {
     font-size: .9rem;
     text-align: center;
     /*background-color: #fff58c;*/
+}
+
+.btn-join:hover {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.6);
 }
