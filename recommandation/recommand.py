@@ -19,7 +19,13 @@ def recommandation(login_user_id):
     restaurants = pd.DataFrame(Restaurant.objects.all().values())
     stars = pd.DataFrame(Star.objects.all().values())
 
-    restaurants.columns = ['restaurant_id', 'restaurant_name', 'restaurant_address', 'restaurant_image', 'restaurant_category_id']
+    restaurants.columns = ['restaurant_id',
+                           'restaurant_name',
+                           'restaurant_address',
+                           'restaurant_image',
+                           'restaurant_count',
+                           'restaurant_avg_score',
+                           'restaurant_category_id']
     stars.columns = ['star_id', 'star_date', 'restaurant_id', 'user_id', 'star_avg_score']
 
     print(restaurants)
