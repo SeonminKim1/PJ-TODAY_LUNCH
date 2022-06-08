@@ -8,7 +8,13 @@ from datetime import datetime
 
 
 def init_view(request):
-    return render(request, 'init/init.html')
+    if request.method == 'GET':
+        user = request.user.is_authenticated  # 사용자가 로그인 되어 있는지 검사
+        if user:  # 로그인이 되어 있다면
+            auth.logout(request)
+            return render(request, 'init/init.html')
+        else:  # 로그인이 되어 있지 않다면
+            return render(request, 'init/init.html')
 
 
 # Join
@@ -30,8 +36,8 @@ def join_view(request):
         address = request.POST.get('address', '')
         address_detail = request.POST.get('address_detail', '')
 
-        gender = request.POST.get('gender', '') # 'M' , 'W'
-        birthdate = request.POST.get('birthdate', '') # 940526
+        gender = request.POST.get('gender', '')  # 'M' , 'W'
+        birthdate = request.POST.get('birthdate', '')  # 940526
 
         # validation 1 ) user email, password 잘 들어왔는지.
         if user_email == '' or password == '' or password2 == '':
@@ -43,7 +49,7 @@ def join_view(request):
         if exist_user:
             messages.error(request, '이미 가입된 이메일 입니다.')
             return render(request, 'users/join.html', {'error': '이미 가입된 이메일입니다.'})
-        
+
         # validation 3 ) password 중복체크
         if password != password2:
             messages.error(request, '패스워드가 서로 다릅니다. 패스워드를 확인해 주세요!')
@@ -61,7 +67,7 @@ def join_view(request):
         print(user_email, user_name, password, final_address, gender, birthdate)
         # 모든 validation 통과~
         UserModel.objects.create_user(
-            email=user_email, username=user_email, fullname = user_name,
+            email=user_email, username=user_email, fullname=user_name,
             password=password, address=final_address,
             gender=gender, birthdate=birthdate)
 
@@ -82,20 +88,20 @@ def login_view(request):
     elif request.method == 'POST':
         user_email = request.POST.get('user_email', "")
         password = request.POST.get('password', "")
-        
+
         # validation 1) username과 password 비교
-        me = auth.authenticate(request, username=user_email, password=password) # me 정상시 username이 됨.
+        me = auth.authenticate(request, username=user_email, password=password)  # me 정상시 username이 됨.
         if me is not None:
             auth.login(request, me)
             messages.success(request, '로그인 성공!')
             return redirect('scoring_view')
-        else: # 로그인 인증 실패
+        else:  # 로그인 인증 실패
             messages.error(request, '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!')
             return render(request, 'users/login.html', {'error': '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!'})  # 로그인 실패
 
 
 @login_required  # 로그인 한 사용자만 함수 호출 가능
 def logout(request):
-    auth.logout(request) # 인증 되어있는 정보를 없애기
+    auth.logout(request)  # 인증 되어있는 정보를 없애기
     messages.success(request, '로그아웃 성공!')
     return redirect("/")

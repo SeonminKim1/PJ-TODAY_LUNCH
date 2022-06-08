@@ -8,8 +8,7 @@ from django.db import models
 from restaurant.models import Restaurant
 from users.models import UserModel
 
-# Create your models here.
-class star(models.Model):
+class Star(models.Model):
     star_date = models.DateField(auto_now=False)
     star_restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     star_user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
