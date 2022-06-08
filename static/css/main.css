@@ -74,7 +74,7 @@ aside, section {
 }
 
 aside {
-    background-color: slategray;
+    /*background-color: slategray;*/
     margin: 2% 0 0 4%;
 }
 
@@ -102,6 +102,12 @@ aside {
     /*background-color: lavender;*/
 }
 
+hr {
+    border: 0;
+    height: 2px;
+    color: black;
+}
+
 .user-info-text{
     margin: 5% 0 20% 0;
     font-size: 1rem;
@@ -123,7 +129,7 @@ aside {
 section {
     display: flex;
     margin: 3% 0 0 5%;
-    background-color: lightsteelblue;
+    /*background-color: lightsteelblue;*/
 }
 
 .section-container {
@@ -136,7 +142,7 @@ section {
 }
 
 .card-section-box {
-    background-color: lavender;
+    /*background-color: lavender;*/
     width: 95%;
     margin-top: 2%;
 }
@@ -145,7 +151,7 @@ section {
     display: flex;
     justify-content: space-between;
     width: 91%;
-    background-color: greenyellow;
+    /*background-color: greenyellow;*/
 }
 
 .card-section-title {
@@ -161,7 +167,7 @@ section {
     justify-content: space-between;
     align-items: center;
     width: 30%;
-    background-color: #fff58c;
+    /*background-color: #fff58c;*/
 }
 
 .menu-btn {
@@ -175,10 +181,15 @@ section {
     font-size: .9rem;
     font-weight: 500;
     color: whitesmoke;
-    background-color: coral;
+    background-color: orangered;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.1);
 
 }
 
+.clicked {
+    color: orangered;
+    background-color: whitesmoke;
+}
 .card-box {
     display: flex;
     position: relative;
