@@ -92,6 +92,5 @@ def main_view(request):
         yesterday = datetime.now().date() - timedelta(days=1)
         print(yesterday)
         yesterday_top = Star.objects.filter(star_date=yesterday)
-        today_reco = {'restaurant_name': '', 'star_avg_score': 0}
 
         return render(request, 'main/main.html', {'recos': recos, 'user': user, 'similar': similar})
