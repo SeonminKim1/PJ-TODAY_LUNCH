@@ -83,15 +83,15 @@ def mypage_view(request, year, month):
         diary_weekday_list = list(map(lambda x: days[x.weekday()] if x!='' else '', diary_date_list))
         diary_date_list = list(map(lambda x : datetime.strftime(x, '%Y-%m-%d') if x !='' else '', diary_date_list)) # datetime.date to string
         print('================')
-        print('date_list :', date_list, len(date_list))
-        print('is_date_list :', is_date_list, len(is_date_list))
-        print('diary_id :', diary_id, len(diary_id))
-        print('diary_weekday_list:', diary_weekday_list, len(diary_weekday_list))
-        print('diary_date_list :', diary_date_list, len(diary_date_list))
-        print('diary_score :', diary_score, len(diary_score))
-        print('is_diary_list :', is_diary_list, len(is_diary_list))
-        print('diary_restaurant_id :', diary_restaurant_id, len(diary_restaurant_id))
-        print('diary_user_id :', diary_user_id, len(diary_user_id))
+        print('date_list :', date_list, len(date_list)) # ' ',' ', '1', '2' ... '31'
+        print('is_date_list :', is_date_list, len(is_date_list)) # True, False 
+        print('diary_id :', diary_id, len(diary_id)) # [1, 2, 3, 4]
+        print('diary_weekday_list:', diary_weekday_list, len(diary_weekday_list)) # ['수','목','금'...]
+        print('diary_date_list :', diary_date_list, len(diary_date_list)) # ['2022-06-02', '2022-06-03'... '2022-06-30']
+        print('diary_score :', diary_score, len(diary_score)) # [3, 4, 5, 2, 1, ...]
+        print('is_diary_list :', is_diary_list, len(is_diary_list)) # by score [True, False, False ...]
+        print('diary_restaurant_id :', diary_restaurant_id, len(diary_restaurant_id)) # [37, 25, 131, 86 ...]
+        print('diary_user_id :', diary_user_id, len(diary_user_id)) # [1,1,1,1,2,2,2]
         print('=================')
 
         result_date_list= []
@@ -110,6 +110,7 @@ def mypage_view(request, year, month):
                 }
             )
                 
+        
         print('====최종 dict===', result_date_list[3])
         print('====최종 dict===', result_date_list[7])
         
@@ -117,7 +118,11 @@ def mypage_view(request, year, month):
         final_results = []
         for m in range(1, 6):
             final_results.append(result_date_list[0+(7*(m-1)):7*m])
-        return render(request, 'mypage/mypage.html', {'calendar':final_results, 'year':year, 'month':month})
+
+        # 가게 이름 list
+        resturant_name_list = list(map(lambda x: x.restaurant_name, Restaurant.objects.filter().only('restaurant_name')))
+        # print('=====', resturant_name_list, len(resturant_name_list))
+        return render(request, 'mypage/mypage.html', {'calendar':final_results, 'year':year, 'month':month, 'resturant_name_list':resturant_name_list})
 
 def diary_register(request):
     if request.method=='POST':
