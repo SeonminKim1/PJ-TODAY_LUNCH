@@ -48,7 +48,7 @@
                 dataType: "JSON",
                 contentType: "application/json; charset=utf-8",
                 url: "/user/put_score/",
-                data: JSON.stringify({'score': score, 'restaurant_id': ),
+                data: JSON.stringify({'score': score}),
                 headers: {"X-CSRFToken": csrftoken},
                 success: function (response) {
                     alert(response["msg"])
