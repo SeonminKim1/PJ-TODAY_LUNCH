@@ -63,13 +63,10 @@ def put_score(request):
             res = Restaurant.objects.get(id=k)
             count = res.restaurant_count
             if count == 0:
-                Restaurant.objects.filter(id=k).update(restaurant_count=1)
-                Restaurant.objects.filter(id=k).update(restaurant_avg_score=v)
+                Restaurant.objects.filter(id=k).update(restaurant_count=1, restaurant_avg_score=v)
             else:
                 avg_score = (count * res.restaurant_avg_score + v) / (count + 1)
-                Restaurant.objects.filter(id=k).update(restaurant_count=count + 1)
-                Restaurant.objects.filter(id=k).update(restaurant_avg_score=avg_score)
-
+                Restaurant.objects.filter(id=k).update(restaurant_count=count + 1, restaurant_avg_score=avg_score)
 
         return JsonResponse({'msg':'추천 정보 기록 완료~'})
 
