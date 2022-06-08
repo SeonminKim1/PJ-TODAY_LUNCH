@@ -36,6 +36,13 @@ nav {
 
 }
 
+.nav-user-box {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    /*background-color: #fff58c;*/
+}
+
 .hello-box {
     display: flex;
     align-items: center;
@@ -161,6 +168,8 @@ section {
     margin-left: 4%;
     /*background-color: greenyellow;*/
 }
+
+
 
 .menu-box {
     display: flex;
