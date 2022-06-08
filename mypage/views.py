@@ -1,8 +1,12 @@
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.contrib import messages
+
 from .models import Diary
+from restaurant.models import Restaurant
 
-from datetime import datetime     
-
+from datetime import datetime
+import json
 
 # 달력 만드는 함수
 def get_calendar(year, month):
@@ -115,3 +119,20 @@ def mypage_view(request, year, month):
             final_results.append(result_date_list[0+(7*(m-1)):7*m])
         return render(request, 'mypage/mypage.html', {'calendar':final_results, 'year':year, 'month':month})
 
+def diary_register(request):
+    if request.method=='POST':
+        data = json.loads(request.body)
+        date = data['date_val'] # data['weekday_val'] : 요일
+        restaurant_name = data['search_val'] 
+        score = data['score_val'] 
+
+        print('===', date, restaurant_name, score)
+        Diary.objects.create(
+            diary_user_id = request.user.id,
+            diary_date = date,
+            diary_restaurant = Restaurant.objects.get(restaurant_name = restaurant_name),
+            diary_score = score
+        )
+        messages.success(request, 'Diary 등록 성공!')
+        return JsonResponse({'msg':'Diary 등록 성공!'})
+    # 

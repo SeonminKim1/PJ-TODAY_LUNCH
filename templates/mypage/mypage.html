@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>점심 뭐 먹지?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf_token" content="{{ csrf_token }}">
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css">
     <style>
@@ -49,6 +51,34 @@
                 year=year+1
             }
             window.location.href = '/mypage/' + year + '/' + month
+        }
+
+        function diary_register(){
+            date_weekday_value = document.getElementById('date_value').innerText
+            date_value = date_weekday_value.split(' ')
+            search_value = document.getElementById('search_value').value
+            score_value = document.getElementById('score_value').value
+
+            var csrftoken = document.querySelector("meta[name=csrf_token]").content
+            $.ajax({ // 비동기 방식
+                type: "POST",
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                url: "/mypage/diary/",
+                data: JSON.stringify(
+                    {
+                        'date_val': date_value[0], 
+                        'weekday_val':date_value[1],
+                        'search_val':search_value,
+                        'score_val':score_value
+                    }),
+                headers: {"X-CSRFToken": csrftoken},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+
         }
     </script>
 </head>
@@ -155,12 +185,12 @@
     // modal on
     function create_modalOn(date, weekday) {
         create_modal.style.display = "flex"
-        $('.date_label').text(date+' ('+weekday+')')
+        $('#date_value').text(date+' ('+weekday+')')
     }
 
     function update_modalOn(date, weekday){
         update_modal.style.display = "flex"
-        $('.date_label').text(date+' ('+weekday+')')
+        $('#date_value').text(date+' ('+weekday+')')
     }
 
     // modal off
