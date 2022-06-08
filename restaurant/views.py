@@ -113,7 +113,11 @@ def main_view(request, category):
 
         # # 모두, 한식, 중식, 일식, 양식 TOP 랭킹 출력
         # if category == 1:
-        #     count = Star.objects.get(star_restaurant= )
+        #     restaurants = Restaurant.objects.all()
+        #     for res in restaurants:
+        #         count = Star.objects.filter(star_restaurant=res).count()
+        #         star_res = Star.objects.filter(star_restaurant=res)
+
 
 
         return render(request, 'main/main.html', {'recos': recos,
