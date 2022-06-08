@@ -60,7 +60,7 @@ def put_score(request):
             # print('== 저장되는 star ', star)
         return JsonResponse({'msg':'추천 정보 기록 완료~'})
 
-def main_view(request):
+def main_view(request, category):
     if request.method == 'GET':
         # 현재 로그인 유저 정보 가져오기
         current_user = request.user
@@ -82,30 +82,46 @@ def main_view(request):
         reco_list = list(set(reco) - set(visited_restaurant))[0:5]
         print(reco_list)
 
-        # TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
+        # 추천 순위 TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
         recos = []
         for re in reco_list:
             recos.append(Restaurant.objects.get(restaurant_name=re))
 
         # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
-        yesterday = datetime.now().date() - timedelta(days=1)
-        print(yesterday)
-        yesterday_top = Star.objects.filter(star_date=yesterday)
-        top_score = 0
-        today_reco = []
-        for top in yesterday_top:
-            if top_score < top.star_avg_score:
-                top_score = top.star_avg_score
-        print(top_score)
-        for top in yesterday_top:
-            if top_score == top.star_avg_score:
-                today_reco.append(top.star_restaurant.restaurant_name)
-        print(today_reco)
-        choice = random.choice(today_reco)
-        print(choice)
-        today_res = Restaurant.objects.get(restaurant_name=choice)
+        try:
+            yesterday = datetime.now().date() - timedelta(days=1)
+            yesterday_top = Star.objects.filter(star_date=yesterday)
+
+            # 어제의 최고 점수, 최고점수 받은 가게 추출
+            top_score = 0
+            today_reco = []
+            for top in yesterday_top:
+                if top_score < top.star_avg_score:
+                    top_score = top.star_avg_score
+
+            for top in yesterday_top:
+                if top_score == top.star_avg_score:
+                    today_reco.append(top.star_restaurant.restaurant_name)
+
+            # 추출한 가게들 중 하나만 랜덤으로 선택 해서 출력
+            choice = random.choice(today_reco)
+            result = 'success'
+            today_res = Restaurant.objects.get(restaurant_name=choice)
+        except:
+            result = 'fail'
+            today_res = '어제 평점이 매겨진 음식점이 없습니다.'
+
+        # # 모두, 한식, 중식, 일식, 양식 TOP 랭킹 출력
+        # if category == 1:
+        #     restaurants = Restaurant.objects.all()
+        #     for res in restaurants:
+        #         count = Star.objects.filter(star_restaurant=res).count()
+        #         star_res = Star.objects.filter(star_restaurant=res)
+
+
 
         return render(request, 'main/main.html', {'recos': recos,
                                                   'user': user,
                                                   'similar': similar,
+                                                  'result': result,
                                                   'today_res': today_res})
