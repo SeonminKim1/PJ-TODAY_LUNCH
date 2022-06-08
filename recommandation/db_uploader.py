@@ -36,7 +36,9 @@ def insert_Restaurant():
                 Restaurant.objects.create(restaurant_name=name,
                                           restaurant_address=address,
                                           restaurant_image=image,
-                                          restaurant_category_id=category)
+                                          restaurant_category_id=category,
+                                          restaurant_count=0,
+                                          restaurant_avg_score=1.0)
     print('MENU DATA UPLOADED SUCCESSFULY!')
 #print 부분은 터미널에서 파일을 실행했을때 데이터 입력이 잘 되었는지 확인하는 용도로써 필수요소는 아니다.
 # 함수 실행
