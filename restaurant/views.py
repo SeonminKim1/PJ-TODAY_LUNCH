@@ -65,7 +65,6 @@ def main_view(request):
     if request.method == 'GET':
         # 현재 로그인 유저 정보 가져오기
         current_user = request.user
-
         user = UserModel.objects.get(id=current_user.id)
 
         # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
