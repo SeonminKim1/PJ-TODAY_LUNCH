@@ -91,5 +91,21 @@ def main_view(request):
         yesterday = datetime.now().date() - timedelta(days=1)
         print(yesterday)
         yesterday_top = Star.objects.filter(star_date=yesterday)
+        top_score = 0
+        today_reco = []
+        for top in yesterday_top:
+            if top_score < top.star_avg_score:
+                top_score = top.star_avg_score
+        print(top_score)
+        for top in yesterday_top:
+            if top_score == top.star_avg_score:
+                today_reco.append(top.star_restaurant.restaurant_name)
+        print(today_reco)
+        choice = random.choice(today_reco)
+        print(choice)
+        today_res = Restaurant.objects.get(restaurant_name=choice)
 
-        return render(request, 'main/main.html', {'recos': recos, 'user': user, 'similar': similar})
+        return render(request, 'main/main.html', {'recos': recos,
+                                                  'user': user,
+                                                  'similar': similar,
+                                                  'today_res': today_res})
