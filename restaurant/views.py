@@ -62,11 +62,13 @@ def put_score(request):
             # 레스토랑 평가 횟수, 평균 점수 update
             res = Restaurant.objects.get(id=k)
             count = res.restaurant_count
+            print(count)
             if count == 0:
                 Restaurant.objects.filter(id=k).update(restaurant_count=1)
                 Restaurant.objects.filter(id=k).update(restaurant_avg_score=v)
             else:
-                avg_score = (count * res.restaurant_avg_score) + v / count + 1
+                avg_score = (count * res.restaurant_avg_score + v) / (count + 1)
+                print(avg_score, count, res.restaurant_avg_score, v)
                 Restaurant.objects.filter(id=k).update(restaurant_count=count + 1)
                 Restaurant.objects.filter(id=k).update(restaurant_avg_score=avg_score)
 
