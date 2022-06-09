@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
+from django.http import HttpResponse
 
 def init_view(request):
     if request.method == 'GET':
