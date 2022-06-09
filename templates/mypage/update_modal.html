@@ -8,28 +8,32 @@
         <div class="modal_close">X</div>
         <hr>
         <div class="main_content">
-            <label class="modal_label">날짜: <span type="date" id="date_label">date</span></label>
-            <label class="modal_label">상호명: <input type="text" src="" value="res1" name="res"></label>
-            {#            <p class="modal_label score_item">별점 : <input type="text"></p>#}
+            <p><label class="modal_label">날짜: </label> <span id="date_value1">date</span></p>
+            <label class="modal_label">상호명:
+                <input type="text" list="list" id="search_value1">
+                <datalist id="list" class='data_list_option'>
+                    {% for item in resturant_name_list %}
+                        <option value='{{ item }}'></option>
+                    {% endfor %}
+                </datalist>
+            </label>
             <div class="star-rating">
-                <input type="radio" id="5-stars" name="rating" value="5"/>
+                <input type="radio" id="5-stars" name="score_value1" value="5"/>
                 <label for="5-stars" class="star">★</label>
-                <input type="radio" id="4-stars" name="rating" value="4"/>
+                <input type="radio" id="4-stars" name="score_value1" value="4"/>
                 <label for="4-stars" class="star">★</label>
-                <input type="radio" id="3-stars" name="rating" value="3"/>
+                <input type="radio" id="3-stars" name="score_value1" value="3"/>
                 <label for="3-stars" class="star">★</label>
-                <input type="radio" id="2-stars" name="rating" value="2"/>
+                <input type="radio" id="2-stars" name="score_value1" value="2"/>
                 <label for="2-stars" class="star">★</label>
-                <input type="radio" id="1-star" name="rating" value="1"/>
+                <input type="radio" id="1-star" name="score_value1" value="1"/>
                 <label for="1-star" class="star">★</label>
             </div>
         </div>
         <hr>
         <div class="modal_btn_box">
-            <button type="submit" class="btn btn-success btn-lg">수정</button>
-            <label class="btn btn-danger btn-lg">삭제
-                <a href="#"></a>
-            </label>
+            <button type="button" class="btn btn-success btn-lg" onclick="diary_update()">수정</button>
+            <button type="button" class="btn btn-danger btn-lg" onclick="diary_delete()">삭제</button>
         </div>
     </form>
 </div>

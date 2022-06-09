@@ -66,7 +66,34 @@
                     window.location.reload()
                 }
             });
+        }
 
+        function diary_update(){
+            date_weekday_value = document.getElementById('date_value1').innerText
+            date_value = date_weekday_value.split(' ')
+            search_value = document.getElementById('search_value1').value
+            score_value = document.querySelector('input[name=score_value1]').value
+            console.log('====', score_value)
+
+            var csrftoken = document.querySelector("meta[name=csrf_token]").content
+            $.ajax({ // 비동기 방식
+                type: "POST",
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                url: "/mypage/diary/update/",
+                data: JSON.stringify(
+                    {
+                        'date_val': date_value[0],
+                        'weekday_val':date_value[1],
+                        'search_val':search_value,
+                        'score_val':score_value
+                    }),
+                headers: {"X-CSRFToken": csrftoken},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
         }
     </script>
 </head>
@@ -141,7 +168,11 @@
                                 {% else %} 
                                     <!-- diary 가 있을 때 => 수정 모달 -->
                                     {% if days.is_diary == True %} 
+<<<<<<< Updated upstream
                                     <td id="modal_open_{{days.day}}" onclick="update_modalOn('{{days.date}}', '{{days.id}}')" style="cursor: pointer"> <!-- modal_open_{{days.day}}-->
+=======
+                                    <td id="modal_open_{{days.day}}" onclick="update_modalOn('{{days.date}}', '{{days.weekday}}')" style="cursor: pointer">
+>>>>>>> Stashed changes
                                         {{days.day}}
                                         <div class="diary_item">음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
                                     </td>
@@ -167,7 +198,6 @@
     // Modal Func
     const create_modal = document.getElementById("create_modal")
     const update_modal = document.getElementById("update_modal")
-    const modal = document.getElementById("modal")
 
     // modal on
     function create_modalOn(date, weekday) {
@@ -175,10 +205,9 @@
         $('#date_value').text(date+' ('+weekday+')')
     }
 
-    function update_modalOn(date, id){
+    function update_modalOn(date, weekday){
         update_modal.style.display = "flex"
-        document.getElementById("date_label").value = date
-        {#document.querySelector(".star-rating").value = restaurant_score#}
+        $('#date_value1').text(date+' ('+weekday+')')
     }
 
     // modal off

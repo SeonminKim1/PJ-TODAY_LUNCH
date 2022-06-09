@@ -130,6 +130,7 @@ td {
     height: 50px;
 }
 
+<<<<<<< Updated upstream
 .modal_title {
     padding-left: 10px;
     display: inline;
@@ -170,6 +171,13 @@ td {
     margin: 10px;
 }
 
+=======
+.diary_item{
+    background-color:cyan;
+}
+
+/* rating */
+>>>>>>> Stashed changes
 .star-rating {
     /*border:solid 1px #ccc;*/
     display: flex;
@@ -197,8 +205,11 @@ td {
 .star-rating label:hover,
 .star-rating label:hover ~ label {
     color: #f90;
+<<<<<<< Updated upstream
 }
 
 .diary_item {
     background-color: cyan;
+=======
+>>>>>>> Stashed changes
 }
