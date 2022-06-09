@@ -167,12 +167,8 @@
                                 {% if days.is_date == False %}<td></td>
                                 {% else %} 
                                     <!-- diary 가 있을 때 => 수정 모달 -->
-                                    {% if days.is_diary == True %} 
-<<<<<<< Updated upstream
-                                    <td id="modal_open_{{days.day}}" onclick="update_modalOn('{{days.date}}', '{{days.id}}')" style="cursor: pointer"> <!-- modal_open_{{days.day}}-->
-=======
+                                    {% if days.is_diary == True %}
                                     <td id="modal_open_{{days.day}}" onclick="update_modalOn('{{days.date}}', '{{days.weekday}}')" style="cursor: pointer">
->>>>>>> Stashed changes
                                         {{days.day}}
                                         <div class="diary_item">음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
                                     </td>
