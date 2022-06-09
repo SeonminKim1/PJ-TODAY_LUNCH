@@ -1,20 +1,14 @@
-<<<<<<< Updated upstream
 from difflib import restore
-from django.shortcuts import render
-from django.http import JsonResponse
-=======
 from django.shortcuts import render, redirect
-from .models import Diary
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-
-from datetime import datetime     
->>>>>>> Stashed changes
+from datetime import datetime
 
 from .models import Diary
 from restaurant.models import Restaurant
 from star.models import Star
-from datetime import datetime
+
 import json
 
 # 달력 만드는 함수
