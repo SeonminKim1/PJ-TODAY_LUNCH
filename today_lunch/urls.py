@@ -40,7 +40,7 @@ urlpatterns = [
     # path('basic_view/main/', resview.main_view, name='mainview'),
 
     # main
-    path('main/<int:category>', resview.main_view, name='main' ),
+    path('main/', resview.main_view, name='main'),
 
     # mypage
     path('mypage/<int:year>/<int:month>', mypageview.mypage_view, name='mypage'),
