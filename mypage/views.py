@@ -353,22 +353,51 @@ def delete_diary(request):
         data = json.loads(request.body)
         date = datetime.strptime(data['date_val'], '%Y-%m-%d').date()  # data['weekday_val'] : 요일
         restaurant_name = data['search_val']
-        score = int(data['score_val'])
         user_id = request.user.id
 
-        Diary.objects.get(diary_user_id=user_id, diary_date=date).delete()
+        ### Delete Diary
+        delete_diary = Diary.objects.get(diary_user_id=user_id, diary_date=date)
+        delete_diary.delete()
 
-        restaurant_del = Restaurant.objects.get(restaurant_name=restaurant_name).restaurant_count
-        if restaurant_del != 0:
-            restaurant_del = restaurant_del - 1
+        ### Delete Restaurant
+        # 해당 가게 정보 (count, score) 감소만
+        delete_diary_score = delete_diary.diary_score
+        delete_restaurant_id = delete_diary.diary_restaurant_id
+
+        delete_restaurant = Restaurant.objects.get(id=delete_restaurant_id)
+        delete_restaurant_score = delete_restaurant.restaurant_avg_score
+        delete_restaurant_count = delete_restaurant.restaurant_count
+
+        # 값 빼주고 Update
+        update_restaurant_count = delete_restaurant_count - 1
+        if update_restaurant_count == 0:
+            update_restaurant_score = 0
         else:
-            restaurant_del = 0
+            update_restaurant_score = ((
+                                                   delete_restaurant_score * delete_restaurant_count) - delete_diary_score) / update_restaurant_count
 
-        # update_avg_score = ((before_restaurant_score * before_restaurant_count) - before_diary_score + after_diary_score) / before_restaurant_count
-        # Restaurant.objects.filter(restaurant_name=restaurant_name) \
-        #     .update(
-        #     restaurant_count=restaurant_del,
-        #     restaurant_avg_score=score
-        # )
+        Restaurant.objects.filter(id=delete_restaurant_id) \
+            .update(
+            restaurant_count=update_restaurant_count,
+            restaurant_avg_score=update_restaurant_score
+        )
 
+        ### Delete Star
+        # 해당 Star 정보 (count, score) 감소 + 0이면 삭제
+        delete_star = Star.objects.get(star_restaurant_id=delete_restaurant_id, star_user_id=user_id)
+        delete_star_id = delete_star.id
+        delete_star_score = delete_star.star_avg_score
+        delete_star_count = delete_star.star_count
+
+        # 값 빼주고 update, delete
+        update_star_count = delete_star_count - 1
+        if update_star_count == 0:  # delete
+            delete_star.delete()
+        else:  # update
+            update_star_score = ((delete_star_score * delete_star_count) - delete_diary_score) / update_star_count
+            Star.objects.filter(id=delete_star_id) \
+                .update(
+                star_count=update_star_count,
+                star_avg_score=update_star_score
+            )
         return JsonResponse({'msg': 'Diary 삭제 완료!'})
