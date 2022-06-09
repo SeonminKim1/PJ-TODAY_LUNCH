@@ -7,14 +7,19 @@
         <div class="modal_close">X</div>
         <hr>
         <div class="main_content">
-            <p><label class="modal_label">날짜: </label> <span class="date_label">date</span></p>
-            <p><label class="modal_label">상호명: </label> <input type="search" src=""></p>
-            <p><label class="modal_label">별점: </label> <input type="text"></p>
+            <p><label class="modal_label">날짜: </label> <span id="date_value">date</span></p>
+            <p><label class="modal_label">상호명: </label> 
+                <input type="text" list="list" id="search_value"/>
+                <datalist id ="list" class='data_list_option'>
+                    {% for item in resturant_name_list %}
+                    <option value= '{{item}}' />
+                    {% endfor %}
+                </datalist>
+            <p><label class="modal_label">별점: </label> <input id="score_value" type="text"></p>
         </div>
         <hr>
         <div class="modal_btn_box">
-            <button type="button" class="btn btn-success btn-lg" onclick="window.location.href='#'">등록
-            </button>
+            <button type="button" class="btn btn-success btn-lg" onclick="diary_register()">등록</button>
         </div>
     </div>
 </div>

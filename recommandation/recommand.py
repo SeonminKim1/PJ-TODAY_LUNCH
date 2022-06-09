@@ -19,8 +19,14 @@ def recommandation(login_user_id):
     restaurants = pd.DataFrame(Restaurant.objects.all().values())
     stars = pd.DataFrame(Star.objects.all().values())
 
-    restaurants.columns = ['restaurant_id', 'restaurant_name', 'restaurant_address', 'restaurant_image', 'restaurant_category_id']
-    stars.columns = ['star_id', 'star_score', 'star_date', 'restaurant_id', 'user_id']
+    restaurants.columns = ['restaurant_id',
+                           'restaurant_name',
+                           'restaurant_address',
+                           'restaurant_image',
+                           'restaurant_count',
+                           'restaurant_avg_score',
+                           'restaurant_category_id']
+    stars.columns = ['star_id', 'star_date', 'restaurant_id', 'user_id', 'star_avg_score']
 
     print(restaurants)
     print(stars)
@@ -33,7 +39,7 @@ def recommandation(login_user_id):
     print(restaurant_stars)
 
     # user별로 restaurant에 부여한 star 값을 볼 수 있도록 pivot table 사용
-    restaurant_user = restaurant_stars.pivot_table('star_score', index='user_id', columns='restaurant_name')
+    restaurant_user = restaurant_stars.pivot_table('star_avg_score', index='user_id', columns='restaurant_name')
 
     # 평점을 부여안한 영화는 그냥 0이라고 부여
     restaurant_user = restaurant_user.fillna(0)
@@ -50,7 +56,7 @@ def recommandation(login_user_id):
     print(user_based_collab)
 
     # 1번 유저와 비슷한 유저를 내림차순으로 정렬한 후에, 상위 10개만 뽑음
-    print(user_based_collab[login_user_id].sort_values(ascending=False)[:10])
+    # print(user_based_collab[login_user_id].sort_values(ascending=False)[:10])
 
     # 상위 유저 중 첫번째 유저를 뽑고,
     similar_user = user_based_collab[login_user_id].sort_values(ascending=False)[:10].index[1]
@@ -64,5 +70,5 @@ def recommandation(login_user_id):
     for re in result:
         result_list.append(re)
 
-    # print(result_list)
+    print(result_list)
     return result_list, similar_user
