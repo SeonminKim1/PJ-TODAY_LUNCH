@@ -1,7 +1,6 @@
 <!-- Modal -->
 <div id="update_modal" class="modal_overlay">
-    <form class="modal_window" method="post" action="{% url 'update_diary' %}">
-        {% csrf_token %}
+    <div class="modal_window">
         <div class="modal_title">
             <h3>수정, 삭제</h3>
         </div>
@@ -35,5 +34,5 @@
             <button type="button" class="btn btn-success btn-lg" onclick="diary_update()">수정</button>
             <button type="button" class="btn btn-danger btn-lg" onclick="diary_delete()">삭제</button>
         </div>
-    </form>
+    </div>
 </div>
