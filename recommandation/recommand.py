@@ -56,10 +56,10 @@ def recommandation(login_user_id):
     print(user_based_collab)
 
     # 1번 유저와 비슷한 유저를 내림차순으로 정렬한 후에, 상위 10개만 뽑음
-    # print(user_based_collab[login_user_id].sort_values(ascending=False)[:10])
+    similar_top10 = user_based_collab[login_user_id].sort_values(ascending=False)[:10]
 
     # 상위 유저 중 첫번째 유저를 뽑고,
-    similar_user = user_based_collab[login_user_id].sort_values(ascending=False)[:10].index[1]
+    similar_user = similar_top10.index[1]
     print(similar_user)
 
     # 해당 유저가 좋아했던 음식점를 평점 내림차순으로 출력
@@ -71,4 +71,4 @@ def recommandation(login_user_id):
         result_list.append(re)
 
     print(result_list)
-    return result_list, similar_user
+    return result_list, similar_user, similar_top10

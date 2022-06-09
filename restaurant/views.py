@@ -79,7 +79,12 @@ def main_view(request):
         user = UserModel.objects.get(id=current_user.id)
 
         # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
-        reco, similar_user = recommandation(current_user.id)
+        reco, similar_user, similar_top10 = recommandation(current_user.id)
+        similar_dict = similar_top10.to_dict()
+        output = ''
+        for key, value in similar_dict.items():
+            name = UserModel.objects.get(id=key).fullname
+            output = output + name + ' 유사도: ' + str(value)[:8] + '<br>'
 
         # 나와 가장 비슷한 사용자의 정보
         similar = UserModel.objects.get(id=similar_user)
@@ -128,6 +133,7 @@ def main_view(request):
         return render(request, 'main/main.html', {'recos': recos,
                                                   'user': user,
                                                   'similar': similar,
+                                                  'similar_top10': output,
                                                   'result': result,
                                                   'today_res': today_res,
                                                   'top5': top5})

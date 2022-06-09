@@ -30,24 +30,29 @@
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     <script>
-        function select_top5(category){
+        function select_top5(category) {
             var csrftoken = document.querySelector("meta[name=csrf_token]").content
             $.ajax({
                 type: "POST",
                 data: {'category': category},
                 url: {% url 'main' %},
-                headers: {"X-CSRFToken":csrftoken},
-                success: function (response){
+                headers: {"X-CSRFToken": csrftoken},
+                success: function (response) {
                     let data = JSON.parse(response['data'])
-                    for(i = 0; i < data.length; i++){
-                        document.getElementById("name" + i).innerText=data[i]['name'];
-                        document.getElementById("category" + i).innerText=data[i]['category'];
-                        document.getElementById("image" + i).src="/" + data[i]['image'];
+                    for (i = 0; i < data.length; i++) {
+                        document.getElementById("name" + i).innerText = data[i]['name'];
+                        document.getElementById("category" + i).innerText = data[i]['category'];
+                        document.getElementById("image" + i).src = "/" + data[i]['image'];
                     }
                 }
 
             })
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({container: "body"});
+        });
     </script>
 </head>
 
@@ -70,12 +75,13 @@
                         <span class="user-info-title">오늘의 추천</span>
                         <div class="card" style="width: 100%">
                             {% if result == 'success' %}
-                            <img src="/{{ today_res.restaurant_image }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ today_res.restaurant_name }}</h5>
-                                <p class="card-text">{{ today_res.restaurant_category }}</p>
-                                <a href="https://map.naver.com/v5/search/{{ today_res.restaurant_name }}" class="btn btn-primary">상세보기</a>
-                            </div>
+                                <img src="/{{ today_res.restaurant_image }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ today_res.restaurant_name }}</h5>
+                                    <p class="card-text">{{ today_res.restaurant_category }}</p>
+                                    <a href="https://map.naver.com/v5/search/{{ today_res.restaurant_name }}"
+                                       class="btn btn-primary">상세보기</a>
+                                </div>
                             {% else %}
                                 <div class="card-body"> {{ today_res }}</div>
                             {% endif %}
@@ -90,7 +96,11 @@
             <div class="section-wrapper">
                 <div class="card-section-box">
                     <div class="card-section-title text1">
-                        사용자님과 가장 유사한 {{ similar.fullname }}님의 추천 음식점입니다!
+                        사용자님과 가장 유사한 <a type="button" title="" data-bs-html="true" data-container="body"
+                                data-toggle="popover" data-bs-placement="top"
+                                data-bs-content="{{ similar_top10 }}">
+                            {{ similar.fullname }}
+                        </a>님의 추천 음식점입니다!
                     </div>
                     <div class="card-box">
                         {% for re in recos %}
@@ -131,14 +141,18 @@
                     </div>
                     <div class="card-box">
                         {% for t in top5 %}
-                        <div class="card">
-                            <img src="/{{ t.restaurant_image }}" class="card-img-top" alt="..." id="image{{ forloop.counter0 }}">
-                            <div class="card-body">
-                                <h5 class="card-title" id="name{{ forloop.counter0 }}">{{ t.restaurant_name }}</h5>
-                                <p class="card-text" id="category{{ forloop.counter0 }}">{{ t.restaurant_category }}</p>
-                                <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn" style="background-color: #EF5350; color: whitesmoke" id="search{{ forloop.counter0 }}">상세보기</a>
+                            <div class="card">
+                                <img src="/{{ t.restaurant_image }}" class="card-img-top" alt="..."
+                                     id="image{{ forloop.counter0 }}">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="name{{ forloop.counter0 }}">{{ t.restaurant_name }}</h5>
+                                    <p class="card-text"
+                                       id="category{{ forloop.counter0 }}">{{ t.restaurant_category }}</p>
+                                    <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn"
+                                       style="background-color: #EF5350; color: whitesmoke"
+                                       id="search{{ forloop.counter0 }}">상세보기</a>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div>
                 </div>
