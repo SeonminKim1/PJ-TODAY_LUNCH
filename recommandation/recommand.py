@@ -26,7 +26,7 @@ def recommandation(login_user_id):
                            'restaurant_count',
                            'restaurant_avg_score',
                            'restaurant_category_id']
-    stars.columns = ['star_id', 'star_date', 'restaurant_id', 'user_id', 'star_avg_score']
+    stars.columns = ['star_id', 'star_date', 'restaurant_id', 'user_id', 'star_avg_score', 'star_count']
 
     print(restaurants)
     print(stars)
