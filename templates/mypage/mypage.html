@@ -59,14 +59,14 @@
             date_weekday_value = document.getElementById('date_value').innerText
             date_value = date_weekday_value.split(' ')
             search_value = document.getElementById('search_value').value
-            score_value = document.getElementById('score_value').value
-
+            // score_value = document.getElementById('score_value').value
+            score_value = $('input:radio[name=score_value]:checked').val(); //1~5
             var csrftoken = document.querySelector("meta[name=csrf_token]").content
             $.ajax({ // 비동기 방식
                 type: "POST",
                 dataType: "JSON",
                 contentType: "application/json; charset=utf-8",
-                url: "/mypage/diary/",
+                url: "/mypage/diary/create/",
                 data: JSON.stringify(
                     {
                         'date_val': date_value[0], 
@@ -143,7 +143,7 @@
                                     {% if days.is_diary == True %} 
                                     <td id="modal_open_{{days.day}}" onclick="update_modalOn()" style="cursor: pointer"> <!-- modal_open_{{days.day}}-->
                                         {{days.day}}
-                                        <div class="diary_item">음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
+                                        <div class="diary_item">{{days.restaurant_name}} / {{days.restaurant_score}}점</div>
                                     </td>
 
                                     {% else %} <!-- diary가 없을 때 => 등록 모달 -->

@@ -82,6 +82,16 @@ def mypage_view(request, year, month):
         days = ['월','화','수','목','금','토','일']
         diary_weekday_list = list(map(lambda x: days[x.weekday()] if x!='' else '', diary_date_list))
         diary_date_list = list(map(lambda x : datetime.strftime(x, '%Y-%m-%d') if x !='' else '', diary_date_list)) # datetime.date to string
+
+        # id명 : 가게명 / dictionary {}
+        interchange_name_id = { data.id:data.restaurant_name for data in Restaurant.objects.filter().only('restaurant_name')}
+        diary_restaurant_name = []
+        for id in diary_restaurant_id:
+            try: 
+                diary_restaurant_name.append(interchange_name_id[id])
+            except:
+                diary_restaurant_name.append(None)
+
         print('================')
         print('date_list :', date_list, len(date_list)) # ' ',' ', '1', '2' ... '31'
         print('is_date_list :', is_date_list, len(is_date_list)) # True, False 
@@ -91,12 +101,14 @@ def mypage_view(request, year, month):
         print('diary_score :', diary_score, len(diary_score)) # [3, 4, 5, 2, 1, ...]
         print('is_diary_list :', is_diary_list, len(is_diary_list)) # by score [True, False, False ...]
         print('diary_restaurant_id :', diary_restaurant_id, len(diary_restaurant_id)) # [37, 25, 131, 86 ...]
+        print('diary_restaurant_name : ', diary_restaurant_name, len(diary_restaurant_name)) # ['두레반.', '봉추찜닭'..]
         print('diary_user_id :', diary_user_id, len(diary_user_id)) # [1,1,1,1,2,2,2]
         print('=================')
 
         result_date_list= []
-        for day, is_day, id, date, weekday, is_diary, score, restaurant_id \
-            in zip(date_list, is_date_list, diary_id, diary_date_list, diary_weekday_list, is_diary_list, diary_score, diary_restaurant_id):
+        for day, is_day, id, date, weekday, is_diary, score, restaurant_id, restaurant_name \
+            in zip(date_list, is_date_list, diary_id, diary_date_list, diary_weekday_list, \
+                    is_diary_list, diary_score, diary_restaurant_id, diary_restaurant_name):
             result_date_list.append(
                 {
                     'day': day,
@@ -106,7 +118,8 @@ def mypage_view(request, year, month):
                     'weekday':weekday, # '월'
                     'is_diary':is_diary,
                     'restaurant_score':score,
-                    'restaurant_name':restaurant_id,
+                    'restaurant_id':restaurant_id,
+                    'restaurant_name':restaurant_name
                 }
             )
                 
@@ -114,13 +127,15 @@ def mypage_view(request, year, month):
         print('====최종 dict===', result_date_list[3])
         print('====최종 dict===', result_date_list[7])
         
-        # 한 주씩 끊어서.
+        # 한 주씩 끊어서. 35개 => 5x7로
         final_results = []
         for m in range(1, 6):
             final_results.append(result_date_list[0+(7*(m-1)):7*m])
 
-        # 가게 이름 list
-        resturant_name_list = list(map(lambda x: x.restaurant_name, Restaurant.objects.filter().only('restaurant_name')))
+        # 가게 이름 list        
+        resturant_name_list = [val for _, val in interchange_name_id.items()]
+        # .itemslist(map(lambda x : x.restaurant_name, Restaurant.objects.filter().only('restaurant_name')))
+
         # print('=====', resturant_name_list, len(resturant_name_list))
         return render(request, 'mypage/mypage.html', {'calendar':final_results, 'year':year, 'month':month, 'resturant_name_list':resturant_name_list})
 
@@ -171,6 +186,7 @@ def create_diary(request):
                 star_user_id = user_id
             )
         else:
+            print('=== 해당 유저는 해당 음식점을 평가하는 것이 ', diary_star.star_count, '번째 입니다. ')
             update_count = diary_star.star_count + 1
             update_avg_score = ((diary_star.star_avg_score * diary_star.star_count) + score) / update_count
         
