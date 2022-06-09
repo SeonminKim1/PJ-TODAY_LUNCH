@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from .models import Restaurant
 from star.models import Star
 from users.models import UserModel
@@ -8,7 +8,6 @@ from recommandation.recommand import recommandation
 import json
 import random
 from datetime import datetime, timedelta
-
 
 
 def res_view(request, restaurant_id):
@@ -45,6 +44,7 @@ def scoring_view(request):
         else:
             return redirect('login')
 
+
 def put_score(request):
     if request.method == 'POST':
         current_user = request.user
@@ -68,7 +68,8 @@ def put_score(request):
                 avg_score = (count * res.restaurant_avg_score + v) / (count + 1)
                 Restaurant.objects.filter(id=k).update(restaurant_count=count + 1, restaurant_avg_score=avg_score)
 
-        return JsonResponse({'msg':'추천 정보 기록 완료~'})
+        return JsonResponse({'msg': '추천 정보 기록 완료~'})
+
 
 def main_view(request):
     if request.method == 'GET':
@@ -145,6 +146,7 @@ def main_view(request):
             top5 = Restaurant.objects.filter(restaurant_category_id=category).order_by('-restaurant_avg_score')[:5]
             json_data = top5_append(top5)
             return JsonResponse({'data': json_data})
+
 
 # for문 돌려서 restaurant objects 안에 있는 각각의 값들 json 형태로 저장해서 return
 def top5_append(objects):
