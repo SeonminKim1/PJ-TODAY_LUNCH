@@ -141,7 +141,7 @@
                                 {% else %} 
                                     <!-- diary 가 있을 때 => 수정 모달 -->
                                     {% if days.is_diary == True %} 
-                                    <td id="modal_open_{{days.day}}" onclick="update_modalOn('{{days.date}}')" style="cursor: pointer"> <!-- modal_open_{{days.day}}-->
+                                    <td id="modal_open_{{days.day}}" onclick="update_modalOn('{{days.date}}', '{{days.id}}')" style="cursor: pointer"> <!-- modal_open_{{days.day}}-->
                                         {{days.day}}
                                         <div class="diary_item">음식점 이름 : {{days.restaurant_name}} / 평점 : {{days.restaurant_score}} </div>
                                     </td>
@@ -175,9 +175,10 @@
         $('#date_value').text(date+' ('+weekday+')')
     }
 
-    function update_modalOn(date, weekday){
+    function update_modalOn(date, id){
         update_modal.style.display = "flex"
-        $('#date_value').text(date+' ('+weekday+')')
+        document.getElementById("date_label").value = date
+        {#document.querySelector(".star-rating").value = restaurant_score#}
     }
 
     // modal off

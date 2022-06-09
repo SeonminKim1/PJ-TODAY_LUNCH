@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div id="update_modal" class="modal_overlay">
-    <form class="modal_window">
+    <form class="modal_window" method="post" action="{% url 'update_diary' %}">
         {% csrf_token %}
         <div class="modal_title">
             <h3>수정, 삭제</h3>
@@ -8,8 +8,8 @@
         <div class="modal_close">X</div>
         <hr>
         <div class="main_content">
-            <label class="modal_label">날짜: <input type="date" id="date_label" required></label>
-            <label class="modal_label">상호명: <input type="search" src=""></label>
+            <label class="modal_label">날짜: <span type="date" id="date_label">date</span></label>
+            <label class="modal_label">상호명: <input type="text" src="" value="res1" name="res"></label>
             {#            <p class="modal_label score_item">별점 : <input type="text"></p>#}
             <div class="star-rating">
                 <input type="radio" id="5-stars" name="rating" value="5"/>
@@ -26,8 +26,10 @@
         </div>
         <hr>
         <div class="modal_btn_box">
-            <button type="submit" class="btn btn-success btn-lg" onclick="window.location.href='#'">수정</button>
-            <button type="button" class="btn btn-danger btn-lg" onclick="window.location.href='#'">삭제</button>
+            <button type="submit" class="btn btn-success btn-lg">수정</button>
+            <label class="btn btn-danger btn-lg">삭제
+                <a href="#"></a>
+            </label>
         </div>
     </form>
 </div>

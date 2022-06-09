@@ -1,6 +1,15 @@
+<<<<<<< Updated upstream
 from difflib import restore
 from django.shortcuts import render
 from django.http import JsonResponse
+=======
+from django.shortcuts import render, redirect
+from .models import Diary
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+from datetime import datetime     
+>>>>>>> Stashed changes
 
 from .models import Diary
 from restaurant.models import Restaurant
@@ -185,3 +194,25 @@ def create_diary(request):
 
         return JsonResponse({'msg':'Diary 등록 완료!'})
     # 
+
+
+@login_required
+def diary_update(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        val_date = datetime.strptime(date, '%Y-%m-%d')
+        print(val_date.year, val_date.month)
+        data = Diary.objects.get(diary_user_id=request.user.id, diary_date=val_date)
+        rating = request.POST.get('rating')
+        Diary.objects.filter(id=data.id).update(diary_date=date, diary_score=rating)
+    return redirect('/mypage/'+str(val_date.year)+'/'+str(val_date.month))
+
+
+@login_required
+def diary_delete(request):
+    date = request.POST.get('date')
+    val_date = datetime.strptime(date, '%Y-%m-%d')
+    data = Diary.objects.get(diary_user_id=request.user.id, diary_date=val_date)
+    del_diary = Diary.objects.get(id=data.id)
+    del_diary.delete()
+    return redirect('/mypage/2022/06')
