@@ -52,25 +52,8 @@
 </head>
 
 <body>
-<nav>
-    <div class="nav-wrapper">
-        <div class="logo-box">
-            <div class="logo">
-                <h1>점심 뭐 먹지?</h1>
-            </div>
-        </div>
-        <div class="nav-user-box">
-            <div class="hello-box">
-                <div class="hello">
-                    {{ user.fullname }} 님 환영합니다
-                </div>
-            </div>
-            <div class="logout-box">
-                <a class="logout" href="{% url 'logout' %}">로그아웃</a>
-            </div>
-        </div>
-    </div>
-</nav>
+{% include 'nav/nav.html' %}
+
 <div class="main-container">
     <aside>
         <div class="aside-container">
