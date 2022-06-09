@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
+from django.http import HttpResponse
 
 def init_view(request):
     if request.method == 'GET':
@@ -105,11 +105,3 @@ def logout(request):
     auth.logout(request)  # 인증 되어있는 정보를 없애기
     messages.success(request, '로그아웃 성공!')
     return redirect("/")
-
-
-@login_required
-def user(request):
-    if request.method == "PATCH":
-        print('PATCH 타입 호출!')
-    elif request.method == "DELETE":
-        print('DELETE 타입 호출!')

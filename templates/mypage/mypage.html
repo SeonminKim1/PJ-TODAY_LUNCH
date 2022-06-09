@@ -21,8 +21,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>
-        var csrftoken = document.querySelector("meta[name=csrf_token]").content
-
         // 달력 이동 - 다음달
         function prev_month(year, month){
             month = month -1
@@ -48,7 +46,7 @@
             search_value = document.getElementById('search_value').value
             score_value = document.getElementById('score_value').value
 
-
+            var csrftoken = document.querySelector("meta[name=csrf_token]").content
             $.ajax({ // 비동기 방식
                 type: "POST",
                 dataType: "JSON",
@@ -67,35 +65,9 @@
                     window.location.reload()
                 }
             });
+        }
+    </script>
 
-        }
-    </script>
-    <script>
-        function update_user(){
-            console.log('user_update 도착!')
-            $.ajax({
-                type: "PATCH",
-                data: {},
-                url : '{% url 'user' %}',
-                headers: {"X-CSRFToken": csrftoken},
-                success: function (response){
-                    alert('PATCH 통해서 update 완료!')
-                }
-            })
-        }
-        function delete_user(){
-            console.log('user_delete 도착!')
-            $.ajax({
-                type: "DELETE",
-                data: {},
-                url : '{% url 'user' %}',
-                headers: {"X-CSRFToken": csrftoken},
-                success: function (response){
-                    alert('DELETE 통해서 DELETE 완료!')
-                }
-            })
-        }
-    </script>
 </head>
 
 <body>
@@ -127,10 +99,6 @@
                         <span class="user-info-title">사용자 님</span>
                         <p class="user-address">주소 서울시 강남구 선릉로
                             스파르타 코딩클럽</p>
-                    </div>
-                    <div class="modal_btn_box">
-                        <button type="button" class="btn btn-success btn-lg" onClick="update_user()">수정</button>
-                        <button type="button" class="btn btn-danger btn-lg" onClick="delete_user()">삭제</button>
                     </div>
                 </div>
                 <div class="user-lunch-box">
