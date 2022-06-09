@@ -6,8 +6,10 @@
 body {
     margin: 0;
     padding: 0;
-    background-size: cover;
-    background: linear-gradient(135deg, orange, yellow);
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
 .background-container {
@@ -15,21 +17,18 @@ body {
     vertical-align: middle;
     width: 100vw;
     height: 100vh;
-    /*background-color: darkseagreen;*/
 }
 
 .init-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    /*background-color: ghostwhite;*/
 }
 
 .init-wrapper {
     width: 40%;
     height: 60%;
     vertical-align: middle;
-    /*background-color: #fff58c;*/
 }
 
 .init-wrapper > p {
@@ -41,7 +40,6 @@ body {
     color: black;
     background-color: rgba(255, 255, 255, 0.6);
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
-    /*transition: all ease 3s 0s;*/
 }
 
 .title-center {
@@ -53,20 +51,16 @@ body {
     font-weight: 600;
     color: rgba(255, 255, 255, 0.8);
     text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
-    /*background-color: darkseagreen;*/
 }
 
 .btn-box {
     margin-top: 7%;
-    /*background-color: slategray;*/
 }
 
 .login-box {
-    /*width: 100%;*/
     display: flex;
     justify-content: center;
     margin-top: 2%;
-    /*background-color: coral;*/
 }
 
 .btn-login:hover {
@@ -75,19 +69,19 @@ body {
 
 .join {
     margin-top: 8%;
-    /*background-color: darkseagreen;*/
+}
+
+
+.join-text-box {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
 }
 
 .join-box {
     display: flex;
     justify-content: center;
     margin-top: 1%;
-}
-
-.join-text-box {
-    font-size: .9rem;
-    text-align: center;
-    /*background-color: #fff58c;*/
 }
 
 .btn-join:hover {
