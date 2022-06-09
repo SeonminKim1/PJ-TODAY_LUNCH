@@ -65,7 +65,7 @@
     margin: 10px;
 }
 
-/* rating */
+/* create_rating */
 
 .star-rating {
     /*border:solid 1px #ccc;*/
@@ -92,5 +92,35 @@
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
+    color: #f90;
+}
+
+/* update_rating */
+
+.ustar-rating {
+    /*border:solid 1px #ccc;*/
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 1.5em;
+    justify-content: space-around;
+    text-align: center;
+    width: 5em;
+}
+
+.ustar-rating input {
+    display: none;
+}
+
+.ustar-rating label {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.ustar-rating :checked ~ label {
+    color: #fc0;
+}
+
+.ustar-rating label:hover,
+.ustar-rating label:hover ~ label {
     color: #f90;
 }
