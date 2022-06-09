@@ -129,19 +129,24 @@ def main_view(request):
                                                   'result': result,
                                                   'today_res': today_res,
                                                   'top5': top5})
+    # 추천섹션 2 - 카테고리 별 랭킹 TOP 5
     if request.method == "POST":
         print('POST 로 호출됨!')
         category = request.POST.get('category')
         print(category)
+        # 카테고리 분류
         if category == '0':
+            # 평균 점수 기준으로 내림차순으로 정렬해서 5개까지 출력
             top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
             json_data = top5_append(top5)
             return JsonResponse({'data': json_data})
         else:
+            # 해당 카테고리에서의 평균 점수 기준으로 내림차순으로 정렬해서 5개까지 출력
             top5 = Restaurant.objects.filter(restaurant_category_id=category).order_by('-restaurant_avg_score')[:5]
             json_data = top5_append(top5)
             return JsonResponse({'data': json_data})
 
+# for문 돌려서 restaurant objects 안에 있는 각각의 값들 json 형태로 저장해서 return
 def top5_append(objects):
     top5_list = []
     for t in objects:
