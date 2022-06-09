@@ -1,0 +1,122 @@
+* {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.join-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.join-wrapper {
+    width: 45%;
+    height: 90%;
+    margin: auto;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.join-title-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 6%;
+}
+
+.join-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #4D4D4D;
+    padding: 1%;
+}
+
+.form-box {
+    margin: 4%;
+}
+
+.form-group {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-group > .btn {
+    width: 50px;
+    margin: 0 5px;
+}
+
+.form-date-gender-box {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    margin-left: 20%;
+}
+
+.date-box {
+    width: 65%;
+}
+
+.gender-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5%;
+}
+
+.gender-text {
+    color: #4D4D4D;
+    font-weight: 500;
+}
+
+.btn-join-box {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-join:hover {
+    font-weight: 600;
+}
+
+.login-box {
+    margin: 4%;
+}
+
+.login-text-box {
+    display: flex;
+    justify-content: center;
+}
+
+.login-text {
+    font-size: .9rem;
+    text-align: center;
+}
+
+.login-btn-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.btn-login:hover {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-box > .btn {
+    width: 170px;
+    height: 50px;
+    margin: 20px;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}

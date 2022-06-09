@@ -1,0 +1,105 @@
+* {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.login-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-wrapper {
+    border-radius: 20px;
+    width: 40%;
+    height: 60%;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.login-title {
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 600;
+    color: #4D4D4D;
+}
+
+.form-group {
+    width: 60%;
+    margin: auto;
+}
+
+.form-group > .btn {
+    width: 50px;
+    margin: 0 5px;
+}
+
+.id-form, .password-form {
+    padding: 1%;
+
+}
+
+.login-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.join-box {
+    margin-top: 5%;
+}
+
+.join-text-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-text {
+    text-align: center;
+}
+
+.btn-join-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.btn-login:hover {
+    font-weight: 600;
+}
+
+.join-text {
+    font-size: .9rem;
+}
+
+.btn-join:hover {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.login-wrapper > .form-area > .btn-box {
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
