@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .models import Restaurant
 from star.models import Star
 from users.models import UserModel
@@ -70,7 +70,7 @@ def put_score(request):
 
         return JsonResponse({'msg':'추천 정보 기록 완료~'})
 
-def main_view(request, category):
+def main_view(request):
     if request.method == 'GET':
         # 현재 로그인 유저 정보 가져오기
         current_user = request.user
@@ -121,12 +121,7 @@ def main_view(request, category):
             result = 'fail'
             today_res = '어제 평점이 매겨진 음식점이 없습니다.'
 
-        if category == 0:
-            top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
-            print(top5)
-        else:
-            top5 = Restaurant.objects.filter(restaurant_category_id=category).order_by('-restaurant_avg_score')[:5]
-            print(top5)
+        top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
 
         return render(request, 'main/main.html', {'recos': recos,
                                                   'user': user,
@@ -134,3 +129,28 @@ def main_view(request, category):
                                                   'result': result,
                                                   'today_res': today_res,
                                                   'top5': top5})
+    if request.method == "POST":
+        print('POST 로 호출됨!')
+        category = request.POST.get('category')
+        print(category)
+        if category == '0':
+            top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
+            json_data = top5_append(top5)
+            return JsonResponse({'data': json_data})
+        else:
+            top5 = Restaurant.objects.filter(restaurant_category_id=category).order_by('-restaurant_avg_score')[:5]
+            json_data = top5_append(top5)
+            return JsonResponse({'data': json_data})
+
+def top5_append(objects):
+    top5_list = []
+    for t in objects:
+        name = t.restaurant_name
+        image = t.restaurant_image
+        category = t.restaurant_category_id
+        categories = {1: '한식', 2: '중식', 3: '일식', 4: '양식'}
+        category = categories.get(category, '잘못된 카테고리')
+        top5_list.append({'name': name, 'image': image, 'category': category})
+        print(top5_list)
+    json_data = json.dumps(top5_list, ensure_ascii=False)
+    return json_data

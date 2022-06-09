@@ -28,6 +28,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <script>
+        function select_top5(category){
+            var csrftoken = document.querySelector("meta[name=csrf_token]").content
+            $.ajax({
+                type: "POST",
+                data: {'category': category},
+                url: {% url 'main' %},
+                headers: {"X-CSRFToken":csrftoken},
+                success: function (response){
+                    let data = JSON.parse(response['data'])
+                    for(i = 0; i < data.length; i++){
+                        document.getElementById("name" + i).innerText=data[i]['name'];
+                        document.getElementById("category" + i).innerText=data[i]['category'];
+                        document.getElementById("image" + i).src="/" + data[i]['image'];
+                    }
+                }
+
+            })
+        }
+
+    </script>
 </head>
 
 <body>
@@ -109,30 +131,30 @@
                         </div>
                         <div class="menu-box">
                             <div class="menu-all-box">
-                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 0 %}'">모두</button>
+                                <button type="button" class="menu-btn" onClick="select_top5(0)">모두</button>
                             </div>
                             <div class="menu-korea-box">
-                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 1 %}'">한식</button>
+                                <button type="button" class="menu-btn" onClick="select_top5(1)">한식</button>
                             </div>
                             <div class="menu-western-box">
-                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 4 %}'">양식</button>
+                                <button type="button" class="menu-btn" onClick="select_top5(4)">양식</button>
                             </div>
                             <div class="menu-japan-box">
-                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 3 %}'">일식</button>
+                                <button type="button" class="menu-btn" onClick="select_top5(3)">일식</button>
                             </div>
                             <div class="menu-china-box">
-                                <button type="button" class="menu-btn" onClick="location.href='{% url 'main' 2 %}'">중식</button>
+                                <button type="button" class="menu-btn" onClick="select_top5(2)">중식</button>
                             </div>
                         </div>
                     </div>
                     <div class="card-box">
                         {% for t in top5 %}
                         <div class="card">
-                            <img src="/{{ t.restaurant_image }}" class="card-img-top" alt="...">
+                            <img src="/{{ t.restaurant_image }}" class="card-img-top" alt="..." id="image{{ forloop.counter0 }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ t.restaurant_name }}</h5>
-                                <p class="card-text">{{ t.restaurant_category }}</p>
-                                <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn" style="background-color: #EF5350; color: whitesmoke">상세보기</a>
+                                <h5 class="card-title" id="name{{ forloop.counter0 }}">{{ t.restaurant_name }}</h5>
+                                <p class="card-text" id="category{{ forloop.counter0 }}">{{ t.restaurant_category }}</p>
+                                <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn" style="background-color: #EF5350; color: whitesmoke" id="search{{ forloop.counter0 }}">상세보기</a>
                             </div>
                         </div>
                         {% endfor %}
