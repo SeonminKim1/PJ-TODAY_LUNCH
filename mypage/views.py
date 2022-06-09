@@ -1,10 +1,10 @@
+from difflib import restore
 from django.shortcuts import render
 from django.http import JsonResponse
-from django.contrib import messages
 
 from .models import Diary
 from restaurant.models import Restaurant
-
+from star.models import Star
 from datetime import datetime
 import json
 
@@ -124,20 +124,64 @@ def mypage_view(request, year, month):
         # print('=====', resturant_name_list, len(resturant_name_list))
         return render(request, 'mypage/mypage.html', {'calendar':final_results, 'year':year, 'month':month, 'resturant_name_list':resturant_name_list})
 
-def diary_register(request):
+def create_diary(request):
     if request.method=='POST':
         data = json.loads(request.body)
         date = data['date_val'] # data['weekday_val'] : 요일
         restaurant_name = data['search_val'] 
-        score = data['score_val'] 
+        score = int(data['score_val'])
+        user_id = request.user.id
 
-        print('===', date, restaurant_name, score)
+        ### Diary Table Create
         Diary.objects.create(
-            diary_user_id = request.user.id,
+            diary_user_id = user_id,
             diary_date = date,
             diary_restaurant = Restaurant.objects.get(restaurant_name = restaurant_name),
             diary_score = score
         )
-        messages.success(request, 'Diary 등록 성공!')
-        return JsonResponse({'msg':'Diary 등록 성공!'})
+        
+        ### Restaurant Table 값 Update
+        # 1) Restaurant_name으로 조회
+        # 2) Restaurant_Count를 count+1로 Restaurant_Avg_score 재계산
+        diary_resturant = Restaurant.objects.get(restaurant_name = restaurant_name)
+        update_count = diary_resturant.restaurant_count + 1
+        update_avg_score = ((diary_resturant.restaurant_avg_score * diary_resturant.restaurant_count) + score) / update_count
+        Restaurant.objects.filter(restaurant_name = restaurant_name)\
+            .update(
+                restaurant_count = update_count,
+                restaurant_avg_score = update_avg_score
+            )
+
+        ### Star Table 값 Create & Update 
+        # 0) Star Table은 User_id가 Restaurant_id를 평가한 정보 (Max Record 갯수 User_id * Restaurant_id)
+        # 1) user id와 restaurant_id로 해당 정보에 접근
+        # 2) Star Table이 없으면 Create 
+        # 3) Star Table이 있으면 Update 
+        diary_restaurant_id = diary_resturant.id
+        try:
+            diary_star = Star.objects.get(star_restaurant_id = diary_restaurant_id, star_user_id = user_id)
+        except:
+            diary_star = None
+        if diary_star == None:
+            print('=== 해당 유저는 해당 음식점을 평가하는 것이 처음 입니다. ')
+            Star.objects.create(
+                star_date = datetime.strftime(datetime.today(), '%Y-%m-%d'), # last update date
+                star_avg_score = score,
+                star_restaurant_id = diary_restaurant_id, 
+                star_user_id = user_id
+            )
+        else:
+            update_count = diary_star.star_count + 1
+            update_avg_score = ((diary_star.star_avg_score * diary_star.star_count) + score) / update_count
+        
+            Star.objects.filter(star_restaurant_id = diary_restaurant_id, star_user_id = user_id)\
+                .update(
+                    star_date = datetime.strftime(datetime.today(), '%Y-%m-%d'), # last update date
+                    star_avg_score = update_avg_score,
+                    star_restaurant_id = diary_restaurant_id, 
+                    star_user_id = user_id,
+                    star_count = update_count
+                )
+
+        return JsonResponse({'msg':'Diary 등록 완료!'})
     # 
