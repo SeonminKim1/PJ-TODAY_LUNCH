@@ -13,6 +13,7 @@ class Star(models.Model):
     star_restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     star_user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     star_avg_score = models.FloatField()
+    star_count = models.IntegerField(default=1)
 
     class Meta:
         db_table = 'Star'

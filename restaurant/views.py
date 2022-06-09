@@ -55,7 +55,8 @@ def put_score(request):
         for k, v in score.items():
             Star.objects.create(
                 star_avg_score=v, star_date=datetime.now().date(),
-                star_restaurant=Restaurant.objects.get(id=k), star_user=current_user
+                star_restaurant=Restaurant.objects.get(id=k), star_user=current_user,
+                star_count = 1
             )
             # print('== 저장되는 star ', star)
 
