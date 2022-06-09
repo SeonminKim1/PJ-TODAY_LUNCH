@@ -45,4 +45,6 @@ urlpatterns = [
     # mypage
     path('mypage/<int:year>/<int:month>', mypageview.mypage_view, name='mypage'),
     path('mypage/diary/create/', mypageview.create_diary, name='create_diary'),
+    path('mypage/diary/update/', mypageview.update_diary, name='update_diary'),
+    path('mypage/diary/delete/', mypageview.delete_diary, name='delete_diary'),
 ]
