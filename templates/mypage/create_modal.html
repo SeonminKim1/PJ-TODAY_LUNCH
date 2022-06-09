@@ -12,10 +12,11 @@
                 <input type="text" list="list" id="search_value"/>
                 <datalist id ="list" class='data_list_option'>
                     {% for item in resturant_name_list %}
-                    <option value= '{{item}}' />
+                        <option value= '{{item}}'></option>
                     {% endfor %}
                 </datalist>
             </p>
+
             <div style="display:flex; flex-direction:row; align-items:center;">
                 <label class="modal_label">별점:</label> 
                 <div class='star-rating'>

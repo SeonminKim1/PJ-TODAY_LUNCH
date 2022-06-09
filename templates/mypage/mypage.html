@@ -7,6 +7,7 @@
     <meta name="csrf_token" content="{{ csrf_token }}">
 
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/mypage_modal.css' %}" type="text/css">
 
@@ -142,32 +143,11 @@
 </head>
 
 <body>
-<<<<<<< HEAD
+
 {% include 'nav/nav.html' %}
 {% include 'mypage/create_modal.html' %}
 {% include 'mypage/update_modal.html' %}
 
-=======
-{% include 'mypage/create_modal.html' %}
-{% include 'mypage/update_modal.html' %}
-<nav>
-    <div class="nav-wrapper">
-        <div class="logo-box">
-            <div class="logo">
-                <h1>점심 뭐 먹지?</h1>
-            </div>
-        </div>
-        <div class="hello-box">
-            <div class="hello">
-                {{ user_email }} 님 환영합니다
-            </div>
-        </div>
-        <div class="logout-box">
-            <a class="logout" href="{% url 'logout' %}">로그아웃</a>
-        </div>
-    </div>
-</nav>
->>>>>>> mypage/diary/mk
 <div class="main-container">
     <aside>
         <div class="aside-container">
@@ -175,8 +155,7 @@
                 <div class="user-main-box">
                     <div class="user-main">
                         <span class="user-info-title">사용자 님</span>
-                        <p class="user-address">주소 서울시 강남구 선릉로
-                            스파르타 코딩클럽</p>
+                        <p class="user-address">주소 서울시 강남구 선릉로  스파르타 코딩클럽</p>
                     </div>
                 </div>
                 <div class="user-lunch-box">

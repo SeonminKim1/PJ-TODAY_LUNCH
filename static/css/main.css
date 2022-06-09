@@ -9,68 +9,6 @@ body {
     background-image: linear-gradient(to bottom right, rgb(254, 102, 125), rgb(255, 163, 117));
 }
 
-/* nav */
-nav {
-    /*background-color: lightslategrey;*/
-}
-
-.nav-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 2% 0 2%;
-}
-
-.logo-box, .hello-box, .logout-box {
-    display: inline-block;
-    padding: 1%;
-}
-
-.logo-box {
-    /*background-color: steelblue;*/
-}
-
-.logo {
-    color: whitesmoke;
-    font-weight: 600;
-
-}
-
-.nav-user-box {
-    display: flex;
-    justify-content: space-between;
-    width: 20%;
-    /*background-color: #fff58c;*/
-}
-
-.hello-box {
-    display: flex;
-    align-items: center;
-    width: 60%;
-    /*background-color: lavender;*/
-}
-
-.hello {
-    text-align: right;
-    color: whitesmoke;
-}
-
-.logout-box {
-    display: flex;
-    align-items: center;
-    height: 70%;
-    border-radius: 50px;
-    background-color: whitesmoke;
-}
-
-.logout {
-    color: coral;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-
 /* aside */
 .main-container {
     display: flex;
