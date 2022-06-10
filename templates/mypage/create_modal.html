@@ -7,8 +7,8 @@
         <div class="modal_close">X</div>
         <hr>
         <div class="main_content">
-            <p><label class="modal_label">날짜: </label> <span id="date_value">date</span></p>
-            <p><label class="modal_label">상호명: </label>
+            <p><label class="modal_label">날  짜 : </label> <span id="date_value">date</span></p>
+            <p><label class="modal_label">상호명 : </label>
                 <input type="text" list="list" id="search_value"/>
                 <datalist id ="list" class='data_list_option'>
                     {% for item in resturant_name_list %}
@@ -18,7 +18,7 @@
             </p>
 
             <div style="display:flex; flex-direction:row; align-items:center;">
-                <label class="modal_label">별점:</label> 
+                <label class="modal_label">별  점 :</label>
                 <div class='star-rating'>
                     <input type="radio" id="5-stars" name="score_value" value="5"/><label for="5-stars" class="star">★</label>
                     <input type="radio" id="4-stars" name="score_value" value="4"/><label for="4-stars" class="star">★</label>
