@@ -70,8 +70,9 @@ hr {
 /* section */
 section {
     display: flex;
+    width: 70%;
+    height: 650px;
     margin: 3% 0 0 5%;
-    /*background-color: lightsteelblue;*/
 }
 
 .section-container {
@@ -80,62 +81,59 @@ section {
 }
 
 .section-wrapper {
-    /*background-color: darkseagreen;*/
+    height: 100%;
+    margin-top: 3%;
+}
+
+.section-wrapper {
+    width: 90%;
+    height: 90%;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 
 /* calendar */
 
-.modal_title {
-    padding-left: 10px;
-    display: inline;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
-}
-
-.modal_title h3 {
-    display: inline;
-}
-
-.modal_close {
-    display: inline;
-    float: right;
-    padding-right: 10px;
-    cursor: pointer;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
-}
-
-.main_content {
-    width: 95%;
-    height: 45%;
-    font-size: 24px;
-    margin: 10px auto;
-}
-
-.modal_btn_box {
-    width: 100%;
-    height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal_btn_box > .btn {
-    width: 130px;
-    margin: 10px;
-}
-
-
 table {
+    width: 100%;
+    height: 100%;
     text-align: center;
-    width: 1000px;
+}
+
+thead {
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+thead p {
+    margin: 1%;
+}
+
+thead button {
+    border: 0;
+    border-radius: 5px;
+    background-color: #2b2a29;
+    color: white;
 }
 
 td {
-    width: 100px;
-    height: 50px;
+    border-top: 1px solid #444444;
+    padding: 5px;
+    width: 14%;
+    height: 20%;
+    text-align: center;
+    vertical-align: top;
+    font-size: 12px;
 }
 
 .diary_item {
-    background-color: cyan;
+    width: 95%;
+    height: 70%;
+    border-radius: 5px;
+    background-color: gray;
+    font-size: 14px;
+    color: white;
+    margin: 0 auto;
 }

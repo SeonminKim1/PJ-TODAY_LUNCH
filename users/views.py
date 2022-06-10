@@ -21,11 +21,7 @@ def init_view(request):
 def join_view(request):
     # Page View
     if request.method == 'GET':
-        user = request.user.is_authenticated
-        if user:
-            return redirect("main")
-        else:
-            return render(request, 'users/join.html')
+        return render(request, 'users/join.html')
 
     # Page POST
     elif request.method == 'POST':

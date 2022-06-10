@@ -5,15 +5,22 @@
                 <h1>점심 뭐 먹지?</h1>
             </div>
         </div>
-        <div class="nav-user-box">
+        {% if user.is_authenticated %}
+            <div class="nav-user-box">
             <div class="hello-box">
                 <div class="hello">
                     {{ user.fullname }} 님 환영합니다
                 </div>
             </div>
+            <div class="mypage-box">
+                <div class="mypage">
+                    <a class="mypage-a" href={% url 'nav_mypage' %}>마이페이지</a>
+                </div>
+            </div>
             <div class="logout-box">
                 <a class="logout" href="{% url 'logout' %}">로그아웃</a>
             </div>
+        {% endif %}
         </div>
     </div>
 </nav>
