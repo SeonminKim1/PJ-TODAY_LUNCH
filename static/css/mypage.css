@@ -1,64 +1,21 @@
 * {
     box-sizing: border-box;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-html, body {
+html {
     margin: 0;
     padding: 0;
 }
 
-/* nav */
-nav {
-    background-color: lightslategrey;;
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
-
-.nav-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 2% 0 2%;
-}
-
-.logo-box, .hello-box, .logout-box {
-    display: inline-block;
-    padding: 1%;
-}
-
-.logo-box {
-    background-color: steelblue;
-}
-
-.logo {
-    font-weight: 600;
-
-}
-
-.hello-box {
-    display: flex;
-    align-items: center;
-    width: 60%;
-    background-color: lavender;
-}
-
-.hello {
-    text-align: right;
-}
-
-.logout-box {
-    display: flex;
-    align-items: center;
-    height: 70%;
-    border-radius: 50px;
-    background-color: darkseagreen;
-}
-
-.logout {
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-
 
 /* aside */
 .main-container {
@@ -70,14 +27,13 @@ aside, section {
 }
 
 aside {
-    background-color: slategray;
-    margin-top: 2%;
+    /*background-color: slategray;*/
+    margin: 2% 0 0 4%;
 }
 
 .aside-container {
-    /*position: relative;*/
-    background-color: lightsteelblue;
-    width: 80%;
+    /*background-color: lightsteelblue;*/
+    width: 100%;
     padding: 2%;
     margin: auto;
 }
@@ -87,7 +43,7 @@ aside {
 }
 
 .user-main-box {
-    background-color: steelblue;
+    /*background-color: steelblue;*/
     margin: 20% 0 30% 0;
 }
 
@@ -96,80 +52,83 @@ aside {
     margin-bottom: 5%;
     font-size: 1.2rem;
     font-weight: 600;
-    background-color: lavender;
+    /*background-color: lavender;*/
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    color: black;
 }
 
 .user-lunch {
     padding: 6%;
-    background-color: steelblue;
+    /*background-color: steelblue;*/
 }
 
 
 /* section */
 section {
-    display: flex;
-    background-color: lightsteelblue;
+    width: 70%;
+    height: 650px;
+    margin: 3% 0 0 5%;
 }
 
 .section-container {
-    margin: auto;
+    width: 100%;
+    height: 100%;
+    margin-top: 3%;
 }
 
 .section-wrapper {
-    background-color: darkseagreen;
+    width: 90%;
+    height: 90%;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 
 /* calendar */
+
 table {
+    width: 100%;
+    height: 100%;
     text-align: center;
-    width: 1000px;
+}
+
+thead {
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+thead p {
+    margin: 1%;
+}
+
+thead button {
+    border: 0;
+    border-radius: 5px;
+    background-color: #2b2a29;
+    color: white;
 }
 
 td {
-    width: 100px;
-    height: 50px;
-}
-
-.modal_title {
-    padding-left: 10px;
-    display: inline;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
-}
-
-.modal_title h3 {
-    display: inline;
-}
-
-.modal_close {
-    display: inline;
-    float: right;
-    padding-right: 10px;
-    cursor: pointer;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
-}
-
-.main_content {
-    width: 95%;
-    height: 45%;
-    font-size: 24px;
-    margin: 10px auto;
-}
-
-.modal_btn_box {
-    width: 100%;
+    border-top : 1px solid #444444;
+    padding: 5px;
+    width: 14%;
     height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
+    vertical-align: top;
+    font-size: 12px;
 }
 
-.modal_btn_box > .btn {
-    width: 130px;
-    margin: 10px;
-}
-
-.diary_item{
-    background-color:cyan;
+.diary_item {
+    width: 95%;
+    height: 70%;
+    border-radius: 5px;
+    background-color: gray;
+    font-size: 14px;
+    color: white;
+    margin: 0 auto;
 }
