@@ -12,6 +12,13 @@ from star.models import Star
 import json
 
 
+# mypage/ => mypage/<year>/<month>
+def redirect_view(request):
+    today = datetime.today()
+    year = str(today.year)
+    month = str(today.month)
+    return redirect('/mypage/'+year+'/'+month)
+
 # Make Monthly Calendar 
 def get_calendar(year, month):
     def isLeapYear(year):
