@@ -47,4 +47,5 @@ urlpatterns = [
     path('mypage/diary/create/', mypageview.create_diary, name='create_diary'),
     path('mypage/diary/update/', mypageview.update_diary, name='update_diary'),
     path('mypage/diary/delete/', mypageview.delete_diary, name='delete_diary'),
+    path('mypage/', mypageview.redirect_view, name='nav_mypage'),
 ]

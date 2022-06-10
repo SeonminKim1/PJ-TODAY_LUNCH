@@ -11,6 +11,11 @@
                     {{ user.fullname }} 님 환영합니다
                 </div>
             </div>
+            <div class="mypage-box">
+                <div class="mypage">
+                    <a class = "mypage-a" href={% url 'nav_mypage' %}>마이페이지
+                </div>
+            </div>
             <div class="logout-box">
                 <a class="logout" href="{% url 'logout' %}">로그아웃</a>
             </div>
