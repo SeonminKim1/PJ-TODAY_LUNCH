@@ -1,64 +1,21 @@
 * {
     box-sizing: border-box;
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-html, body {
+html {
     margin: 0;
     padding: 0;
 }
 
-/* nav */
-nav {
-    background-color: lightslategrey;;
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
-
-.nav-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 2% 0 2%;
-}
-
-.logo-box, .hello-box, .logout-box {
-    display: inline-block;
-    padding: 1%;
-}
-
-.logo-box {
-    background-color: steelblue;
-}
-
-.logo {
-    font-weight: 600;
-
-}
-
-.hello-box {
-    display: flex;
-    align-items: center;
-    width: 60%;
-    background-color: lavender;
-}
-
-.hello {
-    text-align: right;
-}
-
-.logout-box {
-    display: flex;
-    align-items: center;
-    height: 70%;
-    border-radius: 50px;
-    background-color: darkseagreen;
-}
-
-.logout {
-    color: black;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-decoration: none;
-}
-
 
 /* aside */
 .main-container {
@@ -70,14 +27,13 @@ aside, section {
 }
 
 aside {
-    background-color: slategray;
-    margin-top: 2%;
+    /*background-color: slategray;*/
+    margin: 2% 0 0 4%;
 }
 
 .aside-container {
-    /*position: relative;*/
-    background-color: lightsteelblue;
-    width: 80%;
+    /*background-color: lightsteelblue;*/
+    width: 100%;
     padding: 2%;
     margin: auto;
 }
@@ -87,7 +43,7 @@ aside {
 }
 
 .user-main-box {
-    background-color: steelblue;
+    /*background-color: steelblue;*/
     margin: 20% 0 30% 0;
 }
 
@@ -96,39 +52,38 @@ aside {
     margin-bottom: 5%;
     font-size: 1.2rem;
     font-weight: 600;
-    background-color: lavender;
+    /*background-color: lavender;*/
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    color: black;
 }
 
 .user-lunch {
     padding: 6%;
-    background-color: steelblue;
+    /*background-color: steelblue;*/
 }
 
 
 /* section */
 section {
     display: flex;
-    background-color: lightsteelblue;
+    margin: 3% 0 0 5%;
+    /*background-color: lightsteelblue;*/
 }
 
 .section-container {
+    width: 100%;
     margin: auto;
 }
 
 .section-wrapper {
-    background-color: darkseagreen;
+    /*background-color: darkseagreen;*/
 }
 
 /* calendar */
-table {
-    text-align: center;
-    width: 1000px;
-}
-
-td {
-    width: 100px;
-    height: 50px;
-}
 
 .modal_title {
     padding-left: 10px;
@@ -170,6 +125,17 @@ td {
     margin: 10px;
 }
 
-.diary_item{
-    background-color:cyan;
+
+table {
+    text-align: center;
+    width: 1000px;
+}
+
+td {
+    width: 100px;
+    height: 50px;
+}
+
+.diary_item {
+    background-color: cyan;
 }
