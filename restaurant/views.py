@@ -78,31 +78,38 @@ def main_view(request):
         current_user = request.user
         user = UserModel.objects.get(id=current_user.id)
 
-        # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
-        reco, similar_user, similar_top10 = recommandation(current_user.id)
-        similar_dict = similar_top10.to_dict()
-        output = ''
-        for key, value in similar_dict.items():
-            name = UserModel.objects.get(id=key).fullname
-            output = output + name + ' 유사도: ' + str(value)[:8] + '<br>'
+        try:
+            # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
+            reco, similar_user, similar_top10 = recommandation(current_user.id)
+            similar_dict = similar_top10.to_dict()
+            output = ''
+            for key, value in similar_dict.items():
+                name = UserModel.objects.get(id=key).fullname
+                output = output + name + ' 유사도: ' + str(value)[:8] + '<br>'
 
-        # 나와 가장 비슷한 사용자의 정보
-        similar = UserModel.objects.get(id=similar_user)
+            # 나와 가장 비슷한 사용자의 정보
+            similar = UserModel.objects.get(id=similar_user)
 
-        # 내가 가본 음식점들 골라 내기
-        my_star = Star.objects.filter(star_user=current_user.id)
-        visited_restaurant = []
-        for star in my_star:
-            visited_restaurant.append(star.star_restaurant.restaurant_name)
+            # 내가 가본 음식점들 골라 내기
+            my_star = Star.objects.filter(star_user=current_user.id)
+            visited_restaurant = []
+            for star in my_star:
+                visited_restaurant.append(star.star_restaurant.restaurant_name)
 
-        # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
-        reco_list = list(set(reco) - set(visited_restaurant))[0:5]
-        print(reco_list)
+            # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
+            reco_list = list(set(reco) - set(visited_restaurant))[0:5]
+            # print(reco_list)
 
-        # 추천 순위 TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
-        recos = []
-        for re in reco_list:
-            recos.append(Restaurant.objects.get(restaurant_name=re))
+            # 추천 순위 TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
+            recos = []
+            for re in reco_list:
+                recos.append(Restaurant.objects.get(restaurant_name=re))
+            reco_result = 'success'
+        except:
+            similar = '없음'
+            output = '없음'
+            recos = '아직 평점을 준 음식점이 없습니다! 평점을 부여하시면 그에 따른 추천을 해드립니다!'
+            reco_result = 'fail'
 
         # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
         try:
@@ -122,26 +129,27 @@ def main_view(request):
 
             # 추출한 가게들 중 하나만 랜덤으로 선택 해서 출력
             choice = random.choice(today_reco)
-            result = 'success'
+            today_reco_result = 'success'
             today_res = Restaurant.objects.get(restaurant_name=choice)
         except:
-            result = 'fail'
+            today_reco_result = 'fail'
             today_res = '어제 평점이 매겨진 음식점이 없습니다.'
 
         top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
 
         return render(request, 'main/main.html', {'recos': recos,
+                                                  'reco_result': reco_result,
                                                   'user': user,
                                                   'similar': similar,
                                                   'similar_top10': output,
-                                                  'result': result,
+                                                  'today_reco_result': today_reco_result,
                                                   'today_res': today_res,
                                                   'top5': top5})
     # 추천섹션 2 - 카테고리 별 랭킹 TOP 5
     if request.method == "POST":
-        print('POST 로 호출됨!')
+        # print('POST 로 호출됨!')
         category = request.POST.get('category')
-        print(category)
+        # print(category)
         # 카테고리 분류
         if category == '0':
             # 평균 점수 기준으로 내림차순으로 정렬해서 5개까지 출력
@@ -165,6 +173,6 @@ def top5_append(objects):
         categories = {1: '한식', 2: '중식', 3: '일식', 4: '양식'}
         category = categories.get(category, '잘못된 카테고리')
         top5_list.append({'name': name, 'image': image, 'category': category})
-        print(top5_list)
+        # print(top5_list)
     json_data = json.dumps(top5_list, ensure_ascii=False)
     return json_data

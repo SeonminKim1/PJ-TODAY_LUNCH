@@ -68,12 +68,13 @@
                     <div class="user-main">
                         <span class="user-info-title">{{ user.fullname }} 님</span>
                         <hr/>
-                        <p class="user-address">주소 {{ user.address }}</p>
+                        <p class="user-address"><b>주소 {{ user.address }}</b></p>
                     </div>
                 </div>
                 <div class="user-lunch-box">
                     <div class="user-lunch">
-                        <span class="user-info-title">오늘의 추천</span>
+                        <span class="user-info-title">😊오늘의 추천
+                        <p>어제 가장 높은 평점을 받은 가게에요!</p></span>
                         <div class="card" style="width: 100%">
                             {% if result == 'success' %}
                                 <img src="/{{ today_res.restaurant_image }}" class="card-img-top" alt="...">
@@ -81,7 +82,7 @@
                                     <h5 class="card-title">{{ today_res.restaurant_name }}</h5>
                                     <p class="card-text">{{ today_res.restaurant_category }}</p>
                                     <a href="https://map.naver.com/v5/search/{{ today_res.restaurant_name }}"
-                                       class="btn btn-primary">상세보기</a>
+                                       class="btn btn-primary" target='_blank'>상세보기</a>
                                 </div>
                             {% else %}
                                 <div class="card-body"> {{ today_res }}</div>
@@ -96,6 +97,7 @@
         <div class="section-container">
             <div class="section-wrapper">
                 <div class="card-section-box">
+                {% if reco_result == 'success' %}
                     <div class="card-section-title text1">
                         사용자님과 가장 유사한 <a type="button" title="" data-bs-html="true" data-container="body"
                                 data-toggle="popover" data-bs-placement="top"
@@ -111,11 +113,18 @@
                                     <h5 class="card-title">{{ re.restaurant_name }}</h5>
                                     <p class="card-text">{{ re.restaurant_category }}</p>
                                     <a href="https://map.naver.com/v5/search/{{ re.restaurant_name }}" class="btn"
-                                       style="background-color: #EF5350; color: whitesmoke">상세보기</a>
+                                       style="background-color: #EF5350; color: whitesmoke" target='_blank'>상세보기</a>
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
+                    {% else %}
+                    <div class="card-section-title text1">
+                        {{ recos }}
+                        <br>
+                    <a href="{% url 'scoring_view' %}" class="btn" style="background-color: #EF5350; color: whitesmoke">평점 주러 가기!</a>
+                    </div>
+                {% endif %}
                 </div>
                 <div class="card-section-box">
                     <div class="card-title-box">
@@ -151,7 +160,7 @@
                                        id="category{{ forloop.counter0 }}">{{ t.restaurant_category }}</p>
                                     <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn"
                                        style="background-color: #EF5350; color: whitesmoke"
-                                       id="search{{ forloop.counter0 }}">상세보기</a>
+                                       id="search{{ forloop.counter0 }}" target='_blank'>상세보기</a>
                                 </div>
                             </div>
                         {% endfor %}
