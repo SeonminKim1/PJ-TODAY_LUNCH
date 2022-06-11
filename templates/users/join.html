@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}회원가입 | 점심 뭐 먹지?</title>
+    <title>회원가입 | 점심 뭐 먹지?7</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Custom CSS Files -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/join.css' %}" type="text/css">
 
@@ -19,13 +20,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;300;400;500;600;700&family=Noto+Sans+KR:wght@100;500;900&display=swap"
           rel="stylesheet">
+
+    <!-- Daum post -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     <script>
         function DaumPostcode() {

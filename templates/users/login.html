@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>점심 뭐 먹지?</title>
+    <title>로그인 | 점심 뭐 먹지?</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Custom CSS Files -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}?after" type="text/css">
 
@@ -18,8 +19,6 @@
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,7 +53,8 @@
                     </span>
                 </div>
                 <div class="btn-join-box">
-                    <a href='{% url 'join' %}' class="btn btn-default btn-sm btn-join" style="font-weight: 600;">회원가입</a>
+                    <a href='{% url 'join' %}' class="btn btn-default btn-sm btn-join"
+                       style="font-weight: 600;">회원가입</a>
                 </div>
             </div>
         </form>
