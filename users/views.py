@@ -99,5 +99,4 @@ def login_view(request):
 @login_required  # 로그인 한 사용자만 함수 호출 가능
 def logout(request):
     auth.logout(request)  # 인증 되어있는 정보를 없애기
-    messages.success(request, '로그아웃 성공!')
     return redirect("/")
