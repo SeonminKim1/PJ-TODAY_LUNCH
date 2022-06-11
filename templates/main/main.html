@@ -97,6 +97,7 @@
         <div class="section-container">
             <div class="section-wrapper">
                 <div class="card-section-box">
+                {% if reco_result == 'success' %}
                     <div class="card-section-title text1">
                         사용자님과 가장 유사한 <a type="button" title="" data-bs-html="true" data-container="body"
                                 data-toggle="popover" data-bs-placement="top"
@@ -117,6 +118,13 @@
                             </div>
                         {% endfor %}
                     </div>
+                    {% else %}
+                    <div class="card-section-title text1">
+                        {{ recos }}
+                        <br>
+                    <a href="{% url 'scoring_view' %}" class="btn" style="background-color: #EF5350; color: whitesmoke">평점 주러 가기!</a>
+                    </div>
+                {% endif %}
                 </div>
                 <div class="card-section-box">
                     <div class="card-title-box">
