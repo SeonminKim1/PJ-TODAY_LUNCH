@@ -36,9 +36,9 @@ def join_view(request):
         birthdate = request.POST.get('birthdate', '')  # 940526
 
         # validation 1 ) user email, password 잘 들어왔는지.
-        if user_email == '' or password == '' or password2 == '':
-            messages.error(request, '사용자 아이디와 패스워드는 필수 값 입니다.')
-            return render(request, 'users/join.html', {'error': '사용자 아이디와 패스워드는 필수 값 입니다'})
+        if user_email == '' or password == '' or password2 == '' or user_name == '' or address == '' or gender == '' or birthdate == '':
+            messages.error(request, '회원가입 정보를 모두 기입해주세요.')
+            return render(request, 'users/join.html', {'error': '회원가입 정보를 모두 기입해주세요.'})
 
         # validation 2 ) 가입된 이메일인지
         exist_user = get_user_model().objects.filter(email=user_email)
