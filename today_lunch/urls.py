@@ -18,13 +18,9 @@ from django.urls import path, include
 from users import views as userview
 from restaurant import views as resview
 from mypage import views as mypageview
-#    path('', include('user.urls')), # user앱의 urls.py와 연결
-#    path('', include('tweet.urls')), # tweet 앱의 urls.py와 연결
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('restaurant.urls')),
-    # init
     path('', userview.init_view, name='init'),
     
     # user - join, login, logout
@@ -33,11 +29,8 @@ urlpatterns = [
     path('user/logout/', userview.logout, name='logout'),
 
     # register 2
-    # path('main/', resview.main_view, name='main'),
-    path('res_view/<int:restaurant_id>', resview.res_view, name='res_view'),
     path('user/scoring_view/', resview.scoring_view, name='scoring_view'),
     path('user/put_score/', resview.put_score, name='put_score'),
-    # path('basic_view/main/', resview.main_view, name='mainview'),
 
     # main
     path('main/', resview.main_view, name='main'),
