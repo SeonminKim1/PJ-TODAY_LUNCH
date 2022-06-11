@@ -80,8 +80,8 @@ def main_view(request):
 
         try:
             # 사용자 기반 추천 시스템 필터링 거쳐 가장 비슷한 유저가 가본 음식점 중 평점 높은 순으로 리스트 가져옴
-            reco, similar_user, similar_top10 = recommandation(current_user.id)
-            similar_dict = similar_top10.to_dict()
+            reco, similar_user, similar_top5 = recommandation(current_user.id)
+            similar_dict = similar_top5.to_dict()
             output = ''
             for key, value in similar_dict.items():
                 name = UserModel.objects.get(id=key).fullname
@@ -141,7 +141,7 @@ def main_view(request):
                                                   'reco_result': reco_result,
                                                   'user': user,
                                                   'similar': similar,
-                                                  'similar_top10': output,
+                                                  'similar_top5': output,
                                                   'today_reco_result': today_reco_result,
                                                   'today_res': today_res,
                                                   'top5': top5})
