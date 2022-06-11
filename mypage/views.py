@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from datetime import datetime
 
+import restaurant.views
 from .models import Diary
 from restaurant.models import Restaurant
 from star.models import Star
@@ -162,11 +163,19 @@ def mypage_view(request, year, month):
         '''
         final_results = [final_calendar_list[0 + (7 * (week - 1)):7 * week] for week in range(1,6)]
 
+        # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
+        today_reco_result, today_res = restaurant.views.today_recommand()
+        # 사용자 정보
+        user = request.user
+
         # 가게 이름 list        
         return render(request, 'mypage/mypage.html', {
             'calendar': final_results, 
             'year': year, 'month': month,
-            'resturant_name_list': list(interchange_name_id.values()) # 가게 상호명 LIST (length 129)
+            'resturant_name_list': list(interchange_name_id.values()), # 가게 상호명 LIST (length 129)
+            'user': user,
+            'today_reco_result': today_reco_result,
+            'today_res': today_res,
         })
 
 
