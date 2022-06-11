@@ -112,28 +112,7 @@ def main_view(request):
             reco_result = 'fail'
 
         # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
-        try:
-            yesterday = datetime.now().date() - timedelta(days=1)
-            yesterday_top = Star.objects.filter(star_date=yesterday)
-
-            # 어제의 최고 점수, 최고점수 받은 가게 추출
-            top_score = 0
-            today_reco = []
-            for top in yesterday_top:
-                if top_score < top.star_avg_score:
-                    top_score = top.star_avg_score
-
-            for top in yesterday_top:
-                if top_score == top.star_avg_score:
-                    today_reco.append(top.star_restaurant.restaurant_name)
-
-            # 추출한 가게들 중 하나만 랜덤으로 선택 해서 출력
-            choice = random.choice(today_reco)
-            today_reco_result = 'success'
-            today_res = Restaurant.objects.get(restaurant_name=choice)
-        except:
-            today_reco_result = 'fail'
-            today_res = '어제 평점이 매겨진 음식점이 없습니다.'
+        today_reco_result, today_res = today_recommand()
 
         top5 = Restaurant.objects.order_by('-restaurant_avg_score')[:5]
 
@@ -176,3 +155,32 @@ def top5_append(objects):
         # print(top5_list)
     json_data = json.dumps(top5_list, ensure_ascii=False)
     return json_data
+
+
+def today_recommand():
+    # '오늘의 추천' - 어제 가장 높은 평점을 기록한 음식점 중 하나
+    try:
+        yesterday = datetime.now().date() - timedelta(days=1)
+        yesterday_top = Star.objects.filter(star_date=yesterday)
+
+        # 어제의 최고 점수, 최고점수 받은 가게 추출
+        top_score = 0
+        today_reco = []
+        for top in yesterday_top:
+            if top_score < top.star_avg_score:
+                top_score = top.star_avg_score
+
+        for top in yesterday_top:
+            if top_score == top.star_avg_score:
+                today_reco.append(top.star_restaurant.restaurant_name)
+
+        # 추출한 가게들 중 하나만 랜덤으로 선택 해서 출력
+        choice = random.choice(today_reco)
+        today_reco_result = 'success'
+        today_res = Restaurant.objects.get(restaurant_name=choice)
+
+    except:
+        today_reco_result = 'fail'
+        today_res = '어제 평점이 매겨진 음식점이 없습니다.'
+
+    return today_reco_result, today_res

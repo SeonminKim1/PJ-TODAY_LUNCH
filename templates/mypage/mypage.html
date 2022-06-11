@@ -142,9 +142,28 @@
             <div class="aside-wrapper">
                 <div class="user-main-box">
                     <div class="user-main">
-                        <span class="user-info-title">사용자 님</span>
-                        <hr>
-                        <p class="user-address">주소<br><b>서울시 강남구 선릉로 스파르타 코딩클럽</b></p>
+                        <span class="user-info-title">{{ user.fullname }} 님</span>
+                        <hr/>
+                        <p class="user-address">주소<br><b>{{ user.address }}</b></p>
+                    </div>
+                </div>
+                <div class="user-lunch-box">
+                    <div class="user-lunch">
+                        <span class="user-info-title">😊오늘의 추천
+                        <p>어제 가장 높은 평점을 받은 가게에요!</p></span>
+                        <div class="card" style="width: 100%">
+                            {% if today_reco_result == 'success' %}
+                                <img src="/{{ today_res.restaurant_image }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ today_res.restaurant_name }}</h5>
+                                    <p class="card-text">{{ today_res.restaurant_category }}</p>
+                                    <a href="https://map.naver.com/v5/search/{{ today_res.restaurant_name }}"
+                                       class="btn btn-primary" target='_blank'>상세보기</a>
+                                </div>
+                            {% else %}
+                                <div class="card-body"> {{ today_res }}</div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
