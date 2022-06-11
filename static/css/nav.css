@@ -28,11 +28,11 @@ nav {
 .nav-user-box {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 35%;
     /*background-color: #fff58c;*/
 }
 
-.hello-box, .mypage-box{
+.hello-box, .mypage-box, .scoring-box{
     display: flex;
     align-items: center;
     width: 60%;
@@ -44,7 +44,7 @@ nav {
     color: whitesmoke;
 }
 
-.mypage-a{
+.mypage-a, .scoring-a{
     text-decoration: none;
     color: whitesmoke;
 }
