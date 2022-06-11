@@ -81,7 +81,7 @@
                                     <h5 class="card-title">{{ today_res.restaurant_name }}</h5>
                                     <p class="card-text">{{ today_res.restaurant_category }}</p>
                                     <a href="https://map.naver.com/v5/search/{{ today_res.restaurant_name }}"
-                                       class="btn btn-primary">상세보기</a>
+                                       class="btn btn-primary" target='_blank'>상세보기</a>
                                 </div>
                             {% else %}
                                 <div class="card-body"> {{ today_res }}</div>
@@ -111,7 +111,7 @@
                                     <h5 class="card-title">{{ re.restaurant_name }}</h5>
                                     <p class="card-text">{{ re.restaurant_category }}</p>
                                     <a href="https://map.naver.com/v5/search/{{ re.restaurant_name }}" class="btn"
-                                       style="background-color: #EF5350; color: whitesmoke">상세보기</a>
+                                       style="background-color: #EF5350; color: whitesmoke" target='_blank'>상세보기</a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -151,7 +151,7 @@
                                        id="category{{ forloop.counter0 }}">{{ t.restaurant_category }}</p>
                                     <a href="https://map.naver.com/v5/search/{{ t.restaurant_name }}" class="btn"
                                        style="background-color: #EF5350; color: whitesmoke"
-                                       id="search{{ forloop.counter0 }}">상세보기</a>
+                                       id="search{{ forloop.counter0 }}" target='_blank'>상세보기</a>
                                 </div>
                             </div>
                         {% endfor %}
