@@ -89,7 +89,7 @@ def login_view(request):
         me = auth.authenticate(request, username=user_email, password=password)  # me 정상시 username이 됨.
         if me is not None:
             auth.login(request, me)
-            messages.success(request, '로그인 성공!')
+            # messages.success(request, '로그인 성공!')
             return redirect('scoring_view')
         else:  # 로그인 인증 실패
             messages.error(request, '로그인 실패! 아이디 or 패스워드를 확인 해 주세요!')
