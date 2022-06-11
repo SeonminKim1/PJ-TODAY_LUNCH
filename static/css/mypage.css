@@ -129,13 +129,38 @@ thead button {
     font-size: 14px;
     color: white;
     margin: 0 auto;
+    display: block;
+    transition: .5s;
 }
 
-.create_diary_item {
-    width: 80%;
+.update_diary_item {
+    width: 95%;
     border-radius: 5px;
-    background-color: olive;
+    background-color: rgba(255, 0, 0, 0.9);
     font-size: 14px;
     color: white;
     margin: 0 auto;
+    display: none;
+}
+
+.create_diary_item {
+    width: 95%;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 0, 0.9);
+    font-size: 14px;
+    color: white;
+    margin: 0 auto;
+    display: none;
+}
+
+.section-container td:hover .create_diary_item {
+    display: block;
+}
+
+.section-container td:hover .update_diary_item {
+    display: block;
+}
+
+.section-container td:hover .diary_item {
+    display: none;
 }
