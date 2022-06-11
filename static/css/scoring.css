@@ -1,70 +1,103 @@
-.title_wrapper{
-  text-align:center;
+* {
+    font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-.title_center{
-  font-size:70px;
-  font-weight: bold;
+body {
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
 }
 
-.description{
-  font-size:45px;
+.title_wrapper {
+    text-align: center;
+}
+
+.title_center {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.description {
+    font-size: 45px;
 }
 
 .card_contents {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content:center;
-    margin:50px 150px;
+    justify-content: center;
+    margin: 20px 150px;
 }
 
-.card_box{
-    width:350px;
-    height:520px;
-    text-align:center;
-    margin:5px;
-    background-color:white; 
-    border: 1px solid gray;
+.card_box {
+    width: 350px;
+    height: 520px;
+    text-align: center;
+    margin: 5px;
+    background-color: white;
     border-radius: 10px;
-}
-.card_items{
-  height:180px;
+
 }
 
-.card_img_item{
-    width:250px;
-    height:200px;
-    margin:10px 10px;
+.card_items {
+    height: 165px;
 }
 
-.card_title_item{
-  display: flex;
-  flex-direction: row;
-  align-items:flex-end;
-  justify-content: center;
-  margin: 10px 10px;
+.card_img_item {
+    width: 200px;
+    height: 200px;
+    margin: 10px 10px;
 }
 
-.card_content_item{
-  margin:10px 10px;
+.card_title_item {
+    justify-content: center;
+    margin: 10px 10px;
 }
 
-.card_item_left{
-  font-size:20px;
-  margin-right:10px;
-  font-weight: bold;
+.card_content_item {
 }
 
-.card_item_right{
-  margin-left:10px;
-  min-width: 30px;
-  text-align:center;
-  font-size:15px;
+.card_item_left {
+    width: 200px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.card_link_item{
-  height:20px;
+.card_item_right {
+    display: inline-block;
+    padding: 2% 3% 2% 3%;
+    min-width: 30px;
+    text-align: center;
+    color: orangered;
+    font-size: .8rem;
+    font-weight: 500;
+    margin-bottom: 5%;
+    border-radius: 7px;
+    border: 1px solid orangered;
+}
+
+.card_link_item {
+    display: inline-block;
+    padding: 4%;
+    border-radius: 7px;
+    margin-bottom: 4%;
+    background-color: #ff9900;
+}
+
+.item_more {
+    text-decoration: none;
+    color: ghostwhite;
+    font-weight: 400;
+}
+
+.item_more:hover {
+    font-weight: 600;
+    color: ghostwhite;
 }
 
 /* star-rating */
@@ -77,44 +110,68 @@
     padding: 0 0.2em;
     text-align: center;
     width: 5em;
-    margin:10px 0px;
+    margin: 10px 0px;
 }
-   
-  .card_star_item input {
+
+.card_star_item input {
     display: none;
-  }
-   
-  .card_star_item label {
+}
+
+.card_star_item label {
     -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
     -webkit-text-stroke-width: 2.3px;
     -webkit-text-stroke-color: #2b2a29;
     cursor: pointer;
-  }
-   
-  .card_star_item :checked ~ label {
+}
+
+.card_star_item :checked ~ label {
     -webkit-text-fill-color: gold;
-  }
-   
-  .card_star_item label:hover,
-  .card_star_item label:hover ~ label {
+}
+
+.card_star_item label:hover,
+.card_star_item label:hover ~ label {
     -webkit-text-fill-color: #fff58c;
-  }
+}
 
-  /* button wrapper */
-  .button_wrapper{
-    display:flex;
+/* button wrapper */
+.button_wrapper {
+    display: flex;
     justify-content: center;
-
     align-items: center;
-    text-align:right;
-    margin: 0px 150px 50px 150px;
-    font-size:30px;
-  }
+    text-align: right;
+    margin: 0 100px 10px 100px;
+}
 
-  /* button wrapper */
-  .a_wrapper{
-    display:flex;
+.btn-more:hover {
+    font-weight: 600;
+}
+
+/* button wrapper */
+.a_wrapper {
+    display: flex;
     justify-content: center;
-    margin: 0px 150px;
-    font-size:20px;
-  }
+    text-align: center;
+}
+
+.btn-later-box {
+    display: inline-block;
+    padding: 6px 8px;
+
+
+}
+
+.btn-later-box > a:hover {
+    padding: 6px 8px;
+    font-weight: 600;
+    color: #2b2a29;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-later-box > a {
+    text-decoration: none;
+    font-size: .8rem;
+    font-weight: 500;
+    color: #2b2a29;
+
+}

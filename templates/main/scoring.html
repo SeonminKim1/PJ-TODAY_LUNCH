@@ -7,6 +7,7 @@
     <meta name="csrf_token" content="{{ csrf_token }}">
 
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/scoring.css' %}" type="text/css">
 
     <!-- Bootstrap CSS -->
@@ -58,16 +59,14 @@
         }
     </script>
 </head>
-<body style="background-color:gray;">
+<body>
+{% include 'nav/nav.html' %}
 {% include 'users/message.html' %}
-<div class="header_container" style='text-align:right; color:white; height:20px; margin:10px;'>
-    <a href="{% url 'logout' %}">로그아웃</a>
-</div>
 
 <div class="main_container">
     <div class="title_wrapper">
-        <p class="title_center"> 점심 뭐 먹지?</p>
-        <p class="description"> 점심 후기 별점을 남겨주세요 </p>
+        <p class="title_center"> &#x1F929; 점심 후기 별점을 남겨주세요 </p>
+        {#        <p class="description"> 점심 후기 별점을 남겨주세요 </p>#}
     </div>
     <div class="main_wrapper">
         <div class="card_contents">
@@ -79,13 +78,11 @@
                         <div class="card_title_item">
                             <div class="card_item_left">{{ res.restaurant_name }}</div>
                             <div class="card_item_right">{{ res.restaurant_category }}</div>
-                        </div>
-                        <div class="card_content_item">
-                            {{ res.restaurant_address }}
+                            <div class="card_content_item">{{ res.restaurant_address }}</div>
                         </div>
                     </div>
                     <div class="card_link_item"><a href="https://map.naver.com/v5/search/{{ res.restaurant_name }}"
-                                                   target="_blank">자세히 보기</a></div>
+                                                   target="_blank" class="item_more">자세히 보기</a></div>
                     <div class="card_star_item space-x-4 mx-auto">
                         <input type="radio" id="5-stars_{{ res.id }}" name="rating_{{ res.id }}" value="5"
                                v-model="ratings" onclick='getRating({{ res.id }})'/>
@@ -109,10 +106,12 @@
 
     </div>
     <div class="button_wrapper">
-        <button class="btn btn-primary btn-lg" onclick="scoring_completed()">조금 더하기!</button>
+        <button class="btn btn-warning btn-lg btn-more" onclick="scoring_completed()">조금 더하기!</button>
     </div>
     <div class="a_wrapper">
-        <a href={% url 'main' %}>나중에 할게요</a>
+        <div class="btn-later-box">
+            <a href={% url 'main' %}>나중에 할게요~</a>
+        </div>
     </div>
 </div> <!-- main_container -->
 </body>
