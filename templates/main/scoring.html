@@ -65,7 +65,7 @@
 
 <div class="main_container">
     <div class="title_wrapper">
-        <p class="title_center"> &#x1F929; 점심 후기 별점을 남겨주세요 </p>
+        <p class="title_center"> &#x1F929; 방문했던 곳이 있다면 별점을 남겨주세요 </p>
         {#        <p class="description"> 점심 후기 별점을 남겨주세요 </p>#}
     </div>
     <div class="main_wrapper">
@@ -106,11 +106,11 @@
 
     </div>
     <div class="button_wrapper">
-        <button class="btn btn-warning btn-lg btn-more" onclick="scoring_completed()">조금 더하기!</button>
+        <button class="btn btn-default btn-lg btn-more" onclick="scoring_completed()" style="background-color: rgba(255, 255, 255, 0.6)">별점 저장하기 &#x1F44C; </button>
     </div>
     <div class="a_wrapper">
         <div class="btn-later-box">
-            <a href={% url 'main' %}>나중에 할게요~</a>
+            <a href={% url 'main' %}>평가 그만하기</a>
         </div>
     </div>
 </div> <!-- main_container -->

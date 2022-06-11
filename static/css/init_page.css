@@ -3,13 +3,55 @@
     box-sizing: border-box;
 }
 
+/*background: linear-gradient(137deg, #fff6b7, #f77c99, #6578f2, #c2ffd8);*/
+/*background-size: 800% 800%;*/
+
+/*-webkit-animation: AnimationName 16s ease infinite;*/
+/*-moz-animation: AnimationName 16s ease infinite;*/
+/*-o-animation: AnimationName 16s ease infinite;*/
+/*animation: AnimationName 16s ease infinite;*/
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
 body {
+  color: #fff;
+  background: linear-gradient(-45deg, yellow, yellowgreen, coral, lightcoral);
+  background-size: 400% 400%;
+  animation: AnimationName 15s ease infinite;
+  width: 100%;
+  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  top: 35%;
+  text-align: center;
+
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    /*background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
 }
 
 .background-container {
@@ -23,6 +65,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 10%;
+    /*background-color: #2b2a29;*/
 }
 
 .init-wrapper {
@@ -84,7 +128,7 @@ body {
     margin-top: 1%;
 }
 
+
 .btn-join:hover {
-    font-weight: 600;
     background-color: rgba(255, 255, 255, 0.6);
 }
