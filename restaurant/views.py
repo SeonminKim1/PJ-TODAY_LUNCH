@@ -98,7 +98,7 @@ def main_view(request):
 
             # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
             reco_list = list(set(reco) - set(visited_restaurant))[0:5]
-            print(reco_list)
+            # print(reco_list)
 
             # 추천 순위 TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
             recos = []
@@ -147,9 +147,9 @@ def main_view(request):
                                                   'top5': top5})
     # 추천섹션 2 - 카테고리 별 랭킹 TOP 5
     if request.method == "POST":
-        print('POST 로 호출됨!')
+        # print('POST 로 호출됨!')
         category = request.POST.get('category')
-        print(category)
+        # print(category)
         # 카테고리 분류
         if category == '0':
             # 평균 점수 기준으로 내림차순으로 정렬해서 5개까지 출력
@@ -173,6 +173,6 @@ def top5_append(objects):
         categories = {1: '한식', 2: '중식', 3: '일식', 4: '양식'}
         category = categories.get(category, '잘못된 카테고리')
         top5_list.append({'name': name, 'image': image, 'category': category})
-        print(top5_list)
+        # print(top5_list)
     json_data = json.dumps(top5_list, ensure_ascii=False)
     return json_data
