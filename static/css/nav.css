@@ -1,8 +1,4 @@
 /* nav */
-nav {
-    /*background-color: lightslategrey;*/
-}
-
 .nav-wrapper {
     display: flex;
     align-items: center;
@@ -15,10 +11,6 @@ nav {
     padding: 1%;
 }
 
-.logo-box {
-    /*background-color: steelblue;*/
-}
-
 .logo {
     color: whitesmoke;
     font-weight: 600;
@@ -28,30 +20,42 @@ nav {
 .nav-user-box {
     display: flex;
     justify-content: space-between;
-    width: 35%;
-    /*background-color: #fff58c;*/
+    width: 50%;
 }
 
-.hello-box, .mypage-box, .scoring-box{
+.hello-box, .mypage-box, .scoring-box {
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 60%;
-    /*background-color: lavender;*/
+    width: 40%;
+    margin: auto;
+    font-size: 1.2rem;
 }
 
-.hello{
+.hello {
     text-align: right;
+    font-weight: 500;
     color: whitesmoke;
 }
 
-.mypage-a, .scoring-a{
+.mypage-a, .scoring-a {
     text-decoration: none;
     color: whitesmoke;
 }
 
+.scoring-a:hover, .mypage-a:hover {
+    padding: 6px 8px;
+    font-weight: 600;
+    color: coral;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
 .logout-box {
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 18%;
     height: 70%;
     border-radius: 50px;
     background-color: whitesmoke;
