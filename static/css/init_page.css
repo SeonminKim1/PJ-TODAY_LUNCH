@@ -48,10 +48,6 @@ body {
 
     margin: 0;
     padding: 0;
-    /*background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;*/
-    /*-webkit-background-size: cover;*/
-    /*-moz-background-size: cover;*/
-    /*-o-background-size: cover;*/
 }
 
 .background-container {
@@ -65,8 +61,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10%;
-    /*background-color: #2b2a29;*/
+    margin-top: 11%;
 }
 
 .init-wrapper {
