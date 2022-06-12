@@ -10,7 +10,7 @@ body {
 }
 
 .main_container {
-    margin-top: 2%;
+    margin-top: 4%;
 }
 .title_wrapper {
     text-align: center;
@@ -155,8 +155,6 @@ body {
 .btn-later-box {
     display: inline-block;
     padding: 6px 8px;
-
-
 }
 
 .btn-later-box > a:hover {
@@ -172,5 +170,4 @@ body {
     font-size: .8rem;
     font-weight: 500;
     color: #2b2a29;
-
 }
