@@ -1,4 +1,4 @@
 import os
 
 # Restaurant DB, Category DB
-os.system('python recommandation/db_uploader.py')
+os.system('python3 recommandation/db_uploader.py')
