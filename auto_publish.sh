@@ -8,6 +8,11 @@ echo "==== makemigrations, migrate 완료"
 
 # echo "==== Change img-path 완료"
 
+sudo cp /mnt/luckyseven-s3/restaurant.csv recommandation/restaurant.csv
+sudo chmod 664 recommandation/restaurant.csv
+
+echo "==== restauratnt.csv 파일 생성 완료"
+
 ln -s /mnt/luckyseven-s3/img/ static/
 echo "==== img mnt 바로가기 생성 완료"
 
