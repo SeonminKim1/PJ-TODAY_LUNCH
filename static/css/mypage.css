@@ -17,68 +17,24 @@ body {
     -o-background-size: cover;
 }
 
-/* aside */
-.main-container {
+.main-container-mypage {
     display: flex;
 }
 
-aside {
-    display: inline-block;
-}
-
-aside {
-    /*background-color: slategray;*/
-    margin: 2% 0 0 4%;
-}
-
-.aside-container {
-    /*background-color: lightsteelblue;*/
-    width: 100%;
-    padding: 2%;
-    margin: auto;
-}
-
-.aside-wrapper {
-    display: block;
-}
-
-.user-main-box {
-    /*background-color: steelblue;*/
-    margin: 20% 0 30% 0;
-}
-
-.user-info-title {
-    display: inline-block;
-    margin-bottom: 5%;
-    font-size: 1.2rem;
-    font-weight: 600;
-    /*background-color: lavender;*/
-}
-
-hr {
-    border: 0;
-    height: 2px;
-    color: black;
-}
-
-.user-lunch {
-    padding: 6%;
-    /*background-color: steelblue;*/
-}
-
+/* aside -> main.css */
 
 /* section */
-section {
+.main-container-mypage section {
     width: 70%;
     height: 650px;
     margin: 3% 0 0 5%;
 }
 
-.section-container {
+.section-container-mypage {
     width: 100%;
 }
 
-.section-wrapper {
+.section-wrapper-mypage {
     width: 90%;
     height: 90%;
     background-color: rgba(255, 255, 255, 0.6);
@@ -112,7 +68,7 @@ thead button {
     color: white;
 }
 
-.section-container td {
+.section-container-mypage td {
     border-top: 1px solid #444444;
     padding: 5px;
     width: 100px;
@@ -154,14 +110,14 @@ thead button {
     display: none;
 }
 
-.section-container td:hover .create_diary_item {
+.section-container-mypage td:hover .create_diary_item {
     display: block;
 }
 
-.section-container td:hover .update_diary_item {
+.section-container-mypage td:hover .update_diary_item {
     display: block;
 }
 
-.section-container td:hover .diary_item {
+.section-container-mypage td:hover .diary_item {
     display: none;
 }
