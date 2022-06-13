@@ -9,6 +9,9 @@ body {
     -o-background-size: cover;
 }
 
+.main_container {
+    margin-top: 4%;
+}
 .title_wrapper {
     text-align: center;
 }
@@ -31,13 +34,12 @@ body {
 }
 
 .card_box {
-    width: 350px;
+    width: 220px;
     height: 520px;
     text-align: center;
     margin: 5px;
     background-color: white;
     border-radius: 10px;
-
 }
 
 .card_items {
@@ -53,9 +55,6 @@ body {
 .card_title_item {
     justify-content: center;
     margin: 10px 10px;
-}
-
-.card_content_item {
 }
 
 .card_item_left {
@@ -74,7 +73,7 @@ body {
     min-width: 30px;
     text-align: center;
     color: orangered;
-    font-size: .8rem;
+    font-size: .6rem;
     font-weight: 500;
     margin-bottom: 5%;
     border-radius: 7px;
@@ -156,8 +155,6 @@ body {
 .btn-later-box {
     display: inline-block;
     padding: 6px 8px;
-
-
 }
 
 .btn-later-box > a:hover {
@@ -173,5 +170,4 @@ body {
     font-size: .8rem;
     font-weight: 500;
     color: #2b2a29;
-
 }
