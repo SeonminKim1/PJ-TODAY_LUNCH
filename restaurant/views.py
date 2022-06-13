@@ -9,14 +9,6 @@ import json
 import random
 from datetime import datetime, timedelta
 
-
-def res_view(request, restaurant_id):
-    if request.method == "GET":
-        restaurant = Restaurant.objects.get(id=restaurant_id)
-        print(type(restaurant))
-        return render(request, 'main/res_view.html', {'restaurant': restaurant})
-
-
 def scoring_view(request):
     if request.method == 'GET':
         user = request.user.is_authenticated
