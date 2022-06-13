@@ -56,7 +56,7 @@ def recommandation(login_user_id):
     # print(user_based_collab)
 
     # 유사도 메인페이지에 출력을 위해서 보여주기 위한 유사도 높은 유저 추출
-    similar_top5 = user_based_collab[login_user_id].sort_values(ascending=False)[:5]
+    similar_top10 = user_based_collab[login_user_id].sort_values(ascending=False)[:10]
 
     # 로그인 유저와 비슷한 유저를 내림차순으로 정렬한 후에, 상위 10개만 뽑아 그 중 유사도가 가장 높은 유저만 추출
     similar_user = user_based_collab[login_user_id].sort_values(ascending=False)[:10].index[1]
@@ -71,4 +71,4 @@ def recommandation(login_user_id):
         result_list.append(re)
 
     # print(result_list)
-    return result_list, similar_user, similar_top5
+    return result_list, similar_user, similar_top10
