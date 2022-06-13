@@ -10,41 +10,36 @@
 <hr>
 
 ## 👉 Project-Rules
-- **Figma Wireframe**   
+#### Schedule Management : [Git Project Link](https://github.com/SeonminKim1/TODAY_LUNCH/projects/1), [간트차트 Link](https://docs.google.com/spreadsheets/d/1_1Sx46dnKnI8_DLJQzAASMSr7u525RFjm2Iat0beU14/edit#gid=1212318893)
+#### API Design : [Notion-link](https://www.notion.so/1b59a28804b9451d97d7b0145dc658f3?v=fb5a1b50406d43699b83a1d38aa2986c)
+#### Branch Info
+- main : LocalHost 실행 branch
+- publish : EC2 Hosting 실행 Branch
+
+#### Figma Mock-up
 ![image](https://user-images.githubusercontent.com/87006912/173303730-37dea9f0-4aad-4fa4-ac9d-248fc19766e1.png)
 
-- **Schedule Management** : [Git Project Link](https://github.com/SeonminKim1/TODAY_LUNCH/projects/1), [간트차트 Link](https://docs.google.com/spreadsheets/d/1_1Sx46dnKnI8_DLJQzAASMSr7u525RFjm2Iat0beU14/edit#gid=1212318893)
-
-- **Git Issue** : [Git Issue Link](https://github.com/SeonminKim1/7Instagram/issues)
-
-- **API Design** : [Notion-link](https://www.notion.so/1b59a28804b9451d97d7b0145dc658f3?v=fb5a1b50406d43699b83a1d38aa2986c)
-
-- **DB Modeling**   
+#### DB Modeling   
 ![image](https://user-images.githubusercontent.com/33525798/173334447-cbf70e34-82a3-47af-844a-0c6e4804c394.png)
-
 
 <hr>
 
 ## Development-Stack
-📚 **Frameworks, Libraries (ML)**     
-
+#### 📚 Frameworks, Libraries (ML) 
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
 ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) 
 
-💾 **Databases, Hosting/Storage**   
-
+#### 💾 Databases, Hosting/Storage
 ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)      
 
-📋 **Languages**    
-
+#### 📋 Languages
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)    
 
-💻 **IDEs/Editors**    
-
+#### 💻 IDEs/Editors
 ![PyCharm](https://img.shields.io/badge/pycharm-143?style=for-the-badge&logo=pycharm&logoColor=black&color=black&labelColor=green)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)    
 
@@ -57,15 +52,21 @@ $ pip install -r requirements.txt
 $ python recommandtion/crawling.py  # Crawing Data
 $ python auto_publish.py            # Data Migrations & Run Server
 $ python auto_db_insert.py          # Insert Restaurant DB 
+
+# publish branch version 
+$ sh auto_delete_db.sh
+$ sh auto_publish.sh
 ```
 
-#### 1. Crawling 
+#### Crawling 
 - 요기요 홈페이지 카테고리별 음식점 데이터 크롤링 (python crawling.py)
 - 생성된 restaurant_OO.csv 파일 (OO 부분은 카테고리, 50개의 음식점 정보 저장)들 합쳐서 최종 restaurant.csv 생성
 
-#### 2. DB Migration & DB 
-- ```python auto_publish.py``` 하여 migrations, migrate 진행 후 서버 자동실행 되므로 서버 종료 후
--``` python auto_db_insert.py``` 하여 크롤링하여 가져온 restaurant.csv 데이터들 DB에 저장
+#### DB Migration & DB 
+- (main Branch) ```python auto_publish.py``` 하여 migrations, migrate 진행
+- (main Branch) ```python auto_db_insert.py``` 하여 크롤링 데이터(restaurant.csv)들 DB에 저장
+- (publish branch) ```sh auto_delete_db.sh``` 하여 migrations, sqlite3 db 초기화
+- (publish branch) ```sh auto_publish.sh``` 하여 DB Migrations 및 크롤링 데이터(restaurant.csv) DB 저장
 
 <hr>
 
