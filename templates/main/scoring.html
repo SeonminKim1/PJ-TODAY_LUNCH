@@ -69,14 +69,14 @@
 
         function getRating(res_id) {
             const rating = document.getElementsByName('rating_' + res_id);
-            console.log(rating, 'rating_' + res_id);
+            //console.log(rating, 'rating_' + res_id);
             rating.forEach((star) => {
                 if (star.checked) {
                     console.log(star.value);
                     score[res_id] = parseInt(star.value);
                 }
             });
-            console.log('==score==', score);
+            //console.log('==score==', score);
         }
 
         function scoring_completed() {
