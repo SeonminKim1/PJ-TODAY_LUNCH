@@ -8,7 +8,6 @@
     <div class="main_container">
         <div class="title_wrapper">
             <p class="title_center"> &#x1F929; 방문했던 곳이 있다면 별점을 남겨주세요 </p>
-            {#        <p class="description"> 점심 후기 별점을 남겨주세요 </p>#}
         </div>
         <div class="main_wrapper">
             <div class="card_contents">
@@ -70,14 +69,14 @@
 
         function getRating(res_id) {
             const rating = document.getElementsByName('rating_' + res_id);
-            console.log(rating, 'rating_' + res_id);
+            //console.log(rating, 'rating_' + res_id);
             rating.forEach((star) => {
                 if (star.checked) {
                     console.log(star.value);
                     score[res_id] = parseInt(star.value);
                 }
             });
-            console.log('==score==', score);
+            //console.log('==score==', score);
         }
 
         function scoring_completed() {

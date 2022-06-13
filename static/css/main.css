@@ -17,6 +17,7 @@ body {
     -o-background-size: cover;
 }
 
+
 .main-container {
     display: flex;
 }
@@ -27,12 +28,12 @@ aside, section {
 }
 
 aside {
-    /*background-color: slategray;*/
-    margin: 2% 0 0 4%;
+    margin: 0 4%;
 }
 
 .aside-container {
-    /*background-color: lightsteelblue;*/
+    display: flex;
+    align-items: center;
     width: 100%;
     padding: 2%;
     margin: auto;
@@ -40,19 +41,30 @@ aside {
 
 .aside-wrapper {
     display: block;
+    width: 100%;
 }
 
 .user-main-box {
-    /*background-color: steelblue;*/
     margin: 20% 0 30% 0;
+}
+
+.user-main {
+    width: 90%;
 }
 
 .user-info-title {
     display: inline-block;
     margin-bottom: 5%;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.user-address {
     font-size: 1.2rem;
     font-weight: 600;
-    /*background-color: lavender;*/
+}
+
+.user-address-text {
 }
 
 hr {
@@ -61,29 +73,35 @@ hr {
     color: black;
 }
 
-.user-info-text{
-    margin: 5% 0 20% 0;
-    font-size: 1rem;
-}
-
 .user-lunch-box {
-    width: 90%;
-    height: 50%;
+    display: flex;
+    align-items: center;
+    width: 260px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5)
 }
 
 .user-lunch {
-    padding: 6%;
     /*background-color: steelblue;*/
 }
 
+.user-card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.user-card-text {
+    font-size: 1.2rem;
+}
+
+.user-card {
+    margin-top: 8%;
+}
 
 /* section */
 section {
     display: flex;
     margin: 3% 0 0 5%;
-    /*background-color: lightsteelblue;*/
 }
 
 .section-container {
@@ -92,11 +110,9 @@ section {
 }
 
 .section-wrapper {
-    /*background-color: darkseagreen;*/
 }
 
 .card-section-box {
-    /*background-color: lavender;*/
     width: 95%;
     margin-top: 2%;
 }
@@ -105,7 +121,24 @@ section {
     display: flex;
     justify-content: space-between;
     width: 91%;
-    /*background-color: greenyellow;*/
+}
+
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-text {
+    display: inline-block;
+    padding: 2% 3% 2% 3%;
+    min-width: 30px;
+    color: orangered;
+    font-size: .6rem;
+    font-weight: 500;
+    margin-top: 7%;
+    border-radius: 7px;
+    border: 1px solid orangered;
 }
 
 .card-section-title {
@@ -113,17 +146,13 @@ section {
     font-weight: 500;
     color: whitesmoke;
     margin-left: 4%;
-    /*background-color: greenyellow;*/
 }
-
-
 
 .menu-box {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 30%;
-    /*background-color: #fff58c;*/
 }
 
 .menu-btn {
@@ -138,26 +167,25 @@ section {
     font-weight: 500;
     color: orangered;
     background-color: whitesmoke;
-    box-shadow: 2px 2px 20px rgba(0,0,0,0.1);
-
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
 .clicked {
     color: whitesmoke;
     background-color: orangered;
 }
+
 .card-box {
     display: flex;
     position: relative;
     margin: 4%;
 }
 
-
 .card {
     display: block;
     width: 14rem;
     margin-right: 4%;
-    box-shadow: 5px 5px 20px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 .card-title {

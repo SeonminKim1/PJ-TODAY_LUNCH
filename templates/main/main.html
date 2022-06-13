@@ -12,21 +12,24 @@
                         <div class="user-main">
                             <span class="user-info-title">{{ user.fullname }} 님</span>
                             <hr/>
-                            <p class="user-address">주소<br><b>{{ user.address }}</b></p>
+                            <p class="user-address">주소</p>
+                            <p class="user-address-text">{{ user.address }}</p>
                         </div>
                     </div>
                     <div class="user-lunch-box">
                         <div class="user-lunch">
-                        <span class="user-info-title">😊오늘의 추천
-                        <p>어제 가장 높은 평점을 받은 가게에요!</p></span>
-                            <div class="card" style="width: 100%">
+                            <p class="user-card-title">😊 오늘의 추천</p>
+                            <span class="user-card-text">어제 가장 높은 평점을 받은</span><br />
+                            <span class="user-card-text">가게에요!</span>
+                            <div class="card user-card">
                                 {% if today_reco_result == 'success' %}
                                     <img src="/{{ today_res.restaurant_image }}" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ today_res.restaurant_name }}</h5>
                                         <p class="card-text">{{ today_res.restaurant_category }}</p>
                                         <a href="https://map.naver.com/v5/search/{{ today_res.restaurant_name }}"
-                                           class="btn btn-primary" target='_blank'>상세보기</a>
+                                           class="btn btn-default" target='_blank'
+                                           style="display: block; width: 90px; background-color: #EF5350; color: whitesmoke">상세보기</a>
                                     </div>
                                 {% else %}
                                     <div class="card-body"> {{ today_res }}</div>
@@ -43,7 +46,7 @@
                     <div class="card-section-box">
                         {% if reco_result == 'success' %}
                             <div class="card-section-title text1">
-                                사용자님과 가장 유사한 <a type="button" title="" data-bs-html="true" data-container="body"
+                                &#x1F44D; 사용자님과 가장 유사한 <a type="button" title="" data-bs-html="true" data-container="body"
                                                 data-toggle="popover" data-bs-placement="top"
                                                 data-bs-content="{{ similar_top5 }}">
                                 {{ similar.fullname }}
@@ -76,7 +79,7 @@
                     <div class="card-section-box">
                         <div class="card-title-box">
                             <div class="card-section-title text2">
-                                점심 뭐 먹지? TOP 5
+                                &#x1F590; 점심 뭐 먹지? TOP 5
                             </div>
                             <div class="menu-box">
                                 <div class="menu-all-box">
@@ -127,7 +130,7 @@
             console.log(event.target.classList);
 
             if (event.target.classList[1] === "clicked") {
-                event.target.classList.remove("clicked");
+                {#event.target.classList.remove("clicked");#}
             } else {
                 for (let i = 0; i < category_btn.length; i++) {
                     category_btn[i].classList.remove("clicked");
