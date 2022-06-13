@@ -87,17 +87,15 @@ def main_view(request):
             visited_restaurant = []
             for star in my_star:
                 visited_restaurant.append(star.star_restaurant.restaurant_name)
-
-            # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
+             # 추천리스트에서 내가 가본 음식점들 빼고 TOP 5개만 저장
             reco_list = list(set(reco) - set(visited_restaurant))[0:5]
             # print(reco_list)
-
             # 추천 순위 TOP5 레스토랑의 이름으로 DB에서 검색해서 해당 object 받아와 리스트에 저장
             recos = []
             for re in reco_list:
                 recos.append(Restaurant.objects.get(restaurant_name=re))
             reco_result = 'success'
-        except:
+        except KeyError:
             similar = '없음'
             output = '없음'
             recos = '아직 평점을 준 음식점이 없습니다! 평점을 부여하시면 그에 따른 추천을 해드립니다!'
