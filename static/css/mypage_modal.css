@@ -18,8 +18,8 @@
     width: 600px;
     height: 400px;
     border-radius: 15px;
-    background: rgba(69, 139, 197, 0.93);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px 1px rgba(051, 051, 051, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 30px;
 }
@@ -27,8 +27,7 @@
 .modal_title {
     padding-left: 10px;
     display: inline;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
+    color: black;
 }
 
 .modal_title h3 {
@@ -40,8 +39,7 @@
     float: right;
     padding-right: 10px;
     cursor: pointer;
-    text-shadow: 1px 1px 2px gray;
-    color: white;
+    color: black;
 }
 
 .main_content {
@@ -74,6 +72,10 @@
     margin: 10px;
 }
 
+.btn-registration:hover {
+    font-weight: 600;
+}
+
 /* create_rating */
 
 .star-rating {
@@ -96,12 +98,12 @@
 }
 
 .star-rating :checked ~ label {
-    color: #fc0;
+    color: orangered;
 }
 
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #f90;
+    color: coral;
 }
 
 /* update_rating */
@@ -132,4 +134,8 @@
 .ustar-rating label:hover,
 .ustar-rating label:hover ~ label {
     color: #f90;
+}
+
+#date_value {
+    font-size: 1.5rem;
 }
