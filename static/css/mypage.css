@@ -26,32 +26,34 @@ body {
 /* section */
 .main-container-mypage section {
     width: 70%;
-    height: 650px;
+    height: 600px;
     margin: 3% 0 0 5%;
 }
 
 .section-container-mypage {
     width: 100%;
+    height: 100%;
 }
 
 .section-wrapper-mypage {
     width: 90%;
-    height: 90%;
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
+    height: 100%;
 }
 
 /* calendar */
 
 table {
     width: 100%;
-    height: 100%;
+    height: 120%;
     text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
 
 thead {
-    font-size: 18px;
+    height: 10%;
+    font-size: 1.2rem;
     text-align: center;
     vertical-align: middle;
 }
@@ -60,12 +62,17 @@ thead p {
     margin: 1%;
 }
 
+#custom_set_date {
+    /*background-color: #ff9900;*/
+}
+
 thead button {
     width: 25px;
     border: 0;
+    font-weight: 600;
     border-radius: 5px;
-    background-color: #2b2a29;
-    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: slategray;
 }
 
 .section-container-mypage td {
@@ -79,22 +86,24 @@ thead button {
 }
 
 .diary_item {
-    width: 95%;
+    width: 90%;
     height: 80%;
     border-radius: 5px;
-    background-color: #4285F4;
-    font-size: 14px;
-    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: darkorange;
+    padding: 3%;
     margin: 0 auto;
     display: block;
     transition: .5s;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .update_diary_item {
     width: 95%;
     border-radius: 5px;
     background-color: rgba(255, 0, 0, 0.9);
-    font-size: 14px;
+    font-size: 1rem;
     color: white;
     margin: 0 auto;
     display: none;
@@ -103,8 +112,8 @@ thead button {
 .create_diary_item {
     width: 95%;
     border-radius: 5px;
-    background-color: rgba(128, 128, 0, 0.9);
-    font-size: 14px;
+    background-color: darkorange;
+    font-size: 1rem;
     color: white;
     margin: 0 auto;
     display: none;
