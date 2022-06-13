@@ -1,20 +1,35 @@
 * {
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;
     font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
-body {
-    background-image: linear-gradient(to bottom right, rgb(300, 102, 125), rgb(255, 163, 117));
+html {
+    margin: 0;
+    padding: 0;
 }
 
-/* aside */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, orange, yellow) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+
 .main-container {
     display: flex;
 }
 
+/* aside */
+aside, section {
+    display: inline-block;
+}
+
 aside {
-    margin: 0 4%;
+    width: 20%;
+    margin: 1% 4%;
 }
 
 .aside-container {
@@ -22,7 +37,7 @@ aside {
     align-items: center;
     width: 100%;
     padding: 2%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .aside-wrapper {
@@ -31,16 +46,15 @@ aside {
 }
 
 .user-main-box {
-    margin: 20% 0 30% 0;
+    margin: 5% 0;
 }
 
 .user-main {
-    width: 90%;
+    width: 100%;
 }
 
 .user-info-title {
     display: inline-block;
-    margin-bottom: 5%;
     font-size: 1.4rem;
     font-weight: 600;
 }
@@ -62,13 +76,15 @@ hr {
 .user-lunch-box {
     display: flex;
     align-items: center;
-    width: 260px;
+    justify-content: center;
+    width: 240px;
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.5)
 }
 
 .user-lunch {
-    /*background-color: steelblue;*/
+    padding: 5%;
+    margin: 0 auto;
 }
 
 .user-card-title {
@@ -77,30 +93,31 @@ hr {
 }
 
 .user-card-text {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
 }
 
 .user-card {
-    margin-top: 8%;
+    margin: 8% auto;
 }
 
 /* section */
 section {
     display: flex;
-    margin: 3% 0 0 5%;
+    width: 70%;
+    margin: 3% 0;
 }
 
 .section-container {
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .section-wrapper {
+    width: 100%;
 }
 
 .card-section-box {
-    width: 95%;
-    margin-top: 2%;
+    width: 100%;
 }
 
 .card-title-box {
@@ -109,7 +126,16 @@ section {
     width: 91%;
 }
 
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .card-title {
+    width: 100%;
+    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -128,10 +154,14 @@ section {
 }
 
 .card-section-title {
+    display: inline-block;
+    padding: 1%;
     font-size: 1.4rem;
     font-weight: 500;
-    color: whitesmoke;
+    color: black;
     margin-left: 4%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5)
 }
 
 .menu-box {
@@ -144,7 +174,7 @@ section {
 .menu-btn {
     display: inline-block;
     text-align: center;
-    width: 150%;
+    width: 120%;
     height: 80%;
     border: 0;
     border-radius: 3px;
@@ -152,7 +182,7 @@ section {
     font-size: .9rem;
     font-weight: 500;
     color: orangered;
-    background-color: whitesmoke;
+    background-color: white;
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -164,7 +194,7 @@ section {
 .card-box {
     display: flex;
     position: relative;
-    margin: 4%;
+    margin: 2% 0 4% 3%;
 }
 
 .card {
@@ -182,5 +212,6 @@ section {
 .card-text {
     font-size: 0.8rem;
 }
+
 
 
