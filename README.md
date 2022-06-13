@@ -56,7 +56,7 @@
 ├── auto_db_insert.py
 └── auto_publish.py
 ```
-<hr>
+
 ### Getting Started
 1. Crawling (요기요 자동 크롤링) - 셀레니움으로 직접 홈페이지에 접근해서 뷰티풀스프로 데이터 가져와 저장하는 방식
 python crawling.py 실행 시 자동으로 크롤링 진행되며 restaurant_OO.csv 파일 생성됨, OO 부분은 카테고리 부분(50개의 음식점 정보 저장됨)
@@ -65,7 +65,7 @@ python crawling.py 실행 시 자동으로 크롤링 진행되며 restaurant_OO.
 2. DB에 데이터 저장
 python auto_publish.py 하여 migrations, migrate 진행 후 서버 자동실행 되므로 서버 종료 후
 python auto_db_insert.py 하여 크롤링하여 가져온 restaurant.csv 데이터들 DB에 저장
-<hr>
+
 ### Development Stack
 📚 Frameworks, Platforms and Libraries     
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
@@ -83,10 +83,10 @@ python auto_db_insert.py 하여 크롤링하여 가져온 restaurant.csv 데이�
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)    
 🍗 ML/DL    
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white)    
-<hr>
+
 ### DB Modeling
 ![image](https://user-images.githubusercontent.com/87006912/173292061-a4710c4a-ad46-48bc-bdc6-a89acd377d4c.png)
-<hr>
+
 ### Development
 
 Training
