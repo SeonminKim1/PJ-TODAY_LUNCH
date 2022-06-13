@@ -3,23 +3,23 @@
 - 하루 삼시세끼, “오늘 점심 뭐 먹지?” 고민해 본 사람들이 고민하는 사람들을 위해 만들어 보는 웹 서비스
 
 ## 👉 Introduction
-- 주제 : 점심 추천 웹 서비스 (for 직딩, 일반인)
-- 기간 : 2022.06.03 (금) ~ 2022.06.13 (월)
-- Team : 김선민 ([Github](https://github.com/SeonminKim1)), 김민기 ([Github](https://github.com/kmingky)), 박재현 ([Github](https://github.com/Aeius)), 황신혜 ([Github](https://github.com/hwanghye00))
+- **주제** : 점심 추천 웹 서비스 (for 직딩, 일반인)
+- **기간** : 2022.06.03 (금) ~ 2022.06.13 (월)
+- **Team** : 김선민 ([Github](https://github.com/SeonminKim1)), 김민기 ([Github](https://github.com/kmingky)), 박재현 ([Github](https://github.com/Aeius)), 황신혜 ([Github](https://github.com/hwanghye00))
 
 <hr>
 
 ## 👉 Project-Rules
-- Figma Mock-up   
+- **Figma Wireframe**   
 ![image](https://user-images.githubusercontent.com/87006912/173303730-37dea9f0-4aad-4fa4-ac9d-248fc19766e1.png)
 
-- Schedule Management : [Git Project Link](https://github.com/SeonminKim1/TODAY_LUNCH/projects/1), [간트차트 Link](https://docs.google.com/spreadsheets/d/1_1Sx46dnKnI8_DLJQzAASMSr7u525RFjm2Iat0beU14/edit#gid=1212318893)
+- **Schedule Management** : [Git Project Link](https://github.com/SeonminKim1/TODAY_LUNCH/projects/1), [간트차트 Link](https://docs.google.com/spreadsheets/d/1_1Sx46dnKnI8_DLJQzAASMSr7u525RFjm2Iat0beU14/edit#gid=1212318893)
 
-- Git Issue : [Git Issue Link](https://github.com/SeonminKim1/7Instagram/issues)
+- **Git Issue** : [Git Issue Link](https://github.com/SeonminKim1/7Instagram/issues)
 
-- API Design : [Notion-link](https://www.notion.so/1b59a28804b9451d97d7b0145dc658f3?v=fb5a1b50406d43699b83a1d38aa2986c)
+- **API Design** : [Notion-link](https://www.notion.so/1b59a28804b9451d97d7b0145dc658f3?v=fb5a1b50406d43699b83a1d38aa2986c)
 
-- DB Modeling   
+- **DB Modeling**   
 ![image](https://user-images.githubusercontent.com/33525798/173334447-cbf70e34-82a3-47af-844a-0c6e4804c394.png)
 
 
