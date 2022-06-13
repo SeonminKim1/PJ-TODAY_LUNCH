@@ -11,7 +11,7 @@
                     <div class="user-main-box">
                         <div class="user-main">
                             <span class="user-info-title">{{ user.fullname }} 님</span>
-                            <hr/>
+                            <hr>
                             <p class="user-address">주소</p>
                             <p class="user-address-text">{{ user.address }}</p>
                         </div>
@@ -19,9 +19,8 @@
                     <div class="user-lunch-box">
                         <div class="user-lunch">
                             <p class="user-card-title">😊 오늘의 추천</p>
-                            <span class="user-card-text">어제 가장 높은 평점을 받은</span><br />
-                            <span class="user-card-text">가게에요!</span>
-                            <div class="card user-card">
+                            <span class="user-card-text">어제 가장 높은 평점을 받은 가게에요!</span>
+                            <div style="width: 90%" class="card user-card">
                                 {% if today_reco_result == 'success' %}
                                     <img src="/{{ today_res.restaurant_image }}" class="card-img-top" alt="...">
                                     <div class="card-body">
