@@ -160,3 +160,7 @@ $ python auto_db_insert.py          # Insert Restaurant DB
   - 등록된 점심일지 부분 클릭시 모달 창 출력
   - 수정/삭제 내용 바탕으로 DB Update 및 추천 알고리즘 Upgrade
   - 삭제 클릭시 해당 점심일지 삭제됨
+
+#### Publish and Storage Mount
+- AWS EC2 이용한 외부 Publish 배포
+- S3에 정적 이미지 파일들 관리 및 EC2에 Mount하여 구현
