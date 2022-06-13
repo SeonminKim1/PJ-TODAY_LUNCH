@@ -105,7 +105,7 @@ def main_view(request):
             for re in reco_list:
                 recos.append(Restaurant.objects.get(restaurant_name=re))
             reco_result = 'success'
-        except:
+        except KeyError:
             similar = '없음'
             output = '없음'
             recos = '아직 평점을 준 음식점이 없습니다! 평점을 부여하시면 그에 따른 추천을 해드립니다!'
