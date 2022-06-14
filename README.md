@@ -24,7 +24,7 @@
 
 <hr>
 
-## Development-Stack
+## 👉 Development-Stack
 #### 📚 Frameworks, Libraries (ML) 
 ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
 ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
@@ -165,3 +165,16 @@ $ sh auto_publish.sh
 #### Publish and Storage Mount
 - AWS EC2 이용한 외부 Publish 배포
 - S3에 정적 이미지 파일들 관리 및 EC2에 Mount하여 구현
+
+<hr>
+
+## 👉 시연 화면
+#### 첫화면, 회원가입, 로그인 화면
+![image](https://user-images.githubusercontent.com/33525798/173514356-84840d07-2425-4095-b9fa-07d50a19bc0d.png)
+
+#### 평가 페이지, 메인 페이지
+![image](https://user-images.githubusercontent.com/33525798/173514477-228b4897-bee0-491e-847c-5720d11a5eb4.png)
+
+#### 마이페이지 (점심일지 등록, 수정, 삭제)
+![image](https://user-images.githubusercontent.com/33525798/173514527-8e456009-0dcb-4e5d-890a-e476ef4331fb.png)
+
