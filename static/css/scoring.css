@@ -13,13 +13,18 @@ body {
     /*margin-top: 4%;*/
 }
 .title_wrapper {
-    margin-top: 3%;
+    width: 70%;
     text-align: center;
+    vertical-align: middle;
+    display: flex;
+    justify-content: right;
+    margin: 4% auto 0 auto;
 }
 
 .title_center {
     font-size: 1.4rem;
     font-weight: 400;
+    margin-right: 20%;
 }
 
 .description {
@@ -139,7 +144,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: right;
-    margin: 0 100px 10px 100px;
+    margin: 0 auto 10px auto;
 }
 
 .btn-more:hover {
