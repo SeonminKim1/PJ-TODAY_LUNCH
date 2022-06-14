@@ -5,7 +5,7 @@
 ## 👉 Introduction
 - **주제** : 점심 추천 웹 서비스 (for 직딩, 일반인)
 - **기간** : 2022.06.03 (금) ~ 2022.06.13 (월)
-- **Team** : 김선민 ([Github](https://github.com/SeonminKim1)), 김민기 ([Github](https://github.com/kmingky)), 박재현 ([Github](https://github.com/Aeius)), 황신혜 ([Github](https://github.com/hwanghye00))
+- **Team** : 김선민 ([Github](https://github.com/SeonminKim1)), 김민기 ([Github](https://github.com/kmingky)), 박재현 ([Github](https://github.com/Aeius)), 황신혜 ([Github](https://github.com/hwangshinhye)) 
 
 <hr>
 
