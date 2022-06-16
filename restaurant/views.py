@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from .models import Restaurant
 from star.models import Star
 from users.models import UserModel
+from restaurant.models import Categories
 from recommandation.recommand import Recommand
 
 import json
@@ -142,9 +143,8 @@ def top5_append(objects):
         name = t.restaurant_name
         image = t.restaurant_image
         category = t.restaurant_category_id
-        categories = {1: '한식', 2: '중식', 3: '일식', 4: '양식'}
-        category = categories.get(category, '잘못된 카테고리')
-        top5_list.append({'name': name, 'image': image, 'category': category})
+        categories = Categories.objects.get(id=category).restaurant_category
+        top5_list.append({'name': name, 'image': image, 'category': categories})
         # print(top5_list)
     json_data = json.dumps(top5_list, ensure_ascii=False)
     return json_data
